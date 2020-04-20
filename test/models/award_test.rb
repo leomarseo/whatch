@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class OscarTest < ActiveSupport::TestCase
+class AwardTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

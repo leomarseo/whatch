@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 2020_04_20_131205) do
   end
 
   create_table "actors", force: :cascade do |t|
-    t.string "first_name", null: false
-    t.string "last_name", null: false
+    t.string "name", null: false
     t.string "age"
-    t.string "image_url"
+    t.string "photo_url"
+    t.string "tmdb_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -54,15 +54,30 @@ ActiveRecord::Schema.define(version: 2020_04_20_131205) do
     t.index ["service_id"], name: "index_available_services_on_service_id"
   end
 
+  create_table "awards", force: :cascade do |t|
+    t.string "award_type"
+    t.string "category"
+    t.string "year"
+    t.bigint "movie_id", null: false
+    t.string "awardable_type"
+    t.bigint "awardable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["awardable_type", "awardable_id"], name: "index_awards_on_awardable_type_and_awardable_id"
+    t.index ["movie_id"], name: "index_awards_on_movie_id"
+  end
+
   create_table "directors", force: :cascade do |t|
-    t.string "first_name", null: false
-    t.string "last_name", null: false
+    t.string "name"
+    t.string "tmdb_id"
+    t.string "photo_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "genres", force: :cascade do |t|
     t.string "name", null: false
+    t.string "tmdb_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -78,27 +93,15 @@ ActiveRecord::Schema.define(version: 2020_04_20_131205) do
 
   create_table "movies", force: :cascade do |t|
     t.bigint "director_id", null: false
-    t.string "year", null: false
-    t.string "duration"
-    t.text "plot", null: false
-    t.text "extended_plot"
-    t.string "age_restriction"
-    t.string "image_url"
+    t.string "title", null: false
+    t.string "year"
+    t.string "runtime"
+    t.text "overview"
+    t.string "photo_url"
+    t.string "tmdb_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["director_id"], name: "index_movies_on_director_id"
-  end
-
-  create_table "oscars", force: :cascade do |t|
-    t.string "category", null: false
-    t.string "year", null: false
-    t.bigint "movie_id", null: false
-    t.string "oscarable_type"
-    t.bigint "oscarable_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["movie_id"], name: "index_oscars_on_movie_id"
-    t.index ["oscarable_type", "oscarable_id"], name: "index_oscars_on_oscarable_type_and_oscarable_id"
   end
 
   create_table "seen_movies", force: :cascade do |t|
@@ -121,6 +124,7 @@ ActiveRecord::Schema.define(version: 2020_04_20_131205) do
   create_table "starring_actors", force: :cascade do |t|
     t.bigint "movie_id", null: false
     t.bigint "actor_id", null: false
+    t.string "character"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["actor_id"], name: "index_starring_actors_on_actor_id"
@@ -146,10 +150,10 @@ ActiveRecord::Schema.define(version: 2020_04_20_131205) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "available_services", "movies"
   add_foreign_key "available_services", "services"
+  add_foreign_key "awards", "movies"
   add_foreign_key "joint_genres", "genres"
   add_foreign_key "joint_genres", "movies"
   add_foreign_key "movies", "directors"
-  add_foreign_key "oscars", "movies"
   add_foreign_key "seen_movies", "movies"
   add_foreign_key "seen_movies", "users"
   add_foreign_key "starring_actors", "actors"
