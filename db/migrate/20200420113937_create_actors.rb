@@ -4,6 +4,7 @@ class CreateActors < ActiveRecord::Migration[6.0]
       t.string :first_name, null: false
       t.string :last_name, null: false
       t.string :age
+      t.string :image_url
 
       t.timestamps
     end

@@ -7,6 +7,7 @@ class CreateMovies < ActiveRecord::Migration[6.0]
       t.text :plot, null: false
       t.text :extended_plot
       t.string :age_restriction
+      t.string :image_url
 
       t.timestamps
     end

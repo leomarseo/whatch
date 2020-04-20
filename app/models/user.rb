@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :movies, through: :seen_movies
+  has_one_attached :photo
 end
