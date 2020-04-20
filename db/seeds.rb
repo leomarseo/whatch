@@ -37,3 +37,11 @@ StarringActor.create(movie_id: 2, actor_id: 2, character: 'Example Character 3')
 Award.create(award_type: 'Oscar', category: 'Best Actor', year: '2000', movie_id: 1, awardable_id: 1, awardable_type: 'Actor')
 Award.create(award_type: 'Oscar', category: 'Best Directing', year: '2000', movie_id: 1, awardable_id: 1, awardable_type: 'Director')
 Award.create(award_type: 'Golden Globe', category: 'Best Director', year: '2010', movie_id: 2, awardable_id: 2, awardable_type: 'Director')
+
+Service.create(company: 'Netflix', country: 'Italy')
+Service.create(company: 'Amazon', country: 'Italy')
+Service.create(company: 'Netflix', country: 'Germany')
+
+AvailableService.create(service_id: 1, movie_id: 1)
+AvailableService.create(service_id: 2, movie_id: 2)
+AvailableService.create(service_id: 3, movie_id: 1)
