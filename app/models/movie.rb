@@ -13,7 +13,4 @@ class Movie < ApplicationRecord
 
   has_many :available_services
   has_many :services, through: :available_services
-
-  has_many :joint_suggestions
-  has_many :tmdb_suggestions, through: :joint_suggestions
 end

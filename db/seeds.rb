@@ -1,34 +1,106 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require "json"
+require 'open-uri'
 
+# GENRES GENERATOR ############################################################################################
+# takes from the local file 'db/tbdb_ids/genres.json' which is the result of the API request to TMDB for genres
+url = open("./db/tmdb_ids/genres.json").read
+data = JSON.parse(url)
+data['genres'].each do |genre|
+  Genre.create(name: genre['name'], tmdb_id: genre['id'])
+end
+# /GENRES GENERATOR ############################################################################################
+
+director = Director.create(name: 'placeholder') # creates placeholder director to avoid validation issues during movie creation
+
+# MOVIES GENERATOR ############################################################################################
+File.foreach("./db/tmdb_ids/test.json").map do |line|
+  begin
+    id = JSON.parse(line)["id"]
+    url_details = open("https://api.themoviedb.org/3/movie/#{id}?api_key=81c398dbb6b994e4f815e69325c4893c&language=en-US").read
+  rescue OpenURI::HTTPError
+    next # skips the whole creation process if url is not found
+  else
+    movie_details = JSON.parse(url_details)
+
+    # creates movie by extracting information from API response
+    Movie.create(
+      tmdb_id: id,
+      title: movie_details['title'],
+      original_title: movie_details['original_title'],
+      runtime: movie_details['runtime'],
+      overview: movie_details['overview'],
+      photo_url: movie_details['poster_path'],
+      release_date: movie_details['release_date'],
+      vote_average: movie_details['vote_average'],
+      vote_count: movie_details['vote_count'],
+      tagline: movie_details['tagline'],
+      belongs_to_collection: movie_details['belongs_to_collection'],
+      director: director
+    )
+
+    movie_details['genres'].each do |genre|
+      # creates association between genres and movies for each genre present in API response to movie details
+      JointGenre.create(
+        genre: Genre.find_by(tmdb_id: genre['id']),
+        movie: Movie.find_by(tmdb_id: id)
+        )
+    end
+
+    begin
+      url_credits = open("https://api.themoviedb.org/3/movie/#{id}/credits?api_key=81c398dbb6b994e4f815e69325c4893c").read
+    rescue OpenURI::HTTPError
+      next
+    else
+      movie_credits = JSON.parse(url_credits)
+
+      # DIRECTORS GENERATOR #################################################################################
+      movie_credits['crew'].each do |crew_member|
+        next if crew_member['job'] != 'Director'
+
+        # creates director by searching the API response to Movie-credits
+        if Director.find_by(tmdb_id: crew_member['id']).nil?
+          Director.create(
+            name: crew_member['name'],
+            tmdb_id: crew_member['id'],
+            photo_url: crew_member['profile_path']
+            )
+        end
+
+        # assigns newly created director to previously created movie, replacing placeholder
+        Movie.find_by(tmdb_id: id).update(director: Director.find_by(tmdb_id: crew_member['id']))
+      end
+      # /DIRECTORS GENERATOR #################################################################################
+
+
+      # ACTORS GENERATOR #################################################################################
+      movie_credits['cast'].each do |cast_member|
+
+        # creates actor only if there isn't already an actor in our DB with the same tmbd_id, to avoid clones
+        if Actor.find_by(tmdb_id: cast_member['id']).nil?
+          Actor.create(
+            name: cast_member['name'],
+            tmdb_id: cast_member['id']
+          )
+        end
+
+        # creates association between actors and movies for each actor present in API response to movie credits
+        StarringActor.create(
+          movie: Movie.find_by(tmdb_id: id),
+          actor: Actor.find_by(tmdb_id: cast_member['id']),
+          character: cast_member['character'],
+          photo_url: cast_member['profile_path']
+        )
+
+      end
+      # /ACTORS GENERATOR #################################################################################
+
+    end
+  end
+end
+# /MOVIES GENERATOR ############################################################################################
 
 User.create(email: 'user1@example.com', password: '123456', first_name: 'Marco', last_name: 'Rossi', age: 29, country: 'Italy')
 User.create(email: 'user2@example.com', password: '123456', first_name: 'John', last_name: 'Dalton', age: 40, country: 'Belgium')
-
-Actor.create(name: 'Example Actor 1', age: '40', photo_url: 'https://image.tmdb.org/t/p/w500/fk8OfdReNltKZqOk2TZgkofCUFq.jpg')
-Actor.create(name: 'Example Actor 2', age: '50', photo_url: 'https://image.tmdb.org/t/p/w500/kU3B75TyRiCgE270EyZnHjfivoq.jpg')
-
-Director.create(name: 'Example Director 1', photo_url: 'https://upload.wikimedia.org/wikipedia/commons/9/95/Christopher_Nolan_Cannes_2018.jpg')
-Director.create(name: 'Example Director 2', photo_url: "https://upload.wikimedia.org/wikipedia/commons/2/29/Steven_Spielberg_Masterclass_Cin%C3%A9math%C3%A8que_Fran%C3%A7aise_2_cropped.jpg")
-
-Genre.create(name: 'Example Genre 1')
-Genre.create(name: 'Example Genre 2')
-
-Movie.create(director_id: 1, title: 'Example Title 1', year: '2000', runtime: '120', overview: "example overview of this example movie 1 it's very nice but also very bad", photo_url: 'https://image.tmdb.org/t/p/w500/8kSerJrhrJWKLk1LViesGcnrUPE.jpg')
-Movie.create(director_id: 2, title: 'Example Title 2', year: '2010', runtime: '140', overview: "example overview of this example movie 2 it's very nice but also very bad", photo_url: 'https://image.tmdb.org/t/p/w500/8kSerJrhrJWKLk1LViesGcnrUPE.jpg')
-
-JointGenre.create(movie_id: 1, genre_id: 1)
-JointGenre.create(movie_id: 1, genre_id: 2)
-JointGenre.create(movie_id: 2, genre_id: 2)
-
-StarringActor.create(movie_id: 1, actor_id: 1, character: 'Example Character 1')
-StarringActor.create(movie_id: 1, actor_id: 2, character: 'Example Character 2')
-StarringActor.create(movie_id: 2, actor_id: 2, character: 'Example Character 3')
 
 Award.create(award_type: 'Oscar', category: 'Best Actor', year: '2000', movie_id: 1, awardable_id: 1, awardable_type: 'Actor')
 Award.create(award_type: 'Oscar', category: 'Best Directing', year: '2000', movie_id: 1, awardable_id: 1, awardable_type: 'Director')

@@ -38,9 +38,8 @@ ActiveRecord::Schema.define(version: 2020_04_21_103855) do
 
   create_table "actors", force: :cascade do |t|
     t.string "name", null: false
-    t.string "age"
     t.string "photo_url"
-    t.string "tmdb_id"
+    t.integer "tmdb_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -69,7 +68,7 @@ ActiveRecord::Schema.define(version: 2020_04_21_103855) do
 
   create_table "directors", force: :cascade do |t|
     t.string "name"
-    t.string "tmdb_id"
+    t.integer "tmdb_id"
     t.string "photo_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -77,7 +76,7 @@ ActiveRecord::Schema.define(version: 2020_04_21_103855) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name", null: false
-    t.string "tmdb_id"
+    t.integer "tmdb_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -91,24 +90,19 @@ ActiveRecord::Schema.define(version: 2020_04_21_103855) do
     t.index ["movie_id"], name: "index_joint_genres_on_movie_id"
   end
 
-  create_table "joint_suggestions", force: :cascade do |t|
-    t.bigint "movie_id", null: false
-    t.bigint "tmdb_suggestion_id", null: false
-    t.boolean "skip", default: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["movie_id"], name: "index_joint_suggestions_on_movie_id"
-    t.index ["tmdb_suggestion_id"], name: "index_joint_suggestions_on_tmdb_suggestion_id"
-  end
-
   create_table "movies", force: :cascade do |t|
-    t.bigint "director_id", null: false
+    t.bigint "director_id"
     t.string "title", null: false
-    t.string "year"
-    t.string "runtime"
+    t.string "original_title"
+    t.string "release_date"
+    t.integer "runtime"
     t.text "overview"
     t.string "photo_url"
-    t.string "tmdb_id"
+    t.integer "tmdb_id"
+    t.float "vote_average"
+    t.integer "vote_count"
+    t.string "tagline"
+    t.integer "belongs_to_collection"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["director_id"], name: "index_movies_on_director_id"
@@ -136,10 +130,21 @@ ActiveRecord::Schema.define(version: 2020_04_21_103855) do
     t.bigint "movie_id", null: false
     t.bigint "actor_id", null: false
     t.string "character"
+    t.string "photo_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["actor_id"], name: "index_starring_actors_on_actor_id"
     t.index ["movie_id"], name: "index_starring_actors_on_movie_id"
+  end
+
+  create_table "suggestions", force: :cascade do |t|
+    t.bigint "movie_id"
+    t.bigint "tmdb_suggestion_id", null: false
+    t.boolean "skip", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_suggestions_on_movie_id"
+    t.index ["tmdb_suggestion_id"], name: "index_suggestions_on_tmdb_suggestion_id"
   end
 
   create_table "tmdb_suggestions", force: :cascade do |t|
@@ -172,12 +177,12 @@ ActiveRecord::Schema.define(version: 2020_04_21_103855) do
   add_foreign_key "awards", "movies"
   add_foreign_key "joint_genres", "genres"
   add_foreign_key "joint_genres", "movies"
-  add_foreign_key "joint_suggestions", "movies"
-  add_foreign_key "joint_suggestions", "tmdb_suggestions"
   add_foreign_key "movies", "directors"
   add_foreign_key "saved_movies", "movies"
   add_foreign_key "saved_movies", "users"
   add_foreign_key "starring_actors", "actors"
   add_foreign_key "starring_actors", "movies"
+  add_foreign_key "suggestions", "movies"
+  add_foreign_key "suggestions", "tmdb_suggestions"
   add_foreign_key "tmdb_suggestions", "users"
 end
