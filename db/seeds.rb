@@ -26,10 +26,6 @@ JointGenre.create(movie_id: 1, genre_id: 1)
 JointGenre.create(movie_id: 1, genre_id: 2)
 JointGenre.create(movie_id: 2, genre_id: 2)
 
-SeenMovie.create(movie_id: 1, user_id: 1, user_rating: 1)
-SeenMovie.create(movie_id: 2, user_id: 1, user_rating: 0)
-SeenMovie.create(movie_id: 2, user_id: 2, user_rating: 1)
-
 StarringActor.create(movie_id: 1, actor_id: 1, character: 'Example Character 1')
 StarringActor.create(movie_id: 1, actor_id: 2, character: 'Example Character 2')
 StarringActor.create(movie_id: 2, actor_id: 2, character: 'Example Character 3')
@@ -45,3 +41,13 @@ Service.create(company: 'Netflix', country: 'Germany')
 AvailableService.create(service_id: 1, movie_id: 1)
 AvailableService.create(service_id: 2, movie_id: 2)
 AvailableService.create(service_id: 3, movie_id: 1)
+
+SavedMovie.create(movie_id: 1, user_id: 1, seen: true, user_rating: 1)
+SavedMovie.create(movie_id: 1, user_id: 2, seen: true, user_rating: 0)
+SavedMovie.create(movie_id: 2, user_id: 2, seen: false)
+
+
+
+
+
+
