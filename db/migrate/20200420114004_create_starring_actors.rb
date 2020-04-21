@@ -4,6 +4,7 @@ class CreateStarringActors < ActiveRecord::Migration[6.0]
       t.references :movie, null: false, foreign_key: true
       t.references :actor, null: false, foreign_key: true
       t.string :character
+      t.string :photo_url
 
       t.timestamps
     end
