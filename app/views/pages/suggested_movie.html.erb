@@ -1,12 +1,46 @@
 <div> <!--Movie container -->
-  <div> <!-- Movie card -->
+  <div class="cards-container"> <!-- Movie card -->
     <% id_counter = 1 %>
-    <% suggested_movie = Move.find(id_counter) %>
-    <h3><%= suggested_movie.title %></h3>
-    <p><%= suggested_movie.year %></p>
-    <p><%= suggested_movie.runtime %></p>
-    <p><%= suggested_movie.overview %></p>
-    <p><%= suggested_movie.starring_actors %></p>
-    <p><%= suggested_movie.director %></p>
+    <% suggested_movie = Movie.find(id_counter) %>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card-container">
+          <div class="card-image-section">
+            <%= if movie.photo.attached? %>
+              <%= suggested_movie.photo_url, class:"card-image" %>
+            <% end %>
+            <div class="row">
+              <div class="col-sm-12">
+                <%= link_to "Pass", new_suggestion_path, class: 'btn btn-primary'%>
+                <%= link_to "Later", new_suggestion_path, class: 'btn btn-primary' %>
+                <%= link_to "Seen", movie_rating_path, class: 'btn btn-primary' %>
+                <%= link_to "Watch", external_services_path, class: 'btn btn-primary' %>
+              </div>
+            </div>
+          </div>
+          <div class="card-details-section">
+            <div class="card-all-details">
+              <h3><%= suggested_movie.title %></h3>
+              <p><%= suggested_movie.year %></p>
+              <p><%= suggested_movie.runtime %></p>
+              <p><%= suggested_movie.overview %></p>
+              <div class="row">
+                <p>
+                <% suggested_movie.starring_actors.each do |actor| %>
+                  <%= actor.actor_id %>
+                <% end %>
+              </p>
+              </div>
+              <div class="row">
+                <p><%= suggested_movie.director %></p>
+                <p><%= suggested_movie.awards %></p>
+                <p><%= suggested_movie.available_services %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= id_counter += 1 %>
   </div>
 </div>
