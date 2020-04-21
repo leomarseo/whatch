@@ -2,8 +2,8 @@ class Movie < ApplicationRecord
   belongs_to :director
   has_many :awards
 
-  has_many :seen_movies
-  has_many :users, through: :seen_movies
+  has_many :saved_movies
+  has_many :users, through: :saved_movies
 
   has_many :joint_genres
   has_many :genres, through: :joint_genres
