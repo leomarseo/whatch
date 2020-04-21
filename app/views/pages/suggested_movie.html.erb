@@ -1,0 +1,12 @@
+<div> <!--Movie container -->
+  <div> <!-- Movie card -->
+    <% id_counter = 1 %>
+    <% suggested_movie = Move.find(id_counter) %>
+    <h3><%= suggested_movie.title %></h3>
+    <p><%= suggested_movie.year %></p>
+    <p><%= suggested_movie.runtime %></p>
+    <p><%= suggested_movie.overview %></p>
+    <p><%= suggested_movie.starring_actors %></p>
+
+  </div>
+</div>
