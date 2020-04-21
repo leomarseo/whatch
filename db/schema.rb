@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_21_095738) do
+ActiveRecord::Schema.define(version: 2020_04_21_103855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,16 @@ ActiveRecord::Schema.define(version: 2020_04_21_095738) do
     t.index ["movie_id"], name: "index_joint_genres_on_movie_id"
   end
 
+  create_table "joint_suggestions", force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.bigint "tmdb_suggestion_id", null: false
+    t.boolean "skip", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_joint_suggestions_on_movie_id"
+    t.index ["tmdb_suggestion_id"], name: "index_joint_suggestions_on_tmdb_suggestion_id"
+  end
+
   create_table "movies", force: :cascade do |t|
     t.bigint "director_id", null: false
     t.string "title", null: false
@@ -132,6 +142,14 @@ ActiveRecord::Schema.define(version: 2020_04_21_095738) do
     t.index ["movie_id"], name: "index_starring_actors_on_movie_id"
   end
 
+  create_table "tmdb_suggestions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "tmdb_movie_id_list"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_tmdb_suggestions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -154,9 +172,12 @@ ActiveRecord::Schema.define(version: 2020_04_21_095738) do
   add_foreign_key "awards", "movies"
   add_foreign_key "joint_genres", "genres"
   add_foreign_key "joint_genres", "movies"
+  add_foreign_key "joint_suggestions", "movies"
+  add_foreign_key "joint_suggestions", "tmdb_suggestions"
   add_foreign_key "movies", "directors"
   add_foreign_key "saved_movies", "movies"
   add_foreign_key "saved_movies", "users"
   add_foreign_key "starring_actors", "actors"
   add_foreign_key "starring_actors", "movies"
+  add_foreign_key "tmdb_suggestions", "users"
 end
