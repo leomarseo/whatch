@@ -119,8 +119,10 @@ SavedMovie.create(movie_id: 1, user_id: 2, seen: true, user_rating: 0)
 SavedMovie.create(movie_id: 2, user_id: 2, seen: false)
 
 
+# creates fake suggestion as we would receive it from the API request. For now it contains 3 suggestions, we might receive way more than this
 TmdbSuggestion.create(user: User.first, tmdb_movie_id_list: '3924 6124 8773')
 
+# for each of the ids received in the TmdbSuggestion, we loop to create a Suggestion that contains OUR movie_id by looking for the correct movie through tmdb_id
 movie_id_array = TmdbSuggestion.last.tmdb_movie_id_list.split(' ')
 movie_id_array.each do |tmdb_movie_id|
   Suggestion.create(movie: Movie.find_by(tmdb_id: tmdb_movie_id), tmdb_suggestion: TmdbSuggestion.last)
