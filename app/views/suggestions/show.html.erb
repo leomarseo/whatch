@@ -1,0 +1,26 @@
+<% User.first.tmdb_suggestions.first.suggestions.each do |suggestion| %>
+  <% if suggestion.skip == false %>
+    <% suggested_movie = suggestion.movie %>
+    <% movie_director = suggested_movie.director %>
+    <% starring_actors = suggested_movie.starring_actors %>
+    <% available_services = suggested_movie.available_services %>
+    <h2><%= suggested_movie.title %></h3>
+    <p><%= suggested_movie.release_date %></p>
+    <p><%= suggested_movie.runtime %> minutes</p>
+    <p><%= suggested_movie.overview %></p>
+    <h3>Starring Actors:</h3>
+    <% starring_actors.each do |actor| %>
+      <p><%= Actor.find(actor.actor_id).name %></p>
+    <% end %>
+    <h3>Director: </h3>
+    <p><%= movie_director.name %></p>
+    <h3>Available on: </h3>
+    <% available_services.each do |service| %>
+      <p><%= Service.find(service.service_id).company %></p>
+    <% end %>
+  <% end %>
+  <%= link_to 'Pass', suggestion_path, method: :show, 'btn btn-primary' %>
+    <%= link_to 'Later', show_suggestion_path, 'btn btn-primary' %>
+    <%= link_to 'Seen', show_suggestion_path, 'btn btn-primary' %>
+    <%= link_to 'Watch', show_suggestion_path, 'btn btn-primary' %>
+<% end %>
