@@ -1,11 +1,11 @@
-class MoviesController < ApplicationController
+class SuggestionsController < ApplicationController
 
   def index
     @suggestion = Suggestion.all
   end
 
   def new
-    @suggetion = Suggestion.new
+    @suggestion = Suggestion.new
   end
 
   def create
