@@ -8,7 +8,6 @@ class User < ApplicationRecord
   has_many :movies, through: :saved_movies
 
   has_many :tmdb_suggestions
-  has_many :suggestions, through: :tmdb_suggestions
 
   has_one_attached :photo
 end
