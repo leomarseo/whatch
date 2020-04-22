@@ -119,6 +119,13 @@ SavedMovie.create(movie_id: 1, user_id: 2, seen: true, user_rating: 0)
 SavedMovie.create(movie_id: 2, user_id: 2, seen: false)
 
 
+TmdbSuggestion.create(user: User.first, tmdb_movie_id_list: '3924 6124 8773')
+
+movie_id_array = TmdbSuggestion.last.tmdb_movie_id_list.split(' ')
+movie_id_array.each do |tmdb_movie_id|
+  Suggestion.create(movie: Movie.find_by(tmdb_id: tmdb_movie_id), tmdb_suggestion: TmdbSuggestion.last)
+end
+
 
 
 
