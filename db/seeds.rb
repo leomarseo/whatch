@@ -101,6 +101,7 @@ end
 
 User.create(email: 'user1@example.com', password: '123456', first_name: 'Marco', last_name: 'Rossi', age: 29, country: 'Italy')
 User.create(email: 'user2@example.com', password: '123456', first_name: 'John', last_name: 'Dalton', age: 40, country: 'Belgium')
+User.create(email: 'admin@example.com', password: '123456', first_name: 'Admin', last_name: 'Admin', age: 20, country: 'Italy', admin: true)
 
 Award.create(award_type: 'Oscar', category: 'Best Actor', year: '2000', movie_id: 1, awardable_id: 1, awardable_type: 'Actor')
 Award.create(award_type: 'Oscar', category: 'Best Directing', year: '2000', movie_id: 1, awardable_id: 1, awardable_type: 'Director')
