@@ -7,6 +7,10 @@ require 'open-uri'
 # for 20 movies --> 13309.59ms
 # second attempt --> 14492.98ms
 
+# First Heroku attempt for 20 movies --> 15099.01ms
+# Second Heroku attempt for 20 movies --> 14850.64ms
+
+
 class DownloadMovieJob < ApplicationJob
   queue_as :default
 
