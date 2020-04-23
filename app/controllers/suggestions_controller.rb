@@ -11,7 +11,7 @@ class SuggestionsController < ApplicationController
   def create
     suggestion = Suggestion.new(suggestion_params)
     suggestion.save
-    redirect_to_pages_suggetions_path
+    redirect_to_pages_suggestions_path
   end
 
   def show
@@ -22,13 +22,11 @@ class SuggestionsController < ApplicationController
 
   def edit
     @suggestion = Suggestion.find(params[:id])
-    @suggestion.update(skip: true)
-    redirect_to_pages_suggestions_path
   end
 
   def update
-    @suggestion = suggestion.find(params[:id])
-    @suggestion.update(suggestion_params)
+    @suggestion = Suggestion.find(params[:id])
+    @suggestion.update(skip: true)
     redirect_to_pages_suggestions_path
   end
 

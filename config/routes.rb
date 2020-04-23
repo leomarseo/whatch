@@ -31,5 +31,6 @@ Rails.application.routes.draw do
   get '/suggestion/:id', to: 'suggestions#show'
   # pass, later and seen buttons won't trigger a new route, they will trigger only different methods that will
   # be activated based on the JS button listener. These methods will be created in the suggestions controller
-  get '/suggestion/:id/confirmation', to: 'suggestions#confirmation'
+  get '/suggestion/:id/confirmation', to: 'suggestions#confirmation', as: 'watch_confirmation'
+  # named confirmation path to 'watch_confirmation_path', so as to identify it better
 end
