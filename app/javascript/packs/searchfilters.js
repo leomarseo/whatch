@@ -30,7 +30,7 @@ const removeButton = document.getElementById("remove-button");
 removeButton.addEventListener("click", (event) => {
   let currentSelection = document.getElementById("search-bar").classList.item(0);
   let currentTextInput = document.getElementById("search-bar-field").value;
-  document.querySelector(`.${currentSelection}s_negative`).value= document.querySelector(`.${currentSelection}s_negative`).value + "," + currentTextInput;
+  document.querySelector(`.${currentSelection}s_negative`).value = document.querySelector(`.${currentSelection}s_negative`).value + "," + currentTextInput;
 })
 
 
