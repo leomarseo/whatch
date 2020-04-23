@@ -15,30 +15,7 @@ function showSearchbar() {
 }
 
 // this is part of the autocomplete
-let letters = []
-
-const input = document.getElementById("search-bar-field");
-
 searchContainer.addEventListener("change", showSearchbar);
-
-input.addEventListener("keyup", (event) => {
-  if (event.key === "Backspace") {
-    letters.pop();
-    console.log(letters.join(""));
-  } else if (event.key === "Meta") {
-    letters.push("a");
-    letters.pop();
-  } else {
-    letters.push(event.key);
-    console.log(letters.join(""));
-  }
-});
-
-input.addEventListener("input", (event) => {
-  if (input.value === "") {
-    letters = [];
-  }
-});
 
 // this is a listener for the add button
 const addButton = document.getElementById("add-button");
