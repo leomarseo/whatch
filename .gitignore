@@ -16,6 +16,7 @@
 # Ignore uploaded files in development.
 /storage/*
 !/storage/.keep
+/db/tmdb_ids/person_ids_04_19_2020.json
 
 /public/assets
 .byebug_history
