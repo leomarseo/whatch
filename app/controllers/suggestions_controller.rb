@@ -15,21 +15,35 @@ class SuggestionsController < ApplicationController
   end
 
   def show
-    @suggestion = Suggestion.find(params[:id])
-    @movies = Movie.all
-    @tmdb_suggestions = TmdbSuggestion.all
+    # the show accepts a parameter from the filters page
+    # the @tmdb_suggestion declaration is temporary, until we successfully receive sample tmdb_suggestions
+    @current_suggestion = []
+    @tmdb_suggestion = TmdbSuggestion.first.suggestions
+
+    @tmdb_suggestion.each do |suggestion|
+      if suggestion.skip == false
+        @current_suggestion << suggestion
+        break
+      end
+    end
+
   end
 
   def edit
-    @suggestion = Suggestion.find(params[:id])
-    @suggestion.update(skip: true)
-    redirect_to_pages_suggestions_path
+    # @suggestion = Suggestion.find(params[:id])
+    # @suggestion.update(skip: true)
+    # redirect_to pages_suggestions_path
   end
 
   def update
-    @suggestion = suggestion.find(params[:id])
+    @suggestion = Suggestion.find(params[:id])
     @suggestion.update(suggestion_params)
-    redirect_to_pages_suggestions_path
+    redirect_to pages_suggestions_path
+  end
+
+  def set_true
+    @suggestion = params[:id]
+    @suggestion.update(skip: true)
   end
 
   # def destroy
