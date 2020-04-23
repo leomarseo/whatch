@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # get :autocomplete, to: 'pages#autocomplete'
+
   devise_for :users
 
   # Sidekiq Web UI, only for admins.
@@ -32,4 +34,6 @@ Rails.application.routes.draw do
   # pass, later and seen buttons won't trigger a new route, they will trigger only different methods that will
   # be activated based on the JS button listener. These methods will be created in the suggestions controller
   get '/suggestion/:id/confirmation', to: 'suggestions#confirmation'
+
+
 end

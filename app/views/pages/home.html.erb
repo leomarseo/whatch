@@ -29,8 +29,16 @@
 </form>
 </div>
 
+<%= form_tag(root_path, method: 'get', class: "form-inline") do %>
+  <div id= "search-data" class="form-search search-data" data-actors="<%= @actors.to_json %>" data-directors="<%= @directors.to_json %>" data-genres="<%= @genres.to_json %>">
+    <%= text_field_tag :q, nil, autocomplete: :off, class: "form-control search-input", placeholder: "Search by programming language..." %>
+    <%= submit_tag "Search", class: "btn btn-primary button-home" %>
+  </div>
+<% end %>
 
 <script>
+
+
 function showSearchbar() {
   let x = document.getElementById("mySelect").value;
   let y = document.getElementById("search-bar").classList.item(0);
@@ -40,28 +48,28 @@ function showSearchbar() {
   document.getElementById("search-bar-field").placeholder = x;
 }
 
-let letters = []
+// let letters = []
 
-const input = document.getElementById("search-bar-field");
+// const input = document.getElementById("search-bar-field");
 
-input.addEventListener("keyup", (event) => {
-  if (event.key === "Backspace") {
-    letters.pop();
-    console.log(letters.join(""));
-  } else if (event.key === "Meta") {
-    letters.push("a");
-    letters.pop();
-  } else {
-    letters.push(event.key);
-    console.log(letters.join(""));
-  }
-});
+// input.addEventListener("keyup", (event) => {
+//   if (event.key === "Backspace") {
+//     letters.pop();
+//     console.log(letters.join(""));
+//   } else if (event.key === "Meta") {
+//     letters.push("a");
+//     letters.pop();
+//   } else {
+//     letters.push(event.key);
+//     console.log(letters.join(""));
+//   }
+// });
 
-input.addEventListener("input", (event) => {
-  if (input.value === "") {
-    letters = [];
-  }
-});
+// input.addEventListener("input", (event) => {
+//   if (input.value === "") {
+//     letters = [];
+//   }
+// });
 
 const addButton = document.getElementById("add-button");
 
