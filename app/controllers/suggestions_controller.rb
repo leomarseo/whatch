@@ -38,6 +38,7 @@ class SuggestionsController < ApplicationController
   #   redirect_to_pages_suggestions_path
   # end
 
+
   private
 
   def suggestion_params

@@ -28,7 +28,7 @@ class DownloadMovieJob < ApplicationJob
       next if !Movie.find_by(tmdb_id: id).nil?
 
       counter += 1
-      break if counter > 1000
+      break if counter > 10000
 
       begin
         url_details = open("https://api.themoviedb.org/3/movie/#{id}?api_key=81c398dbb6b994e4f815e69325c4893c&language=en-US").read

@@ -1,0 +1,36 @@
+<!-- To understand the logic go in app/controllers/saved_movies_controller :) -->
+
+
+<div class="right-part">
+
+  <div class="poster-card">
+
+    <% @current_movie = @saved_movies.find(params[:id]) %>
+    <%= @current_movie.movie.title %>
+
+  </div>
+
+  <br><br>
+    <hr>
+  <br><br>
+
+  <% next_id = find_next_id(@current_movie) %>
+
+
+  <div class="buttons">
+    <%= link_to 'Remove', saved_movie_path, method: :delete  %>
+    <%= link_to 'Next', saved_movie_path(next_id) %>
+    <%= link_to 'Watch', "/suggestion/#{@current_movie.movie.id}/confirmation" %>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
