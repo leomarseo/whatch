@@ -1,74 +1,35 @@
+
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 
-<p>Select a new car from the list.</p>
 
-<select id="mySelect" onchange="showSearchbar()">
+<!-- below is a dropdown menu for the user to select the filters to include or exclude in the search -->
+<select id="mySelect" >
   <option value="start">Select Categories</option>
   <option value="actor">Actor</option>
   <option value="director">Director</option>
   <option value="genre">Genre</option>
 </select>
-
+<!-- the searchbar and the "add/remove" buttons are created after the user selects an option from the menu above -->
 <div id="search-bar" style="display: none;" class="THIS-CLASS">
    <form action=""></form>
    <input type="text" id="search-bar-field" placeholder="type here" /><br/>
    <input type="submit" id="add-button" value="Add">
+   <input type="submit" id="remove-button" value="Remove">
 </div>
-
+<!-- this form should become hidden later, when finishing the frontend -->
 <div id="selection-form">
-<form action="">
+<form action="/suggestion/2">
   <input type="text" class="actors_positive" name="actors_positive"><br/>
   <input type="text" class="directors_positive" name="directors_positive"><br/>
   <input type="text" class="genres_positive" name="genres_positive"><br/>
   <input type="text" class="actors_negative" name="actors_negative"><br/>
   <input type="text" class="directors_negative" name="directors_negative"><br/>
   <input type="text" class="genres_negative" name="genres_negative"><br/>
-
-
+  <div>
+    <input type="submit" id="find-button" value="Add">
+    <!-- after clicking the button it will create params like these: -->
+    <!-- {"actors_positive"=>",bruce,louie", "directors_positive"=>"", "genres_positive"=>"", "actors_negative"=>"", "directors_negative"=>"", "genres_negative"=>",horror,drama", "id"=>"2"} -->
+  </div>
 </form>
 </div>
-
-
-<script>
-function showSearchbar() {
-  let x = document.getElementById("mySelect").value;
-  let y = document.getElementById("search-bar").classList.item(0);
-  document.getElementById("search-bar").style.display = "block";
-  document.getElementById("search-bar").classList.remove(y);
-  document.getElementById("search-bar").classList.add(x);
-  document.getElementById("search-bar-field").placeholder = x;
-}
-
-let letters = []
-
-const input = document.getElementById("search-bar-field");
-
-input.addEventListener("keyup", (event) => {
-  if (event.key === "Backspace") {
-    letters.pop();
-    console.log(letters.join(""));
-  } else if (event.key === "Meta") {
-    letters.push("a");
-    letters.pop();
-  } else {
-    letters.push(event.key);
-    console.log(letters.join(""));
-  }
-});
-
-input.addEventListener("input", (event) => {
-  if (input.value === "") {
-    letters = [];
-  }
-});
-
-const addButton = document.getElementById("add-button");
-
-addButton.addEventListener("click", (event) => {
-  let currentSelection = document.getElementById("search-bar").classList.item(0);
-  let currentTextInput = document.getElementById("search-bar-field").value;
-  document.querySelector(`.${currentSelection}s_positive`).value= currentTextInput;
-})
-
-</script>
