@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_24_110430) do
+ActiveRecord::Schema.define(version: 2020_04_24_135248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,13 +90,11 @@ ActiveRecord::Schema.define(version: 2020_04_24_110430) do
 
   create_table "joint_achievements", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "saved_movie_id", null: false
     t.bigint "achievement_id", null: false
     t.boolean "earned"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["achievement_id"], name: "index_joint_achievements_on_achievement_id"
-    t.index ["saved_movie_id"], name: "index_joint_achievements_on_saved_movie_id"
     t.index ["user_id"], name: "index_joint_achievements_on_user_id"
   end
 
@@ -196,7 +194,6 @@ ActiveRecord::Schema.define(version: 2020_04_24_110430) do
   add_foreign_key "available_services", "services"
   add_foreign_key "awards", "movies"
   add_foreign_key "joint_achievements", "achievements"
-  add_foreign_key "joint_achievements", "saved_movies"
   add_foreign_key "joint_achievements", "users"
   add_foreign_key "joint_genres", "genres"
   add_foreign_key "joint_genres", "movies"
