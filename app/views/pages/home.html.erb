@@ -33,3 +33,11 @@
   </div>
 </form>
 </div>
+
+
+<%= form_tag(root_path, method: 'get', class: "form-inline") do %>
+  <div id= "search-data" class="form-search search-data" data-actors="<%= @actors.to_json %>">
+    <%= text_field_tag :q, nil, autocomplete: :off, class: "form-control search-input", placeholder: "Search actors..." %>
+    <%= submit_tag "Search", class: "btn btn-primary button-home" %>
+  </div>
+<% end %>
