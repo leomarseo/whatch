@@ -7,7 +7,7 @@ class AchievementsController < ApplicationController
   end
 
   def achievement_loop_visualisation
-    @achievements = Achievement.where(category: "visualisation")
+    @achievements = Achievement.where(category: "visualisations")
     @achievements.each do |achievement|
       if @seen_movies.count >= achievement.number && @joint_achievements.find_by(achievement_id: achievement.id).nil?
         JointAchievement.create(user_id: current_user.id, achievement_id: achievement.id, earned: true)
@@ -15,19 +15,21 @@ class AchievementsController < ApplicationController
     end
   end
 
+
+
+  def achievement_loop_adult
+    @achievements = Achievement.where(category: "adult")
+    @movies = @seen_movies.movies.genres.where(name: "adult")
+    @achievements.each do |achievement|
+      if @movies >= achievement.number && @joint_achievements.find_by(achievement_id: achievement.id).nil?
+        JointAchievement.create(user_id: current_user.id, Achievement_id: achievement.id, earned: true)
+      end
+  end
+
   def set_variables
     @seen_movies = current_user.saved_movies.where(seen: true)
     @joint_achievements = current_user.joint_achievements
   end
-
-
-
-
-
-
-
-
-
 
   # genre = current_user.saved_movies.where(seen: true).last.movie.genres.where()
 

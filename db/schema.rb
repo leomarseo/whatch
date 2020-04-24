@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_181121) do
   create_table "joint_achievements", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "achievement_id", null: false
-    t.boolean "earned"
+    t.boolean "earned", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["achievement_id"], name: "index_joint_achievements_on_achievement_id"
