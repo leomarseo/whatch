@@ -10,4 +10,7 @@ class User < ApplicationRecord
   has_many :tmdb_suggestions
 
   has_one_attached :photo
+
+  has_many :joint_achievements
+  has_many :achievements, through: :joint_achievements
 end

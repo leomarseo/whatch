@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_22_121926) do
+ActiveRecord::Schema.define(version: 2020_04_24_110430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "achievements", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -79,6 +86,18 @@ ActiveRecord::Schema.define(version: 2020_04_22_121926) do
     t.integer "tmdb_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "joint_achievements", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "saved_movie_id", null: false
+    t.bigint "achievement_id", null: false
+    t.boolean "earned"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["achievement_id"], name: "index_joint_achievements_on_achievement_id"
+    t.index ["saved_movie_id"], name: "index_joint_achievements_on_saved_movie_id"
+    t.index ["user_id"], name: "index_joint_achievements_on_user_id"
   end
 
   create_table "joint_genres", force: :cascade do |t|
@@ -176,6 +195,9 @@ ActiveRecord::Schema.define(version: 2020_04_22_121926) do
   add_foreign_key "available_services", "movies"
   add_foreign_key "available_services", "services"
   add_foreign_key "awards", "movies"
+  add_foreign_key "joint_achievements", "achievements"
+  add_foreign_key "joint_achievements", "saved_movies"
+  add_foreign_key "joint_achievements", "users"
   add_foreign_key "joint_genres", "genres"
   add_foreign_key "joint_genres", "movies"
   add_foreign_key "movies", "directors"
