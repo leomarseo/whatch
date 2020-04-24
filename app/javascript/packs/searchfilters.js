@@ -12,6 +12,7 @@ const searchFilters = () => {
     document.getElementById("search-bar").classList.add(x);
     document.getElementById("search-bar-field").placeholder = x;
   }
+});
 
   // this is part of the autocomplete
   searchContainer.addEventListener("change", showSearchbar);
@@ -21,17 +22,32 @@ const searchFilters = () => {
   addButton.addEventListener("click", (event) => {
     let currentSelection = document.getElementById("search-bar").classList.item(0);
     let currentTextInput = document.getElementById("search-bar-field").value;
-    document.querySelector(`.${currentSelection}s_positive`).value= document.querySelector(`.${currentSelection}s_positive`).value + "," + currentTextInput;
+    let hiddenFormInput = document.querySelector(`.${currentSelection}s_positive`).value
+    if (hiddenFormInput === "") {
+      console.log(hiddenFormInput);
+      console.log(currentTextInput);
+      document.querySelector(`.${currentSelection}s_positive`).value = currentTextInput;
+      } else {
+      console.log('hello');
+      document.querySelector(`.${currentSelection}s_positive`).value = hiddenFormInput + "," + currentTextInput;
+    }
   })
 
-  const removeButton = document.getElementById("remove-button");
   // now for the remove button
+  const removeButton = document.getElementById("remove-button");
   removeButton.addEventListener("click", (event) => {
     let currentSelection = document.getElementById("search-bar").classList.item(0);
     let currentTextInput = document.getElementById("search-bar-field").value;
-    document.querySelector(`.${currentSelection}s_negative`).value = document.querySelector(`.${currentSelection}s_negative`).value + "," + currentTextInput;
+    let hiddenFormInput = document.querySelector(`.${currentSelection}s_negative`).value
+    if (hiddenFormInput === "") {
+      console.log(hiddenFormInput);
+      console.log(currentTextInput);
+      document.querySelector(`.${currentSelection}s_negative`).value = currentTextInput;
+      } else {
+      console.log('hello');
+      document.querySelector(`.${currentSelection}s_negative`).value = hiddenFormInput + "," + currentTextInput;
+    }
   })
-
 
 }
 export { searchFilters }

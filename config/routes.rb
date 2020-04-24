@@ -2,14 +2,19 @@ Rails.application.routes.draw do
   devise_for :users
 
   # Sidekiq Web UI, only for admins.
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
   end
-
+  # home route
   root to: 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  # TMDB suggestions route after user selection of filters
+
+  get '/tmdb_suggestions', to: 'tmdb_suggestions#get_suggestions'
+
+  # route to achievements
   get '/achievements', to: 'achievements#index'
 
   # routes related to 'History' button in navbar
