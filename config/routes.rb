@@ -28,8 +28,10 @@ Rails.application.routes.draw do
 
   # routes related to 'Watch now' button in navbar
   get '/search', to: 'suggestions#home'
-  get '/suggestion/:id', to: 'suggestions#show'
-  patch '/suggestion/:id', to: 'suggestions#set_true', as: 'set_true'
+
+  # [KK - 23 Apr] removed the /:id from URI - will not be needed for our logic
+  get '/results', to: 'suggestions#show'
+  patch '/results', to: 'suggestions#set_true', as: 'set_true'
   # pass, later and seen buttons won't trigger a new route, they will trigger only different methods that will
   # be activated based on the JS button listener. These methods will be created in the suggestions controller
   get '/suggestion/:id/confirmation', to: 'suggestions#confirmation', as: 'confirmation'

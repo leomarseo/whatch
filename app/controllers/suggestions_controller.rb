@@ -42,8 +42,9 @@ class SuggestionsController < ApplicationController
   end
 
   def set_true
-    @suggestion = params[:id]
+    @suggestion = Suggestion.find(params[:suggestion_id])
     @suggestion.update(skip: true)
+    redirect_to results_path
   end
 
   # def destroy

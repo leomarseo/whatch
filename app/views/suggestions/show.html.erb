@@ -19,7 +19,7 @@
 <% available_services.each do |service| %>
   <p><%= Service.find(service.service_id).company %></p>
 <% end %>
-<%= link_to 'Pass', set_true_path(@current_suggestion), remote: true %>
+<%= link_to 'Pass', set_true_path(suggestion_id: @current_suggestion.first.id), method: :patch %>
 <%= link_to 'Later' %>
 <%= link_to 'Seen' %>
 <%= link_to 'Watch' %>
