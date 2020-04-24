@@ -23,11 +23,8 @@ const searchFilters = () => {
     let currentTextInput = document.getElementById("search-bar-field").value;
     let hiddenFormInput = document.querySelector(`.${currentSelection}s_positive`).value
     if (hiddenFormInput === "") {
-      console.log(hiddenFormInput);
-      console.log(currentTextInput);
       document.querySelector(`.${currentSelection}s_positive`).value = currentTextInput;
       } else {
-      console.log('hello');
       document.querySelector(`.${currentSelection}s_positive`).value = hiddenFormInput + "," + currentTextInput;
     }
   })
@@ -39,11 +36,8 @@ const searchFilters = () => {
     let currentTextInput = document.getElementById("search-bar-field").value;
     let hiddenFormInput = document.querySelector(`.${currentSelection}s_negative`).value
     if (hiddenFormInput === "") {
-      console.log(hiddenFormInput);
-      console.log(currentTextInput);
       document.querySelector(`.${currentSelection}s_negative`).value = currentTextInput;
       } else {
-      console.log('hello');
       document.querySelector(`.${currentSelection}s_negative`).value = hiddenFormInput + "," + currentTextInput;
     }
   })

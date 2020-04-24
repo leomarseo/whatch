@@ -13,3 +13,5 @@ document.addEventListener('turbolinks:load', () => {
 });
 
   searchFilters();
+  autocompleteSearch()
+

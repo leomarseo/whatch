@@ -5,15 +5,15 @@
 
 <!-- below is a dropdown menu for the user to select the filters to include or exclude in the search -->
 <select id="mySelect" >
-  <option value="start">Select Categories</option>
+  <!-- <option value="start">Select Categories</option> -->
   <option value="actor">Actor</option>
   <option value="director">Director</option>
   <option value="genre">Genre</option>
 </select>
 <!-- the searchbar and the "add/remove" buttons are created after the user selects an option from the menu above -->
-<div id="search-bar" style="display: none;" class="THIS-CLASS">
+<div id="search-bar" style="" class="THIS-CLASS" data-actors="<%= @actors.to_json %>" data-genres="<%= @genres.to_json %>" data-directors="<%= @directors.to_json %>">
    <form action=""></form>
-   <input type="text" id="search-bar-field" placeholder="type here" /><br/>
+   <input type="text" id="search-bar-field" placeholder="search.." class="form-control search-input" autocomplete="off" /><br/>
    <input type="submit" id="add-button" value="Add">
    <input type="submit" id="remove-button" value="Remove">
 </div>
@@ -33,11 +33,3 @@
   </div>
 </form>
 </div>
-
-
-<%= form_tag(root_path, method: 'get', class: "form-inline") do %>
-  <div id= "search-data" class="form-search search-data" data-actors="<%= @actors.to_json %>" data-genres="<%= @genres.to_json %>" data-directors="<%= @directors.to_json %>">
-    <%= text_field_tag :q, nil, autocomplete: :off, class: "form-control search-input", placeholder: "Search actors..." %>
-    <%= submit_tag "Search", class: "btn btn-primary button-home" %>
-  </div>
-<% end %>
