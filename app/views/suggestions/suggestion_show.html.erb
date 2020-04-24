@@ -1,0 +1,30 @@
+ <div class=container>
+  <div class="poster-card">
+    <% @current_suggestion = @suggestions.find(params[:id]) %>
+    <% # raise %>
+    <% next_id = find_next_id(@current_suggestion) %>
+
+    <% suggested_movie = @current_suggestion.movie %>
+    <% movie_director = suggested_movie.director %>
+    <% starring_actors = suggested_movie.starring_actors %>
+    <% available_services = suggested_movie.available_services %>
+    <h2><%= suggested_movie.title %></h3>
+    <p><%= suggested_movie.release_date %></p>
+    <p><%= suggested_movie.runtime %> minutes</p>
+    <p><%= suggested_movie.overview %></p>
+    <h3>Starring Actors:</h3>
+    <h3>Director: </h3>
+    <p><%= movie_director.name %></p>
+    <h3>Available on: </h3>
+    <% available_services.each do |service| %>
+      <p><%= Service.find(service.service_id).company %></p>
+    <% end %>
+  </div>
+  <br>
+  <div class="buttons">
+    <%= link_to "Pass", show_suggestions_path(next_id) %>
+    <%= link_to "Later", show_suggestions_path(next_id) %>
+    <%= link_to "Seen", show_suggestions_path(next_id) %>
+    <%= link_to "Watch", "/suggestion/#{@current_suggestion.id}/confirmation" %>
+  </div>
+</div>
