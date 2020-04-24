@@ -1,26 +1,25 @@
-<% User.first.tmdb_suggestions.first.suggestions.each do |suggestion| %>
-  <% if suggestion.skip == false %>
-    <% suggested_movie = suggestion.movie %>
-    <% movie_director = suggested_movie.director %>
-    <% starring_actors = suggested_movie.starring_actors %>
-    <% available_services = suggested_movie.available_services %>
-    <h2><%= suggested_movie.title %></h3>
-    <p><%= suggested_movie.release_date %></p>
-    <p><%= suggested_movie.runtime %> minutes</p>
-    <p><%= suggested_movie.overview %></p>
-    <h3>Starring Actors:</h3>
-    <% starring_actors.each do |actor| %>
-      <p><%= Actor.find(actor.actor_id).name %></p>
-    <% end %>
-    <h3>Director: </h3>
-    <p><%= movie_director.name %></p>
-    <h3>Available on: </h3>
-    <% available_services.each do |service| %>
-      <p><%= Service.find(service.service_id).company %></p>
-    <% end %>
-  <% end %>
-  <%= link_to 'Pass', suggestion_path, method: :show, 'btn btn-primary' %>
-    <%= link_to 'Later', show_suggestion_path, 'btn btn-primary' %>
-    <%= link_to 'Seen', show_suggestion_path, 'btn btn-primary' %>
-    <%= link_to 'Watch', show_suggestion_path, 'btn btn-primary' %>
+
+<!-- should be current_user -->
+<% movie_director = @current_suggestion.first.movie.director %>
+<% starring_actors = @current_suggestion.first.movie.starring_actors %>
+<% available_services = @current_suggestion.first.movie.available_services %>
+<%= image_tag "https://image.tmdb.org/t/p/w300/#{@current_suggestion.first.movie.photo_url}" %>
+<h2><%= @current_suggestion.first.movie.title %></h3>
+<p><%= @current_suggestion.first.movie.release_date %></p>
+<p><%= @current_suggestion.first.movie.runtime %> minutes</p>
+<p><%= @current_suggestion.first.movie.overview %></p>
+<h3>Starring Actors:</h3>
+<!-- Line below should only display the first 7 actors (quantity to be confirmed with group) -->
+<% starring_actors.take(7).each do |actor| %>
+  <p><%= Actor.find(actor.actor_id).name %></p>
 <% end %>
+<h3>Director: </h3>
+<p><%= movie_director.name %></p>
+<h3>Available on: </h3>
+<% available_services.each do |service| %>
+  <p><%= Service.find(service.service_id).company %></p>
+<% end %>
+<%= link_to 'Pass', pass_suggestion_path(suggestion_id: @current_suggestion.first.id), method: :patch %>
+<%= link_to 'Later', move_to_later_path(suggestion_id: @current_suggestion.first.id), method: :patch %>
+<%= link_to 'Seen', already_seen_path(suggestion_id: @current_suggestion.first.id), method: :patch %>
+<%= link_to 'Watch' %>

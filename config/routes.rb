@@ -2,14 +2,19 @@ Rails.application.routes.draw do
   devise_for :users
 
   # Sidekiq Web UI, only for admins.
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
   end
-
+  # home route
   root to: 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  # TMDB suggestions route after user selection of filters
+
+  get '/tmdb_suggestions', to: 'tmdb_suggestions#get_suggestions'
+
+  # route to achievements
   get '/achievements', to: 'achievements#index'
 
   # routes related to 'History' button in navbar
@@ -28,8 +33,13 @@ Rails.application.routes.draw do
 
   # routes related to 'Watch now' button in navbar
   get '/search', to: 'suggestions#home'
-  get '/suggestion/:id', to: 'suggestions#show'
+
+  # [KK - 23 Apr] removed the /:id from URI - will not be needed for our logic
+  get '/results', to: 'suggestions#show'
+  patch '/results', to: 'suggestions#pass_suggestion', as: 'pass_suggestion'
+  patch '/results', to: 'suggestions#move_to_later', as: 'move_to_later'
+  patch '/results', to: 'suggestions#already_seen', as: 'already_seen'
   # pass, later and seen buttons won't trigger a new route, they will trigger only different methods that will
   # be activated based on the JS button listener. These methods will be created in the suggestions controller
-  get '/suggestion/:id/confirmation', to: 'suggestions#confirmation'
+  get '/suggestion/:id/confirmation', to: 'suggestions#confirmation', as: 'confirmation'
 end
