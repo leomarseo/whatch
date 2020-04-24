@@ -19,7 +19,7 @@
 <% available_services.each do |service| %>
   <p><%= Service.find(service.service_id).company %></p>
 <% end %>
-<%= link_to 'Pass', set_true_path(suggestion_id: @current_suggestion.first.id), method: :patch %>
-<%= link_to 'Later' %>
-<%= link_to 'Seen' %>
+<%= link_to 'Pass', pass_suggestion_path(suggestion_id: @current_suggestion.first.id), method: :patch %>
+<%= link_to 'Later', move_to_later_path(suggestion_id: @current_suggestion.first.id), method: :patch %>
+<%= link_to 'Seen', already_seen_path(suggestion_id: @current_suggestion.first.id), method: :patch %>
 <%= link_to 'Watch' %>
