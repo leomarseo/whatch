@@ -4,7 +4,7 @@
   <div class="right-part col-6"> <!-- This div contains the poster movie and the three buttons (on the right part of the page) -->
     <div> <!-- This is the div with the poster movie -->
       <% @current_movie = @saved_movies.find(params[:id]) %>
-      <%= @current_movie.movie.photo_url %>
+      <%= image_tag "https://image.tmdb.org/t/p/w300/#{@current_movie.movie.photo_url}" %>
     </div>
 
     <% next_id = find_next_id(@current_movie) %> <!-- this method is defined in the app/controllers/saved_movies_controller -->
@@ -25,7 +25,7 @@
           <% @current_movie.movie.starring_actors.each do |star| %>
 
           <div> <!-- This contains all the actor informations -->
-            <%= star.photo_url%>
+            <%= image_tag "https://image.tmdb.org/t/p/w300/#{star.photo_url}" %>
             <p><em><%= star.character %></em></p>
             <p><%= star.actor.name %></p>
           </div>
