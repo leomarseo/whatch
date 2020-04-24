@@ -4,24 +4,6 @@ class AchievementsController < ApplicationController
 
   def index
     @achievements = Achievement.all
-
-    @user_achievements = current_user.achievements
-  end
-
-
-  def n_movie_achievement # a method to give achievements based on the number of movie you watched
-    if current_user.saved_movies.where(seen: true).count > 1 && current_user.joint_achievements.find_by(achievement_id: 1).nil?
-      JointAchievement.create(user_id: current_user.id, achievement_id: 1, earned: true)
-    # elsif @seen_movies.count == 5 && current_user.joint_achievement.earned = false
-    #   JointAchievement.create(user_id: 2, achievement_id: 2, earned: true)
-    # elsif @seen_movies.count == 10 && current_user.joint_achievement.earned = false
-    #   JointAchievement.create(user_id: 2, achievement_id: 3, earned: true)
-    # elsif @seen_movies.count == 100 && current_user.joint_achievement.earned = false
-    #   JointAchievement.create(user_id: 2, achievement_id: 4, earned: true)
-    # elsif @seen_movies.count == 500 && current_user.joint_achievement.earned = false
-    #   JointAchievement.create(user_id: 2, achievement_id: 5, earned: true)
-    end
-
   end
 
   def achievement_loop_visualisation
@@ -38,6 +20,15 @@ class AchievementsController < ApplicationController
     @joint_achievements = current_user.joint_achievements
   end
 
+
+
+
+
+
+
+
+
+
   # genre = current_user.saved_movies.where(seen: true).last.movie.genres.where()
 
   # def genre_achivement(genre)
@@ -45,4 +36,25 @@ class AchievementsController < ApplicationController
   # end
 
   # helper_method :n_movie_achievement
-end
+
+
+
+
+
+
+
+
+end # la classe si chiude qui
+
+  # def n_movie_achievement # a method to give achievements based on the number of movie you watched
+  #   if current_user.saved_movies.where(seen: true).count > 1 && current_user.joint_achievements.find_by(achievement_id: 1).nil?
+  #     JointAchievement.create(user_id: current_user.id, achievement_id: 1, earned: true)
+  #   # elsif @seen_movies.count == 5 && current_user.joint_achievement.earned = false
+  #   #   JointAchievement.create(user_id: 2, achievement_id: 2, earned: true)
+  #   # elsif @seen_movies.count == 10 && current_user.joint_achievement.earned = false
+  #   #   JointAchievement.create(user_id: 2, achievement_id: 3, earned: true)
+  #   # elsif @seen_movies.count == 100 && current_user.joint_achievement.earned = false
+  #   #   JointAchievement.create(user_id: 2, achievement_id: 4, earned: true)
+  #   # elsif @seen_movies.count == 500 && current_user.joint_achievement.earned = false
+  #   #   JointAchievement.create(user_id: 2, achievement_id: 5, earned: true)
+  #   end
