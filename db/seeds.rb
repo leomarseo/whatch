@@ -120,10 +120,10 @@ SavedMovie.create(movie_id: 1, user_id: 2, seen: false, user_rating: 0)
 SavedMovie.create(movie_id: 2, user_id: 2, seen: false)
 
 
-JointAchievement.create(user_id: 1, saved_movie_id: 2, achievement_id: 1 earned: true)
-JointAchievement.create(user_id: 2, saved_movie_id: 2, achievement_id: 2 earned: true)
-JointAchievement.create(user_id: 2, saved_movie_id: 2, achievement_id: 3 earned: true)
-JointAchievement.create(user_id: 2, saved_movie_id: 2, achievement_id: 4 earned: true)
+JointAchievement.create(user_id: 1, saved_movie_id: 2, achievement_id: 1, earned: true)
+JointAchievement.create(user_id: 2, saved_movie_id: 2, achievement_id: 2, earned: true)
+JointAchievement.create(user_id: 2, saved_movie_id: 2, achievement_id: 3, earned: true)
+JointAchievement.create(user_id: 2, saved_movie_id: 2, achievement_id: 4, earned: true)
 
 
 Achievement.create(name: "Beginner", description: "You saw 1 movie")
