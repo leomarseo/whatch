@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   # TMDB suggestions route after user selection of filters
 
-  get '/tmdb_suggestions', to: 'tmdb_suggestions#get_suggestions'
+  get '/tmdb_suggestions', to: 'tmdb_suggestions#get_actors'
 
   # route to achievements
   get '/achievements', to: 'achievements#index'
