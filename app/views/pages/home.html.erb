@@ -11,7 +11,7 @@
   <option value="genre">Genre</option>
 </select>
 <!-- the searchbar and the "add/remove" buttons are created after the user selects an option from the menu above -->
-<div id="search-bar" style="" class="THIS-CLASS" data-actors="<%= @actors.to_json %>" data-genres="<%= @genres.to_json %>" data-directors="<%= @directors.to_json %>">
+<div id="search-bar" style="" class="actor" data-actorsnames="<%= @actors_names.to_json %>" data-actorsphotos="<%= @actors_photos.to_json %>" data-genresnames="<%= @genres_names.to_json %>" data-genresphotos="<%= @genres_photos.to_json %>" data-directorsnames="<%= @directors_names.to_json %>" data-directorsphotos="<%= @directors_photos.to_json %>">
    <form action=""></form>
    <input type="text" id="search-bar-field" placeholder="search.." class="form-control search-input" autocomplete="off" /><br/>
    <input type="submit" id="add-button" value="Add">
