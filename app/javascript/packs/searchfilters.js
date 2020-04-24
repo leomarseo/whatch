@@ -12,7 +12,6 @@ const searchFilters = () => {
     document.getElementById("search-bar").classList.add(x);
     document.getElementById("search-bar-field").placeholder = x;
   }
-});
 
   // this is part of the autocomplete
   searchContainer.addEventListener("change", showSearchbar);
