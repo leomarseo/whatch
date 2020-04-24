@@ -1,5 +1,6 @@
 class SuggestionsController < ApplicationController
 
+  # calls method to set suggestion.skip to true, if user clicks on the pass, later, or seen button in show
   before_action :set_suggestion_skip, only: [ :pass_suggestion, :move_to_later, :already_seen ]
 
   def index
@@ -44,10 +45,11 @@ class SuggestionsController < ApplicationController
     redirect_to pages_suggestions_path
   end
 
+
+  # controller methods for pass, later, seen buttons in show
+  # TODO: each method must be updated with the necessary function(s) for each button action
   def pass_suggestion; end
-
   def move_to_later; end
-
   def already_seen; end
 
   # def destroy
@@ -62,6 +64,8 @@ class SuggestionsController < ApplicationController
     params.require(:suggestion).permit( :tmdb_suggestion_id, :movie_id, :skip)
   end
 
+
+  # method to set current suggestion.skip displayed in show to true, then present next suggestion to show
   def set_suggestion_skip
     @suggestion = Suggestion.find(params[:suggestion_id])
     @suggestion.update(skip: true)
