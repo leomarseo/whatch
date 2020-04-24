@@ -15,16 +15,39 @@ class AchievementsController < ApplicationController
     end
   end
 
-
-
-  def achievement_loop_adult
+  def achievement_loop_adult #controllare che adult sia una categoria e non un boolean del movie
+    @movies = @seen_movies.movie.genres.where(name: "adult")
     @achievements = Achievement.where(category: "adult")
-    @movies = @seen_movies.movies.genres.where(name: "adult")
     @achievements.each do |achievement|
-      if @movies >= achievement.number && @joint_achievements.find_by(achievement_id: achievement.id).nil?
-        JointAchievement.create(user_id: current_user.id, Achievement_id: achievement.id, earned: true)
+      if @movies.count >= achievement.number && @joint_achievements.find_by(achievement_id: achievement.id).nil?
+        JointAchievement.create(user_id: current_user.id, achievement_id: achievement.id, earned: true)
       end
+    end
   end
+
+  def achievement_loop_documentary
+    @movies = @seen_movies.movie.genres.where(name: "documentary")
+    @achievements = Achievement.where(category: "documentary")
+    @achievements.each do |achievement|
+      if @movies.count >= achievement.number && @joint_achievements.find_by(achivement_id: achievement.id).nil?
+        JointAchievement.create(user_id: current_user.id, achievement_id: achievement.id, earned: true)
+      end
+    end
+  end
+
+  def achievement_loop_hours
+    @movies_total_duration = @seen_movies.movie.genres.where(name: "documentary")
+    @achievements = Achievement.where(category: "documentary")
+    @achievements.each do |achievement|
+      if @movies.count >= achievement.number && @joint_achievements.find_by(achivement_id: achievement.id).nil?
+        JointAchievement.create(user_id: current_user.id, achievement_id: achievement.id, earned: true)
+      end
+    end
+  end
+
+
+
+
 
   def set_variables
     @seen_movies = current_user.saved_movies.where(seen: true)
