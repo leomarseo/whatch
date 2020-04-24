@@ -31,20 +31,14 @@ class SuggestionsController < ApplicationController
       end
     end
 
+    # this loop resets the situation when we reached the last suggestions
+    if @current_suggestion == []
+      @current_suggestion << @tmdb_suggestion.first
+      @tmdb_suggestion.each do |suggestion|
+        suggestion.update(skip: false)
+      end
+    end
   end
-
-  def edit
-    # @suggestion = Suggestion.find(params[:id])
-    # @suggestion.update(skip: true)
-    # redirect_to pages_suggestions_path
-  end
-
-  def update
-    @suggestion = Suggestion.find(params[:id])
-    @suggestion.update(suggestion_params)
-    redirect_to pages_suggestions_path
-  end
-
 
   # controller methods for pass, later, seen buttons in show
   # TODO: each method must be updated with the necessary function(s) for each button action
