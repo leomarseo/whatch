@@ -1,13 +1,97 @@
+require "json"
+require 'open-uri'
+
 class TmdbSuggestionsController < ApplicationController
-# the fetcher collects all objects from all methods below
   def fetcher
-    @actors_positive = get_actors_positive
-    @actors_negative = get_actors_negative
-    @directors_positive = get_directors_positive
-    @directors_negative = get_directors_negative
-    @genres_positive = get_genres_positive
-    @genres_negative = get_genres_negative
+    query = create_query_object
+
+    # calls method to generate the first api url, by passing the query attributes and the page number
+    api_url = prepare_api_url(
+      query.positive_actors_tmdb_ids,
+      query.positive_genres_tmdb_ids,
+      query.negative_genres_tmdb_ids,
+      1
+    )
+
+
+    first_results = perform_api_call(api_url)
+    unless first_results.nil?
+      number_of_results = first_results['total_results']
+
+      # every api page cointains 20 results (if there are 20 left from the previous pages)
+      number_of_pages = first_results['total_pages']
+    end
+    raise
   end
+
+
+
+
+
+  private
+
+  #1
+  def create_query_object
+    # creates query object by passing arrays of tmbd_ids
+
+    user = current_user ? current_user : User.first # prevents breaking if user is not logged in
+    query = Query.create(
+      user: user,
+      positive_actors_tmdb_ids: get_actors_positive.pluck(:tmdb_id), # these are all defined as array attributes in the schema
+      negative_actors_tmdb_ids: get_actors_negative.pluck(:tmdb_id),
+      positive_directors_tmdb_ids: get_directors_positive.pluck(:tmbd_id),
+      negative_directors_tmdb_ids: get_directors_negative.pluck(:tmbd_id),
+      positive_genres_tmdb_ids: get_genres_positive.pluck(:tmdb_id),
+      negative_genres_tmdb_ids: get_genres_negative.pluck(:tmdb_id)
+    )
+    return query
+  end
+
+  #2
+  def prepare_api_url(actors_positive, genres_positive, genres_negative, page)
+    # multiples ids divided by: %2C
+    # &with_crew=#{directors_ids} --> search for crew, but gives results where the director could be writer/producer, so a generic member of the crew
+
+    actor_ids = prepare_params_for_api(actors_positive).join
+    genres_p_ids = prepare_params_for_api(genres_positive).join
+    genres_n_ids = prepare_params_for_api(genres_negative).join
+    discover_url = "https://api.themoviedb.org/3/discover/movie?api_key=81c398dbb6b994e4f815e69325c4893c&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=#{page}&with_cast=#{actor_ids}&with_genres=#{genres_p_ids}&without_genres=#{genres_n_ids}"
+    return discover_url
+  end
+
+  #3
+  def prepare_params_for_api(array_of_ids)
+    # prepares tmdb_ids to be psased in the API call. The first one is passed as a simple number, the following ones are interpolated with the necessary %2C
+
+    refined_ids_array = []
+    array_of_ids.each do |id|
+      if array_of_ids.index(id) == 0
+        refined_ids_array << id
+      else
+       refined_ids_array << "%2C#{id}"
+      end
+    end
+    return refined_ids_array
+  end
+
+  #4
+  def perform_api_call(api_url)
+    # performs api call if provided with functioning url
+
+    begin
+      results_of_api_call = open(api_url).read
+    rescue OpenURI::HTTPError
+      results = nil
+    else
+      results = JSON.parse(results_of_api_call)
+    end
+    return results
+  end
+
+
+
+
+  # below are all the methods to retrieve objects from OUR DB given the strings the user passed as filters
 
   def get_actors_positive
     # we take the params and convert them to an array of strings
@@ -69,5 +153,32 @@ class TmdbSuggestionsController < ApplicationController
     end
     return @negative_genre_query
   end
+
 end
-# need to create one method that calls the other three
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
