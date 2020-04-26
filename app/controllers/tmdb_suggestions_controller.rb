@@ -162,6 +162,8 @@ class TmdbSuggestionsController < ApplicationController
 
       create_tmdb_suggestion_object_and_suggestions(query, all_suggestions)
     end
+
+    redirect_to results_path
   end
 
 
@@ -187,7 +189,6 @@ class TmdbSuggestionsController < ApplicationController
         tmdb_suggestion: tmdb_suggestion
         )
     end
-    raise
   end
 
   def retrieve_suggestions(api_url)
