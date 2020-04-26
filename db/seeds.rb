@@ -133,9 +133,16 @@ Achievement.create(name: "May the force be with you", description: "You saw all 
 Achievement.create(name: "Yah", description: "You saw 10 Western movies")
 
 
+Query.create(
+  user: User.first,
+  positive_actors_tmdb_ids: [281], # these are all defined as array attributes in the schema
+  positive_genres_tmdb_ids: [28],
+  negative_genres_tmdb_ids: [12]
+)
+
 
 # creates fake suggestion as we would receive it from the API request. For now it contains 3 suggestions, we might receive way more than this
-TmdbSuggestion.create(user: User.first, tmdb_movie_id_list: '5 6 7')
+TmdbSuggestion.create(user: User.first, tmdb_movie_id_list: '5 6 7', query: Query.first)
 
 # for each of the ids received in the TmdbSuggestion, we loop to create a Suggestion that contains OUR movie_id by looking for the correct movie through tmdb_id
 movie_id_array = TmdbSuggestion.last.tmdb_movie_id_list.split(' ')

@@ -11,7 +11,7 @@
   <option value="genre">Genre</option>
 </select>
 <!-- the searchbar and the "add/remove" buttons are created after the user selects an option from the menu above -->
-<div id="search-bar" style="" class="THIS-CLASS" data-actors="<%= @actors.to_json %>" data-genres="<%= @genres.to_json %>" data-directors="<%= @directors.to_json %>">
+<div id="search-bar" style="" class="actor" data-actorsnames="<%= @actors_names.to_json %>" data-actorsphotos="<%= @actors_photos.to_json %>" data-genresnames="<%= @genres_names.to_json %>" data-genresphotos="<%= @genres_photos.to_json %>" data-directorsnames="<%= @directors_names.to_json %>" data-directorsphotos="<%= @directors_photos.to_json %>">
    <form action=""></form>
    <input type="text" id="search-bar-field" placeholder="search.." class="form-control search-input" autocomplete="off" /><br/>
    <input type="submit" id="add-button" value="Add">
@@ -20,12 +20,12 @@
 <!-- this form should become hidden later, when finishing the frontend -->
 <div id="selection-form">
 <form action="/tmdb_suggestions">
-  <input type="text" class="actors_positive" name="actors_positive"><br/>
-  <input type="text" class="directors_positive" name="directors_positive"><br/>
-  <input type="text" class="genres_positive" name="genres_positive"><br/>
-  <input type="text" class="actors_negative" name="actors_negative"><br/>
-  <input type="text" class="directors_negative" name="directors_negative"><br/>
-  <input type="text" class="genres_negative" name="genres_negative"><br/>
+  <input type="text" class="actors_positive" name="actors_positive" placeholder="actors_positive"><br/>
+  <input type="text" class="directors_positive" name="directors_positive" placeholder="directors_positive"><br/>
+  <input type="text" class="genres_positive" name="genres_positive" placeholder="genres_positive"><br/>
+  <input type="text" class="actors_negative" name="actors_negative" placeholder="actors_negative"><br/>
+  <input type="text" class="directors_negative" name="directors_negative" placeholder="directors_negative"><br/>
+  <input type="text" class="genres_negative" name="genres_negative" placeholder="genres_negative"><br/>
   <div>
     <input type="submit" id="find-button" value="Add">
     <!-- after clicking the button it will create params like these: -->
