@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_22_121926) do
+ActiveRecord::Schema.define(version: 2020_04_25_200540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "achievements", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,6 +49,7 @@ ActiveRecord::Schema.define(version: 2020_04_22_121926) do
     t.integer "tmdb_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "popularity"
   end
 
   create_table "available_services", force: :cascade do |t|
@@ -81,6 +89,18 @@ ActiveRecord::Schema.define(version: 2020_04_22_121926) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "joint_achievements", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "saved_movie_id", null: false
+    t.bigint "achievement_id", null: false
+    t.boolean "earned"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["achievement_id"], name: "index_joint_achievements_on_achievement_id"
+    t.index ["saved_movie_id"], name: "index_joint_achievements_on_saved_movie_id"
+    t.index ["user_id"], name: "index_joint_achievements_on_user_id"
+  end
+
   create_table "joint_genres", force: :cascade do |t|
     t.bigint "movie_id", null: false
     t.bigint "genre_id", null: false
@@ -106,6 +126,19 @@ ActiveRecord::Schema.define(version: 2020_04_22_121926) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["director_id"], name: "index_movies_on_director_id"
+  end
+
+  create_table "queries", force: :cascade do |t|
+    t.bigint "user_id"
+    t.text "positive_actors_tmdb_ids", default: [], array: true
+    t.text "negative_actors_tmdb_ids", default: [], array: true
+    t.text "positive_directors_tmdb_ids", default: [], array: true
+    t.text "negative_directors_tmdb_ids", default: [], array: true
+    t.text "positive_genres_tmdb_ids", default: [], array: true
+    t.text "negative_genres_tmdb_ids", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_queries_on_user_id"
   end
 
   create_table "saved_movies", force: :cascade do |t|
@@ -152,6 +185,8 @@ ActiveRecord::Schema.define(version: 2020_04_22_121926) do
     t.string "tmdb_movie_id_list"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "query_id", null: false
+    t.index ["query_id"], name: "index_tmdb_suggestions_on_query_id"
     t.index ["user_id"], name: "index_tmdb_suggestions_on_user_id"
   end
 
@@ -176,6 +211,9 @@ ActiveRecord::Schema.define(version: 2020_04_22_121926) do
   add_foreign_key "available_services", "movies"
   add_foreign_key "available_services", "services"
   add_foreign_key "awards", "movies"
+  add_foreign_key "joint_achievements", "achievements"
+  add_foreign_key "joint_achievements", "saved_movies"
+  add_foreign_key "joint_achievements", "users"
   add_foreign_key "joint_genres", "genres"
   add_foreign_key "joint_genres", "movies"
   add_foreign_key "movies", "directors"
@@ -185,5 +223,6 @@ ActiveRecord::Schema.define(version: 2020_04_22_121926) do
   add_foreign_key "starring_actors", "movies"
   add_foreign_key "suggestions", "movies"
   add_foreign_key "suggestions", "tmdb_suggestions"
+  add_foreign_key "tmdb_suggestions", "queries"
   add_foreign_key "tmdb_suggestions", "users"
 end

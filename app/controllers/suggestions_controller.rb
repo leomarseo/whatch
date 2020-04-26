@@ -3,26 +3,12 @@ class SuggestionsController < ApplicationController
   # calls method to set suggestion.skip to true, if user clicks on the pass, later, or seen button in show
   before_action :set_suggestion_skip, only: [ :pass_suggestion, :move_to_later, :already_seen ]
 
-  def index
-    @suggestion = Suggestion.all
-  end
-
-  def new
-    @suggestion = Suggestion.new
-  end
-
-  def create
-    suggestion = Suggestion.new(suggestion_params)
-    suggestion.save
-    redirect_to_pages_suggetions_path
-  end
-
   def show
     # the show accepts a parameter from the filters page
     # the @tmdb_suggestion declaration is temporary, until we successfully receive sample tmdb_suggestions
 
     @current_suggestion = []
-    @tmdb_suggestion = TmdbSuggestion.first.suggestions
+    @tmdb_suggestion = current_user.tmdb_suggestions.last.suggestions
 
     @tmdb_suggestion.each do |suggestion|
       if suggestion.skip == false
