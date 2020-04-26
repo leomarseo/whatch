@@ -41,5 +41,7 @@ class AddAttributesToActorsJob < ApplicationJob
       end
 
     end
+
+    Actor.where(popularity: nil).update(popularity: 0.0)
   end
 end
