@@ -63,14 +63,18 @@ class DownloadSingleMovieJob < ApplicationJob
 
 
         # ACTORS GENERATOR #################################################################################
+        actors_counter = 0
+
         movie_credits['cast'].each do |cast_member|
+          actors_counter += 1
+          break if actors_counter > 15
 
           # creates actor only if there isn't already an actor in our DB with the same tmbd_id, to avoid clones
           if Actor.find_by(tmdb_id: cast_member['id']).nil?
             Actor.create(
               name: cast_member['name'],
               tmdb_id: cast_member['id'],
-              popularity: 0.0
+              photo_url: cast_member['profile_path']
             )
           end
 

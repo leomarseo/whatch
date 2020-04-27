@@ -97,7 +97,7 @@ class DownloadMovieJob < ApplicationJob
               Actor.create(
                 name: cast_member['name'],
                 tmdb_id: cast_member['id'],
-                popularity: 0.0
+                photo_url: cast_member['profile_path']
               )
             end
 
