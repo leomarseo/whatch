@@ -3,7 +3,7 @@ class UpdateRelevantActorsJob3 < ApplicationJob
 
   def perform(*args)
     counter = 0
-    Movie.includes(:starring_actors).drop(20000).first(10000).each do |movie|
+    Movie.includes(:starring_actors).slice(20000, 10000).each do |movie|
 
       movie.starring_actors.drop(15).each do |starring_actor|
         counter += 1
