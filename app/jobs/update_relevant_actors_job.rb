@@ -1,9 +1,9 @@
 class UpdateRelevantActorsJob < ApplicationJob
   queue_as :default
 
-  def perform(starting, amount)
+  def perform(amount, starting)
     actor_counter = 0
-    Actor.all.slice(starting, amount).each do |actor|
+    Actor.order(id: :asc).limit(amount).offset(starting).each do |actor|
 
       if actor.starring_actors == []
         actor.destroy
