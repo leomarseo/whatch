@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_24_181121) do
+ActiveRecord::Schema.define(version: 2020_04_25_200540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_181121) do
     t.integer "tmdb_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "popularity"
   end
 
   create_table "available_services", force: :cascade do |t|
@@ -127,6 +128,19 @@ ActiveRecord::Schema.define(version: 2020_04_24_181121) do
     t.index ["director_id"], name: "index_movies_on_director_id"
   end
 
+  create_table "queries", force: :cascade do |t|
+    t.bigint "user_id"
+    t.text "positive_actors_tmdb_ids", default: [], array: true
+    t.text "negative_actors_tmdb_ids", default: [], array: true
+    t.text "positive_directors_tmdb_ids", default: [], array: true
+    t.text "negative_directors_tmdb_ids", default: [], array: true
+    t.text "positive_genres_tmdb_ids", default: [], array: true
+    t.text "negative_genres_tmdb_ids", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_queries_on_user_id"
+  end
+
   create_table "saved_movies", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "movie_id", null: false
@@ -171,6 +185,8 @@ ActiveRecord::Schema.define(version: 2020_04_24_181121) do
     t.string "tmdb_movie_id_list"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "query_id", null: false
+    t.index ["query_id"], name: "index_tmdb_suggestions_on_query_id"
     t.index ["user_id"], name: "index_tmdb_suggestions_on_user_id"
   end
 
@@ -206,5 +222,6 @@ ActiveRecord::Schema.define(version: 2020_04_24_181121) do
   add_foreign_key "starring_actors", "movies"
   add_foreign_key "suggestions", "movies"
   add_foreign_key "suggestions", "tmdb_suggestions"
+  add_foreign_key "tmdb_suggestions", "queries"
   add_foreign_key "tmdb_suggestions", "users"
 end
