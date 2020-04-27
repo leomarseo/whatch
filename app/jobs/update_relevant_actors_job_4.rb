@@ -10,5 +10,8 @@ class UpdateRelevantActorsJob4 < ApplicationJob
         StarringActor.find(starring_actor.id).destroy
       end
     end
+
+    puts "destroyed #{counter} starring_actors"
+
   end
 end

@@ -12,4 +12,5 @@ class UpdateRelevantActorsJob3 < ApplicationJob
     end
 
     puts "destroyed #{counter} starring_actors"
+  end
 end
