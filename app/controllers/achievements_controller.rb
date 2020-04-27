@@ -5,6 +5,7 @@ class AchievementsController < ApplicationController
 
   def index
     @achievements = Achievement.all
+    @joint_achievements = current_user.joint_achievements
   end
 
   #VISUALISATIONS

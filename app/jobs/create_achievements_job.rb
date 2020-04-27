@@ -25,8 +25,8 @@ class CreateAchievementsJob < ApplicationJob
 
     #CATEGORY - COMEDY
     Achievement.create(name: "Ha ha ha", description: "You saw 5 comedies", category: "comedy", number: 5)
-    Achievement.create(name: "Yeee-ha", description: "You saw 10 comedies", category: "comedy", number: 10)
-    Achievement.create(name: "Yeee-ha", description: "You saw 10 comedies", category: "comedy", number: 30)
+    Achievement.create(name: "I can't stop laughing", description: "You saw 10 comedies", category: "comedy", number: 10)
+    Achievement.create(name: "I really really can't stop laughing", description: "You saw 10 comedies", category: "comedy", number: 30)
 
     #CATEGORY - ADULT 👍
     Achievement.create(name: "Amateur", description: "You saw 3 adult movies", category: "adult", number: 3)
