@@ -89,6 +89,7 @@ class DownloadMovieJob < ApplicationJob
 
           # ACTORS GENERATOR #################################################################################
           actors_counter = 0
+
           movie_credits['cast'].each do |cast_member|
             actors_counter += 1
             break if actors_counter > 15
