@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
 
   def home
+    # actors = Actor.order(popularity: :desc).pluck(:name, :photo_url) # order seems to break on heroku
     actors = Actor.order(popularity: :desc).pluck(:name, :photo_url)
     @actors_names = []
     @actors_photos = []
@@ -14,7 +15,7 @@ class PagesController < ApplicationController
       end
     end
 
-    directors = Director.pluck(:name, :photo_url).sort
+    directors = Director.pluck(:name, :photo_url)
     @directors_names = []
     @directors_photos = []
     directors.each do |director|
@@ -26,7 +27,7 @@ class PagesController < ApplicationController
       end
     end
 
-    genres = Genre.pluck(:name, :tmdb_id).sort
+    genres = Genre.pluck(:name, :tmdb_id)
     @genres_names = []
     @genres_photos = []
     genres.each do |genre|

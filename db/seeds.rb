@@ -117,16 +117,17 @@ AvailableService.create(service_id: 3, movie_id: 1)
 
 SavedMovie.create(movie_id: 1, user_id: 1, seen: true, user_rating: 1)
 SavedMovie.create(movie_id: 1, user_id: 2, seen: false, user_rating: 0)
-SavedMovie.create(movie_id: 2, user_id: 2, seen: false)
-
-
-JointAchievement.create(user_id: 1, saved_movie_id: 2, achievement_id: 1, earned: true)
-JointAchievement.create(user_id: 2, saved_movie_id: 2, achievement_id: 2, earned: true)
-JointAchievement.create(user_id: 2, saved_movie_id: 2, achievement_id: 3, earned: true)
-JointAchievement.create(user_id: 2, saved_movie_id: 2, achievement_id: 4, earned: true)
+SavedMovie.create(movie_id: 2, user_id: 2, seen: true)
+SavedMovie.create(movie_id: 3, user_id: 2, seen: true)
+SavedMovie.create(movie_id: 4, user_id: 2, seen: true)
+SavedMovie.create(movie_id: 5, user_id: 2, seen: true)
 
 
 Achievement.create(name: "Beginner", description: "You saw 1 movie")
+Achievement.create(name: "Good start", description: "You saw 5 movie")
+Achievement.create(name: "Keep watch", description: "You saw 10 movie")
+Achievement.create(name: "Intermediate", description: "You saw 100 movies")
+Achievement.create(name: "Expert", description: "You saw 500 movies")
 Achievement.create(name: "Archeologist", description: "You made 100 research")
 Achievement.create(name: "Fetishist", description: "You saw 300 movies with low rating")
 Achievement.create(name: "May the force be with you", description: "You saw all the Star Wars saga")
@@ -139,6 +140,7 @@ Query.create(
   positive_genres_tmdb_ids: [28],
   negative_genres_tmdb_ids: [12]
 )
+
 
 
 # creates fake suggestion as we would receive it from the API request. For now it contains 3 suggestions, we might receive way more than this

@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2020_04_25_200540) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "category"
+    t.integer "number"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -91,13 +93,11 @@ ActiveRecord::Schema.define(version: 2020_04_25_200540) do
 
   create_table "joint_achievements", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "saved_movie_id", null: false
     t.bigint "achievement_id", null: false
-    t.boolean "earned"
+    t.boolean "earned", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["achievement_id"], name: "index_joint_achievements_on_achievement_id"
-    t.index ["saved_movie_id"], name: "index_joint_achievements_on_saved_movie_id"
     t.index ["user_id"], name: "index_joint_achievements_on_user_id"
   end
 
@@ -212,7 +212,6 @@ ActiveRecord::Schema.define(version: 2020_04_25_200540) do
   add_foreign_key "available_services", "services"
   add_foreign_key "awards", "movies"
   add_foreign_key "joint_achievements", "achievements"
-  add_foreign_key "joint_achievements", "saved_movies"
   add_foreign_key "joint_achievements", "users"
   add_foreign_key "joint_genres", "genres"
   add_foreign_key "joint_genres", "movies"

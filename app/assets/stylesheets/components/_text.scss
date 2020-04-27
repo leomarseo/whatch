@@ -1,0 +1,39 @@
+h1 {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 48px;
+  letter-spacing: -0.03em;
+  color: white;
+}
+
+h2 {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: $gray;
+}
+
+h3 {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.015em;
+  color: #FFFFFF;
+}
+
+p {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: $light-gray;
+}

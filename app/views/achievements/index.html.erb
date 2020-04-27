@@ -1,0 +1,20 @@
+<div>
+  <% @achievements.each do |achievement| %>
+    <div>
+      <%= achievement.name %>
+      <%= achievement.description %>
+    </div>
+  <% end %>
+</div>
+
+<br><br>
+<hr>
+<br><br>
+
+
+<div>
+  <% current_user.achievements.each do |joint_a| %>
+    <%= joint_a.name %>
+    <%= joint_a.description %>
+  <% end %>
+</div>

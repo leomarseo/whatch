@@ -1,10 +1,18 @@
 // Define variables for your color scheme
 
-// For example:
-$red: #FD1015;
-$blue: #167FFB;
-$yellow: #FFC65A;
+// design 2.0 below
+$light-gray: #999999;
+$gray: #5c5c5c;
+$dark-navy: #021622;
+$green: #183a37;
+$blue: #19647e;
+$red: #c8574a;
+
+// defaults below have been commented out
+// $red: #FD1015;
+// $blue: #167FFB;
+$yellow: #FFC65A; // <LL - had to put these back in as it was breaking by being called in bootsrap_variables.scss>
 $orange: #E67E22;
-$green: #1EDD88;
-$gray: #0E0000;
-$light-gray: #F4F4F4;
+// $green: #1EDD88;
+// $gray: #0E0000;
+// $light-gray: #F4F4F4;
