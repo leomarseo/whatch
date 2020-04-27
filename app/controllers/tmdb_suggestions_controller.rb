@@ -18,13 +18,15 @@ class TmdbSuggestionsController < ApplicationController
     first_api_url = prepare_api_url(
       query.positive_actors_tmdb_ids,
       query.positive_genres_tmdb_ids,
-      query.negative_genres_tmdb_ids
+      query.negative_genres_tmdb_ids,
+      query.positive_directors_tmdb_ids
     )
 
     # FIRST ROUND OF API CALL
     # calls chain of methods ducumented below to ultimately retrieve a list of movies already filtered using all filters (also negative ones)
     first_suggestions_filtered = filter_by_negative_selections(
       retrieve_suggestions(first_api_url),
+      query.positive_actors_tmdb_ids,
       query.negative_actors_tmdb_ids,
       query.positive_directors_tmdb_ids,
       query.negative_directors_tmdb_ids
@@ -54,11 +56,13 @@ class TmdbSuggestionsController < ApplicationController
       second_api_url = prepare_api_url(
         first_p_actor,
         query.positive_genres_tmdb_ids,
-        query.negative_genres_tmdb_ids
+        query.negative_genres_tmdb_ids,
+        query.positive_directors_tmdb_ids
       )
 
       second_suggestions_filtered = filter_by_negative_selections(
         retrieve_suggestions(second_api_url),
+        query.positive_actors_tmdb_ids,
         query.negative_actors_tmdb_ids,
         query.positive_directors_tmdb_ids,
         query.negative_directors_tmdb_ids
@@ -72,11 +76,13 @@ class TmdbSuggestionsController < ApplicationController
       third_api_url = prepare_api_url(
         second_p_actor,
         query.positive_genres_tmdb_ids,
-        query.negative_genres_tmdb_ids
+        query.negative_genres_tmdb_ids,
+        query.positive_directors_tmdb_ids
       )
 
       third_suggestions_filtered = filter_by_negative_selections(
         retrieve_suggestions(third_api_url),
+        query.positive_actors_tmdb_ids,
         query.negative_actors_tmdb_ids,
         query.positive_directors_tmdb_ids,
         query.negative_directors_tmdb_ids
@@ -97,11 +103,13 @@ class TmdbSuggestionsController < ApplicationController
       fourth_api_url = prepare_api_url(
         first_p_actor,
         [],
-        first_n_genre
+        first_n_genre,
+        []
       )
 
       fourth_suggestions_filtered = filter_by_negative_selections(
         retrieve_suggestions(fourth_api_url),
+        query.positive_actors_tmdb_ids,
         query.negative_actors_tmdb_ids,
         [],
         query.negative_directors_tmdb_ids
@@ -113,11 +121,13 @@ class TmdbSuggestionsController < ApplicationController
       fifth_api_url = prepare_api_url(
         first_p_actor,
         [],
-        second_n_genre
+        second_n_genre,
+        []
       )
 
       fifth_suggestions_filtered = filter_by_negative_selections(
         retrieve_suggestions(fifth_api_url),
+        query.positive_actors_tmdb_ids,
         query.negative_actors_tmdb_ids,
         [],
         query.negative_directors_tmdb_ids
@@ -132,11 +142,13 @@ class TmdbSuggestionsController < ApplicationController
       fourth_api_url = prepare_api_url(
         first_p_actor,
         [],
-        first_n_genre
+        first_n_genre,
+        []
       )
 
       fourth_suggestions_filtered = filter_by_negative_selections(
         retrieve_suggestions(fourth_api_url),
+        query.positive_actors_tmdb_ids,
         query.negative_actors_tmdb_ids,
         [],
         query.negative_directors_tmdb_ids
@@ -152,6 +164,7 @@ class TmdbSuggestionsController < ApplicationController
 
       sixth_api_url = prepare_api_url(
         first_p_actor,
+        [],
         [],
         []
       )
@@ -215,14 +228,15 @@ class TmdbSuggestionsController < ApplicationController
   end
 
   #2
-  def prepare_api_url(actors_positive, genres_positive, genres_negative)
+  def prepare_api_url(actors_positive, genres_positive, genres_negative, directors_positive)
     # multiples ids divided by: %2C
     # &with_crew=#{directors_ids} --> search for crew, but gives results where the director could be writer/producer, so a generic member of the crew
 
     actor_ids = prepare_params_for_api(actors_positive).join
     genres_p_ids = prepare_params_for_api(genres_positive).join
     genres_n_ids = prepare_params_for_api(genres_negative).join
-    discover_url = "https://api.themoviedb.org/3/discover/movie?api_key=81c398dbb6b994e4f815e69325c4893c&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1&with_cast=#{actor_ids}&with_genres=#{genres_p_ids}&without_genres=#{genres_n_ids}"
+    directors_ids = prepare_params_for_api(directors_positive).join
+    discover_url = "https://api.themoviedb.org/3/discover/movie?api_key=81c398dbb6b994e4f815e69325c4893c&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1&with_cast=#{actor_ids}&with_crew=#{directors_ids}&with_genres=#{genres_p_ids}&without_genres=#{genres_n_ids}"
     return discover_url
   end
 
@@ -282,15 +296,23 @@ class TmdbSuggestionsController < ApplicationController
   end
 
   #6
-  def filter_by_negative_selections(suggestions, neg_act, pos_dir, neg_dir)
+  def filter_by_negative_selections(suggestions, pos_act, neg_act, pos_dir, neg_dir)
     # loops through all suggestions to check if there's movies to be filtered out
 
     to_be_removed = []
     suggestions.each do |movie|
+
+      # loops through positive actors
+      unless pos_act.nil?
+        pos_act.each do |actor_tmdb_id|
+          to_be_removed << suggestions.index(movie) if movie.actors.pluck(:tmdb_id).first(15).exclude? actor_tmdb_id.to_i
+        end
+      end
+
       # loops through negative actors
       unless neg_act.nil?
         neg_act.each do |actor_tmdb_id|
-          to_be_removed << suggestions.index(movie) if movie.actors.pluck(:tmdb_id).include? actor_tmdb_id.to_i
+          to_be_removed << suggestions.index(movie) if movie.actors.pluck(:tmdb_id).first(15).include? actor_tmdb_id.to_i
         end
       end
 
