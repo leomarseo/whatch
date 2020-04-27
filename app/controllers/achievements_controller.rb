@@ -186,7 +186,6 @@ class AchievementsController < ApplicationController
   def set_variables
     @seen_movies = current_user.saved_movies.where(seen: true)
     @joint_achievements = current_user.joint_achievements
-    @movies = Movies.all
   end
 
 end # la classe si chiude qui

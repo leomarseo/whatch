@@ -53,6 +53,6 @@ class CreateAchievementsJob < ApplicationJob
     Achievement.create(name: "Brad forever", description: "You watched all the movies starring Brad Pitt", category: "actors", number: 9)
 
     #DIRECTORS 👍
-    Achievement.create(name: "Nosferatu", description: "You watched all the movies directed by Wrner Herzog", category: "directors", number: 9)
+    Achievement.create(name: "Nosferatu", description: "You watched all the movies directed by Werner Herzog", category: "directors", number: 9)
   end
 end

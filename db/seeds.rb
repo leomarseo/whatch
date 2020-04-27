@@ -123,25 +123,12 @@ SavedMovie.create(movie_id: 4, user_id: 2, seen: true)
 SavedMovie.create(movie_id: 5, user_id: 2, seen: true)
 
 
-Achievement.create(name: "Beginner", description: "You saw 1 movie")
-Achievement.create(name: "Good start", description: "You saw 5 movie")
-Achievement.create(name: "Keep watch", description: "You saw 10 movie")
-Achievement.create(name: "Intermediate", description: "You saw 100 movies")
-Achievement.create(name: "Expert", description: "You saw 500 movies")
-Achievement.create(name: "Archeologist", description: "You made 100 research")
-Achievement.create(name: "Fetishist", description: "You saw 300 movies with low rating")
-Achievement.create(name: "May the force be with you", description: "You saw all the Star Wars saga")
-Achievement.create(name: "Yah", description: "You saw 10 Western movies")
-
-
 Query.create(
   user: User.first,
   positive_actors_tmdb_ids: [281], # these are all defined as array attributes in the schema
   positive_genres_tmdb_ids: [28],
   negative_genres_tmdb_ids: [12]
 )
-
-
 
 # creates fake suggestion as we would receive it from the API request. For now it contains 3 suggestions, we might receive way more than this
 TmdbSuggestion.create(user: User.first, tmdb_movie_id_list: '5 6 7', query: Query.first)

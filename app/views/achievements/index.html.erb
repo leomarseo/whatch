@@ -1,11 +1,20 @@
-<div>
+<div class="achievements_container">
   <% @achievements.each do |achievement| %>
-    <div>
-      <%= achievement.name %>
-      <%= achievement.description %>
+    <div class="achievement_card">
+      <h3><%= achievement.name %></h3>
+      <p><%= achievement.description %></p>
     </div>
   <% end %>
 </div>
+
+
+
+
+
+
+
+
+
 
 <br><br>
 <hr>
