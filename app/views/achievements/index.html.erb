@@ -1,29 +1,17 @@
-<div class="achievements_container">
+<div class="achievements-container">
   <% @achievements.each do |achievement| %>
-    <div class="achievement_card">
-      <h3><%= achievement.name %></h3>
-      <p><%= achievement.description %></p>
-    </div>
-  <% end %>
-</div>
-
-
-
-
-
-
-
-
-
-
-<br><br>
-<hr>
-<br><br>
-
-
-<div>
-  <% current_user.achievements.each do |joint_a| %>
-    <%= joint_a.name %>
-    <%= joint_a.description %>
+    <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
+      <div class="achievement-card-earned">
+        <h3><%= achievement.name %></h3>
+        <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+        <p><%= achievement.description %></p>
+      </div>
+    <% else %>
+      <div class="achievement-card">
+        <h3><%= achievement.name %></h3>
+        <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+        <p><%= achievement.description %></p>
+      </div>
+    <% end %>
   <% end %>
 </div>

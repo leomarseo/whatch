@@ -1,0 +1,42 @@
+.achievement-card {
+  width: 260px;
+  height: 294px;
+  margin:20px;
+  background: $dark-navy;
+  color: white;
+  opacity: 60%;
+
+  border-radius: 16px;
+  text-align: center;
+  h3 {
+    margin: 32px 16px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  p {
+    margin: 32px 16px;
+    font-size: 16px;
+  }
+
+}
+
+.achievement-card-earned {
+  width: 260px;
+  height: 294px;
+  margin:20px;
+  background: $dark-navy;
+  color: white;
+
+  border-radius: 16px;
+  text-align: center;
+  h3 {
+    margin: 32px 16px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  p {
+    margin: 32px 16px;
+    font-size: 16px;
+  }
+
+}

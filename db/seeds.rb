@@ -122,6 +122,10 @@ SavedMovie.create(movie_id: 3, user_id: 2, seen: true)
 SavedMovie.create(movie_id: 4, user_id: 2, seen: true)
 SavedMovie.create(movie_id: 5, user_id: 2, seen: true)
 
+JointAchievement.create(user_id: 2, achievement_id: 70, earned: true)
+JointAchievement.create(user_id: 2, achievement_id: 71, earned: true)
+JointAchievement.create(user_id: 2, achievement_id: 72, earned: true)
+
 
 Query.create(
   user: User.first,
