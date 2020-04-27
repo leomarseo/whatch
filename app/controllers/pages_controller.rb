@@ -2,7 +2,8 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
 
   def home
-    actors = Actor.order(popularity: :desc).pluck(:name, :photo_url)
+    # actors = Actor.order(popularity: :desc).pluck(:name, :photo_url) # order seems to break on heroku
+    actors = Actor.pluck(:name, :photo_url)
     @actors_names = []
     @actors_photos = []
     actors.each do |actor|
