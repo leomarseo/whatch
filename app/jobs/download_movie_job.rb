@@ -94,7 +94,8 @@ class DownloadMovieJob < ApplicationJob
             if Actor.find_by(tmdb_id: cast_member['id']).nil?
               Actor.create(
                 name: cast_member['name'],
-                tmdb_id: cast_member['id']
+                tmdb_id: cast_member['id'],
+                popularity: 0.0
               )
             end
 
