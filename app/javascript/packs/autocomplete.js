@@ -3,10 +3,13 @@ import autocomplete from 'js-autocomplete';
 
 const renderItem = function (item, search) {
     let icon;
-
+    let image;
     icon = `<p class="${item.id} smart-add-button" style="z-index: 999;">funzionaaa</p>`;
-    let image = `<img src="https://image.tmdb.org/t/p/w200${item.photo}" style="width: 40px;">`
-
+    if (item.photo === 'placeholder') {
+      image = '<img src="avatar.png" style="width: 40px;">';
+    } else {
+    image = `<img src="https://image.tmdb.org/t/p/w200${item.photo}" style="width: 40px; height: 60px;">`;
+    };
 
     search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
