@@ -4,10 +4,7 @@ class UpdateRelevantActorsJob < ApplicationJob
   def perform(*args)
     Movie.includes(:starring_actors).each do |movie|
 
-      movie.starring_actors.each do |starring_actor|
-        15.times do
-          next
-        end
+      movie.starring_actors.drop(15).each do |starring_actor|
         StarringActor.find(starring_actor.id).destroy
       end
     end
