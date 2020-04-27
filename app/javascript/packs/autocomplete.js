@@ -36,7 +36,7 @@ const autocompleteSearch = function() {
   if (actorsNames && searchInput) {
     new autocomplete({
       selector: searchInput,
-      minChars: 1,
+      minChars: 3,
       source: function(term, suggest){
           term = term.toLowerCase();
           let choices = actorsNames;
