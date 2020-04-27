@@ -1,4 +1,4 @@
-class UpdateRelevantActorsJob5 < ApplicationJob
+class UpdateRelevantActorsJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
@@ -14,7 +14,7 @@ class UpdateRelevantActorsJob5 < ApplicationJob
     puts "destroyed #{counter} starring_actors"
 
     actor_counter = 0
-    Actor.all.each do |actor|
+    Actor.all.slice(200000, 120000).each do |actor|
 
       if actor.starring_actors == []
         actor.destroy
