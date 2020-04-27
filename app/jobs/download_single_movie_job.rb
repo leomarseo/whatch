@@ -1,3 +1,6 @@
+require "json"
+require 'open-uri'
+
 class DownloadSingleMovieJob < ApplicationJob
   queue_as :default
 
