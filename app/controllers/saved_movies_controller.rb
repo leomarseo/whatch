@@ -24,6 +24,9 @@ class SavedMoviesController < ApplicationController
 
   helper_method :find_next_id
   # moved find_next_id inside the SavedMoviesController and used helper_method
+
+  def history_index
+  end
 end
 
 
