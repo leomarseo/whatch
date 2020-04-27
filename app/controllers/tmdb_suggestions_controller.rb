@@ -22,9 +22,12 @@ class TmdbSuggestionsController < ApplicationController
       query.positive_directors_tmdb_ids
     )
 
+    # FIRST ROUND OF API CALL
+    # calls chain of methods ducumented below to ultimately retrieve a list of movies already filtered using all filters (also negative ones)
     first_response = perform_api_call(first_api_url)
     first_suggestions = retrieve_objects_from_response(first_response)
 
+    # this will collect all suggestions from different pages of the first API response
     intermediate_suggestions_collector = first_suggestions
 
     # this if statement allows us to retrieve results also from other pages of the same api response, so that we have a wider range of suggestions
@@ -47,9 +50,7 @@ class TmdbSuggestionsController < ApplicationController
       end
     end
 
-    # FIRST ROUND OF API CALL
-    # calls chain of methods ducumented below to ultimately retrieve a list of movies already filtered using all filters (also negative ones)
-    first_suggestions_filtered = filter_by_negative_selections(
+    first_suggestions_filtered = filter_with_our_db(
       intermediate_suggestions_collector.flatten,
       query.positive_actors_tmdb_ids,
       query.negative_actors_tmdb_ids,
@@ -85,7 +86,7 @@ class TmdbSuggestionsController < ApplicationController
         query.positive_directors_tmdb_ids
       )
 
-      second_suggestions_filtered = filter_by_negative_selections(
+      second_suggestions_filtered = filter_with_our_db(
         retrieve_suggestions(second_api_url),
         query.positive_actors_tmdb_ids,
         query.negative_actors_tmdb_ids,
@@ -105,7 +106,7 @@ class TmdbSuggestionsController < ApplicationController
         query.positive_directors_tmdb_ids
       )
 
-      third_suggestions_filtered = filter_by_negative_selections(
+      third_suggestions_filtered = filter_with_our_db(
         retrieve_suggestions(third_api_url),
         query.positive_actors_tmdb_ids,
         query.negative_actors_tmdb_ids,
@@ -132,7 +133,7 @@ class TmdbSuggestionsController < ApplicationController
         []
       )
 
-      fourth_suggestions_filtered = filter_by_negative_selections(
+      fourth_suggestions_filtered = filter_with_our_db(
         retrieve_suggestions(fourth_api_url),
         query.positive_actors_tmdb_ids,
         query.negative_actors_tmdb_ids,
@@ -150,7 +151,7 @@ class TmdbSuggestionsController < ApplicationController
         []
       )
 
-      fifth_suggestions_filtered = filter_by_negative_selections(
+      fifth_suggestions_filtered = filter_with_our_db(
         retrieve_suggestions(fifth_api_url),
         query.positive_actors_tmdb_ids,
         query.negative_actors_tmdb_ids,
@@ -171,7 +172,7 @@ class TmdbSuggestionsController < ApplicationController
         []
       )
 
-      fourth_suggestions_filtered = filter_by_negative_selections(
+      fourth_suggestions_filtered = filter_with_our_db(
         retrieve_suggestions(fourth_api_url),
         query.positive_actors_tmdb_ids,
         query.negative_actors_tmdb_ids,
@@ -321,7 +322,7 @@ class TmdbSuggestionsController < ApplicationController
   end
 
   #6
-  def filter_by_negative_selections(suggestions, pos_act, neg_act, pos_dir, neg_dir)
+  def filter_with_our_db(suggestions, pos_act, neg_act, pos_dir, neg_dir)
     # loops through all suggestions to check if there's movies to be filtered out
 
     to_be_removed = []
@@ -356,7 +357,24 @@ class TmdbSuggestionsController < ApplicationController
     end
 
     # performs the deletion all at the end to prevent loops from breaking
-    suggestions.delete_if.with_index { |_, index| to_be_removed.include? index }
+    partial_suggestions = suggestions.delete_if.with_index { |_, index| to_be_removed.include? index }
+
+    # finally filters out movies already seen
+    final_suggestions = filter_by_already_seen(partial_suggestions)
+
+    return final_suggestions
+  end
+
+  #7
+  def filter_by_already_seen(suggestions)
+    # loops through all suggestions to check if there's movies that were already seen by the current user
+    user = current_user ? current_user : User.first
+
+
+    user.saved_movies.each do |saved_movie|
+      suggestions.delete(saved_movie.movie) if suggestions.include? saved_movie.movie
+    end
+
     return suggestions
   end
 
