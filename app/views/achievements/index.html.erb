@@ -1,17 +1,19 @@
-<div class="achievements-container">
-  <% @achievements.each do |achievement| %>
-    <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
-      <div class="achievement-card-earned">
-        <h3><%= achievement.name %></h3>
-        <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
-        <p><%= achievement.description %></p>
-      </div>
-    <% else %>
-      <div class="achievement-card">
-        <h3><%= achievement.name %></h3>
-        <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
-        <p><%= achievement.description %></p>
-      </div>
+<div class="background-gradient">
+  <div class="achievements-container">
+    <% @achievements.each do |achievement| %>
+      <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
+        <div class="achievement-card-earned">
+          <h3><%= achievement.name %></h3>
+          <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+          <p><%= achievement.description %></p>
+        </div>
+      <% else %>
+        <div class="achievement-card">
+          <h3><%= achievement.name %></h3>
+          <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+          <p><%= achievement.description %></p>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
