@@ -3,7 +3,7 @@ class UpdateRelevantActorsJob7 < ApplicationJob
 
   def perform(*args)
     counter = 0
-    Movie.includes(:starring_actors).slice(60000, 10000).each do |movie|
+    Movie.all.slice(60000, 10000).each do |movie|
 
       movie.starring_actors.drop(15).each do |starring_actor|
         counter += 1
@@ -15,7 +15,7 @@ class UpdateRelevantActorsJob7 < ApplicationJob
     puts "destroyed #{counter} starring_actors"
 
     actor_counter = 0
-    Actor.includes(:starring_actors).each do |actor|
+    Actor.all.each do |actor|
 
       if actor.starring_actors == []
         Actor.find(actor.id).destroy
