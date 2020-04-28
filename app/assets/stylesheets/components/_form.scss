@@ -1,0 +1,54 @@
+// N.b. Exept for the first selector (.form-container) - that is a class made by me -
+// all the other classes are implicit in the simple_form: in order to see them inspect
+// the page on the browser
+
+
+.form-container {
+  h1 {
+    margin-bottom: 32px;
+  }
+}
+
+//***Simple-form classes***************************
+
+.simple_form {
+  text-transform: uppercase;
+  //font-variant: small-caps;
+  font-weight: bold;
+  label {
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: white;
+    opacity: 0.25;
+  }
+}
+
+.form-control { // These are the fields and their labels
+  width: 40%;
+  background: #606f75;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  &:focus {
+      background: #606f75;
+      color: white;
+  }
+}
+
+
+.form-group {
+  margin: 32px 0;
+}
+
+.form-actions { // These are the buttons
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+
+//***************************************************
+

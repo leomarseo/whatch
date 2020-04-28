@@ -4,8 +4,8 @@ require 'open-uri'
 class AddAttributesToActorsJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
-    Actor.all.each do |actor|
+  def perform(amount, starting)
+    Actor.order(id: :asc).limit(amount).offset(starting).each do |actor|
       url = "https://api.themoviedb.org/3/person/#{actor.tmdb_id}?api_key=81c398dbb6b994e4f815e69325c4893c&language=en-US"
       begin
         url_details = open(url).read

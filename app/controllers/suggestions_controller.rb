@@ -8,11 +8,17 @@ class SuggestionsController < ApplicationController
     # the @tmdb_suggestion declaration is temporary, until we successfully receive sample tmdb_suggestions
 
     @current_suggestion = []
+    @second_suggestion = []
     @tmdb_suggestion = current_user.tmdb_suggestions.last.suggestions
+    counter = 0;
 
     @tmdb_suggestion.each do |suggestion|
-      if suggestion.skip == false
+      if suggestion.skip == false && counter == 0
         @current_suggestion << suggestion
+        counter += 1
+      elsif suggestion.skip == false && counter == 1
+        @second_suggestion << suggestion
+        counter = 0
         break
       end
     end
