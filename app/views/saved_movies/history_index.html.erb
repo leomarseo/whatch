@@ -1,0 +1,22 @@
+<div class="row movie-poster-container">
+  <% current_user.saved_movies.where(seen: true).each do |saved_movie| %>
+    <div class="col-3">
+        <div class="thumbs-up-badge">
+          <% if saved_movie.user_rating == 1 %>
+          <%= image_tag ("/assets/icons/liked.png"), class: "img-responsive badge-icon"%>
+          <% else %>
+          <%= image_tag ("/assets/icons/disliked.png"), class: "img-responsive badge-icon"%>
+          <% end %>
+        </div>
+      <div class="movie-poster-small">
+        <% if saved_movie.movie.photo_url == nil%>
+        <div class="movie-poster-placeholder">
+        <%= tag.h3 "#{saved_movie.movie.title}"  %>
+        </div>
+        <% else %>
+        <%= image_tag ("https://image.tmdb.org/t/p/w200/#{saved_movie.movie.photo_url}"), class: "img-responsive"%>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

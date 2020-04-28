@@ -9,8 +9,10 @@ Rails.application.routes.draw do
   end
   # home route
   root to: 'pages#home'
-  # TMDB suggestions route after user selection of filters
 
+  get '/profile', to: 'pages#profile'
+
+  # TMDB suggestions route after user selection of filters
   get '/tmdb_suggestions/:params', to: 'tmdb_suggestions#fetcher'
 
   # route to achievements

@@ -1,0 +1,24 @@
+<!-- navbar -->
+
+<div class="profile-container"> <!-- in /_container.scss -->
+  <%= link_to "Edit profile", edit_user_registration_path, class: "button-full" %>
+  <div class="cards-container"> <!-- in /_container.scss -->
+    <div class="profile-card"> <!-- in /_card.scss -->
+      <h2>FIRST NAME</h2>
+      <p><%= current_user.first_name %></p>
+    </div>
+    <div class="profile-card">
+      <h2>LAST NAME</h2>
+      <p><%= current_user.last_name %></p>
+    </div>
+    <div class="profile-card">
+      <h2>COUNTRY</h2>
+      <p><%= current_user.country%></p>
+    </div>
+    <div class="profile-card">
+      <h2>EMAIL ADDRESS</h2>
+      <p><%= current_user.email %></p>
+    </div>
+  </div> <!-- end of div.cards-container -->
+</div> <!-- end of divprofile-container  -->
+
