@@ -27,6 +27,10 @@ class SavedMoviesController < ApplicationController
 
   def history_index
   end
+
+  def history_detail
+    # needs to set a route too
+  end
 end
 
 
