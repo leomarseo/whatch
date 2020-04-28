@@ -12,8 +12,7 @@ require 'open-uri'
 class TmdbSuggestionsController < ApplicationController
   def fetcher
     parsed_params = JSON.parse(params['params'])
-    raise
-    query = create_query_object
+    query = create_query_object(parsed_params)
     all_suggestions = [] # here we'll store all results from different api calls
 
     # calls method to generate the first api url, by passing the query attributes
@@ -239,18 +238,18 @@ class TmdbSuggestionsController < ApplicationController
   end
 
   #1
-  def create_query_object
+  def create_query_object(parsed_params)
     # creates query object by passing arrays of tmdb_ids
 
     user = current_user ? current_user : User.first # prevents breaking if user is not logged in
     query = Query.create(
       user: user,
-      positive_actors_tmdb_ids: get_actors_positive.pluck(:tmdb_id), # these are all defined as array attributes in the schema
-      negative_actors_tmdb_ids: get_actors_negative.pluck(:tmdb_id),
-      positive_directors_tmdb_ids: get_directors_positive.pluck(:tmdb_id),
-      negative_directors_tmdb_ids: get_directors_negative.pluck(:tmdb_id),
-      positive_genres_tmdb_ids: get_genres_positive.pluck(:tmdb_id),
-      negative_genres_tmdb_ids: get_genres_negative.pluck(:tmdb_id)
+      positive_actors_tmdb_ids: get_actors_positive(parsed_params).pluck(:tmdb_id), # these are all defined as array attributes in the schema
+      negative_actors_tmdb_ids: get_actors_negative(parsed_params).pluck(:tmdb_id),
+      positive_directors_tmdb_ids: get_directors_positive(parsed_params).pluck(:tmdb_id),
+      negative_directors_tmdb_ids: get_directors_negative(parsed_params).pluck(:tmdb_id),
+      positive_genres_tmdb_ids: get_genres_positive(parsed_params).pluck(:tmdb_id),
+      negative_genres_tmdb_ids: get_genres_negative(parsed_params).pluck(:tmdb_id)
     )
     return query
   end
@@ -385,63 +384,57 @@ class TmdbSuggestionsController < ApplicationController
 
   # below are all the methods to retrieve objects from OUR DB given the strings the user passed as filters
 
-  def get_actors_positive
-    # we take the params and convert them to an array of strings
-    @actors_positive = params[:actors_positive].split(',')
+  def get_actors_positive(parsed_params)
     # we iterate through the array to query the local database and return an array of objects
     @positive_actor_query = []
-    @actors_positive.each do |actor|
-      @positive_actor_query << Actor.find_by(name: "#{actor}")
+    parsed_params['positive_actors'].each do |actor|
+      actor_object = Actor.find_by(name: actor.join)
+      @positive_actor_query << actor_object if actor_object
     end
     return @positive_actor_query
   end
 
-  def get_actors_negative
-    @actors_negative = params[:actors_negative].split(',')
-
+  def get_actors_negative(parsed_params)
     @negative_actor_query = []
-    @actors_negative.each do |actor|
-      @negative_actor_query  << Actor.find_by(name: "#{actor}")
+    parsed_params['negative_actors'].each do |actor|
+      actor_object = Actor.find_by(name: actor.join)
+      @negative_actor_query  << actor_object if actor_object
     end
     return @negative_actor_query
   end
 
-  def get_directors_positive
-    @directors_positive = params[:directors_positive].split(',')
-
+  def get_directors_positive(parsed_params)
     @positive_director_query = []
-    @directors_positive.each do |director|
-      @positive_director_query << Director.find_by(name: "#{director}")
+    parsed_params['positive_directors'].each do |director|
+      director_object = Director.find_by(name: director.join)
+      @positive_director_query << director_object if director_object
     end
     return @positive_director_query
   end
 
-  def get_directors_negative
-    @directors_negative = params[:directors_negative].split(',')
-
+  def get_directors_negative(parsed_params)
     @negative_director_query = []
-    @directors_negative.each do |director|
-      @negative_director_query << Director.find_by(name: "#{director}")
+    parsed_params['negative_directors'].each do |director|
+      director_object = Director.find_by(name: director.join)
+      @negative_director_query << director_object if director_object
     end
     return @negative_director_query
   end
 
-  def get_genres_positive
-    @genres_positive = params[:genres_positive].split(',')
-
+  def get_genres_positive(parsed_params)
     @positive_genre_query = []
-    @genres_positive.each do |genre|
-      @positive_genre_query << Genre.find_by(name: "#{genre}")
+    parsed_params['positive_genres'].each do |genre|
+      genre_object = Genre.find_by(name: genre.join)
+      @positive_genre_query << genre_object if genre_object
     end
     return @positive_genre_query
   end
 
-  def get_genres_negative
-    @genres_negative = params[:genres_negative].split(',')
-
+  def get_genres_negative(parsed_params)
     @negative_genre_query = []
-    @genres_negative.each do |genre|
-      @negative_genre_query << Genre.find_by(name: "#{genre}")
+    parsed_params['negative_genres'].each do |genre|
+      genre_object = Genre.find_by(name: genre.join)
+      @negative_genre_query << genre_object if genre_object
     end
     return @negative_genre_query
   end
