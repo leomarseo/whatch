@@ -46,3 +46,9 @@
   margin-top: 64px;
   margin-bottom: 64px;
 }
+
+.movie-poster-image {
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+}

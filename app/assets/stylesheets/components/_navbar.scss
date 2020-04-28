@@ -15,10 +15,10 @@
 
 .whatch-nav-item {
   color: white;
-  padding-right: 20px !important;
-  padding-left: 20px !important;
-  margin-left: 1em;
-  margin-right: 1em;
+  // padding-right: 20px !important;
+  // padding-left: 20px !important;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
   font-weight: bold;
 }
 
@@ -28,9 +28,5 @@
 
 .whatch-nav-item-active {
   background-color: rgba(0, 0, 0, .5);
-  // padding-right: 20px !important;
-  // padding-left: 20px !important;
-  // margin-left: 1em;
-  // margin-right: 1em;
   border-radius: 8px !important;
 }
