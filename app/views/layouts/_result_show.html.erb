@@ -44,60 +44,69 @@
   </div>
 
   <div class="result-right">
-    <div class="film-header">
-      <h1>
-        <%= current_suggestion.first.movie.title %>
-      </h1>
-      <p>
-        <%= current_suggestion.first.movie.overview %>
-      </p>
+    <div class="result-right-top">
     </div>
-    <div class="film-details">
-      <div class="film-details-item">
-        <h2>
-          Director
-        </h2>
+    <div class="result-right-main">
+      <div class="film-header">
+        <h1>
+          <%= current_suggestion.first.movie.title %>
+        </h1>
         <p>
-          <%= movie_director.name %>
+          <%= current_suggestion.first.movie.overview %>
         </p>
       </div>
-      <div class="film-details-item">
-        <h2>
-          Genre
-        </h2>
-        <p>
-          <!-- TODO: Genre goes here -->
-          Placeholder
-        </p>
-      </div>
-      <div class="film-details-item">
-        <h2>
-          Year
-        </h2>
-        <p>
-          <%= current_suggestion.first.movie.release_date %>
-        </p>
-      </div>
-      <div class="film-details-item">
-        <h2>
-          Runtime
-        </h2>
-        <p>
-          <%= current_suggestion.first.movie.runtime %> min
-        </p>
-      </div>
-    </div>
-    <div class="film-cast">
-      <!-- TODO: must accept 15, in a side-scrolling list -->
-      <% starring_actors.take(7).each do |actor| %>
-        <div class="cast-member">
-          <%= image_tag("icons/placeholder_actor.png", size: 48, class:"cast-icon") %>
+      <div class="film-details">
+        <div class="film-details-item">
+          <h2>
+            Director
+          </h2>
           <p>
-            <%= Actor.find(actor.actor_id).name %>
+            <%= movie_director.name %>
           </p>
         </div>
-      <% end %>
+        <div class="film-details-item">
+          <h2>
+            Genre
+          </h2>
+          <p>
+            <!-- TODO: Genre goes here -->
+            Placeholder
+          </p>
+        </div>
+        <div class="film-details-item">
+          <h2>
+            Released
+          </h2>
+          <p>
+            <%= current_suggestion.first.movie.release_date.split("-").first %>
+          </p>
+        </div>
+        <div class="film-details-item">
+          <h2>
+            Runtime
+          </h2>
+          <p>
+            <%= current_suggestion.first.movie.runtime %> min
+          </p>
+        </div>
+      </div>
+      <h2>Cast</h2>
+      <div class="film-cast">
+        <!-- TODO: must accept 15, in a side-scrolling list -->
+        <% starring_actors.take(7).each do |actor| %>
+          <div class="cast-member">
+            <div class="cast-centered">
+              <%= image_tag("icons/placeholder_actor.png", size: 48, class:"cast-icon") %>
+              <p>
+                <%= Actor.find(actor.actor_id).name %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
+    <div class="result-right-bottom">
+    </div>
+  </div> <!-- close result-right -->
 
 </div>
