@@ -11,7 +11,6 @@ document.addEventListener('turbolinks:load', () => {
   // myCustomJS();
 });
 
-  searchFilters();
 
 
 
