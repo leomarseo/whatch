@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home]
+  skip_before_action :authenticate_user!, only: [:home, :home2]
 
   def home
     # actors = Actor.order(popularity: :desc).pluck(:name, :photo_url) # order seems to break on heroku
@@ -35,4 +35,5 @@ class PagesController < ApplicationController
       @genres_photos << 'genre_placeholder'
     end
   end
+
 end

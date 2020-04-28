@@ -1,35 +1,39 @@
-
-<h1>Pages#home</h1>
+<h1>Pages#home2</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 
 
 <!-- below is a dropdown menu for the user to select the filters to include or exclude in the search -->
-<select id="mySelect" >
-  <!-- <option value="start">Select Categories</option> -->
-  <option value="actor">Actor</option>
-  <option value="director">Director</option>
-  <option value="genre">Genre</option>
-</select>
+<button id="actor-btn" data-value="actors">Actors</button>
+<button id="director-btn" data-value="directors">Directors</button>
+<button id="genre-btn" data-value="genres">Genres</button>
+<button id="watch-btn">Whatch Now!!</button>
 <!-- the searchbar and the "add/remove" buttons are created after the user selects an option from the menu above -->
-<div id="search-bar" style="" class="actor" data-actorsnames="<%= @actors_names.to_json %>" data-actorsphotos="<%= @actors_photos.to_json %>" data-genresnames="<%= @genres_names.to_json %>" data-genresphotos="<%= @genres_photos.to_json %>" data-directorsnames="<%= @directors_names.to_json %>" data-directorsphotos="<%= @directors_photos.to_json %>">
-   <form action=""></form>
-   <input type="text" id="search-bar-field" placeholder="search.." class="form-control search-input" autocomplete="off" /><br/>
-   <input type="submit" id="add-button" value="Add">
-   <input type="submit" id="remove-button" value="Remove">
-</div>
-<!-- this form should become hidden later, when finishing the frontend -->
-<div id="selection-form">
-<form action="/tmdb_suggestions">
-  <input type="text" class="actors_positive" name="actors_positive" placeholder="actors_positive"><br/>
-  <input type="text" class="directors_positive" name="directors_positive" placeholder="directors_positive"><br/>
-  <input type="text" class="genres_positive" name="genres_positive" placeholder="genres_positive"><br/>
-  <input type="text" class="actors_negative" name="actors_negative" placeholder="actors_negative"><br/>
-  <input type="text" class="directors_negative" name="directors_negative" placeholder="directors_negative"><br/>
-  <input type="text" class="genres_negative" name="genres_negative" placeholder="genres_negative"><br/>
-  <div>
-    <input type="submit" id="find-button" value="Add">
-    <!-- after clicking the button it will create params like these: -->
-    <!-- {"actors_positive"=>",bruce,louie", "directors_positive"=>"", "genres_positive"=>"", "actors_negative"=>"", "directors_negative"=>"", "genres_negative"=>",horror,drama", "id"=>"2"} -->
+
+
+
+<div id="selection-wrapper">
+  <div id="all-selections">
+    <div class="selection"></div>
   </div>
-</form>
+</div>
+
+<div id="actor-input" style="display: none;" data-actorsnames="<%= @actors_names.to_json %>" data-actorsphotos="<%= @actors_photos.to_json %>">
+  <input id="actor-input-field" type="text" placeholder="search actors">
+  <button id="actor-add-button">search movies with this actor</button>
+  <button id="actor-remove-button">search movies without this actor</button>
+</div>
+
+<div id="director-input" style="display: none;" data-directorsnames="<%= @directors_names.to_json %>" data-directorsphotos="<%= @directors_photos.to_json %>">
+  <input id="director-input-field" type="text" placeholder="search directors">
+  <button id="director-add-button">search movies with this director</button>
+  <button id="director-remove-button">search movies without this director</button>
+</div>
+
+<div id="genre-input" style="display: none;" data-genresnames="<%= @genres_names.to_json %>" data-genresphotos="<%= @genres_photos.to_json %>">
+  <input id="genre-input-field" type="text" placeholder="search genres">
+  <button id="genre-add-button">search movies with this genre</button>
+  <button id="genre-remove-button">search movies without this genre</button>
+</div>
+
+<!-- this form should become hidden later, when finishing the frontend -->
 </div>
