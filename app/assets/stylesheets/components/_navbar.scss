@@ -1,12 +1,33 @@
-.navbar-lewagon {
+.navbar-whatch {
   justify-content: space-between;
-  background: white;
+  // background: black;
+  color: white;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-whatch .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.navbar-whatch .navbar-brand img {
+  width: 128px;
+}
+
+
+.whatch-nav-item {
+  color: white;
+  padding-right: 20px !important;
+  padding-left: 20px !important;
+  margin-left: 1em;
+  margin-right: 1em;
+
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.whatch-nav-item a {
+  color: white
+}
+
+.whatch-nav-item-active {
+  background-color: rgba(0, 0, 0, .5);
 }
