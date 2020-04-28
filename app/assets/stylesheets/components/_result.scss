@@ -1,0 +1,66 @@
+.result-container {
+  display: flex;
+  min-width: 800px;
+  min-height: 720px;
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.result-left {
+
+}
+
+.result-cards {
+  position: relative;
+  min-width: 360px;
+}
+
+.first-result {
+  position: absolute;
+  z-index: 9999;
+  top: 16px;
+  left: 16px;
+  border-style: solid;
+  border-color: white;
+  border-width: 2px;
+}
+
+.second-result {
+  position: absolute;
+  top: 8px;
+}
+
+.result-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.result-right {
+  background-image: url("../../images/backgrounds/ticket_background.png");
+}
+
+.film-header {
+  padding-left: 56px;
+  padding-right: 240px;
+}
+
+.film-details {
+  display: flex;
+  padding-left: 56px;
+  padding-right: 240px;
+}
+
+.film-details-item {
+  padding-right: 48px;
+}
+
+.film-cast {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 56px;
+  padding-right: 240px;
+}
+
+.cast-member {
+  width: 80px;
+}
