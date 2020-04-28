@@ -12,9 +12,20 @@
 //***Simple-form classes***************************
 
 .simple_form {
-  font-variant: small-caps;
+  text-transform: uppercase;
+  //font-variant: small-caps;
   font-weight: bold;
-  color: #a3a3a3;
+  label {
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: white;
+    opacity: 0.25;
+  }
 }
 
 .form-control { // These are the fields and their labels
@@ -24,13 +35,14 @@
   border-radius: 8px;
   border: none;
   &:focus {
-      background: #606f75
+      background: #606f75;
+      color: white;
   }
 }
 
 
 .form-group {
-  margin: 16px 0;
+  margin: 32px 0;
 }
 
 .form-actions { // These are the buttons
