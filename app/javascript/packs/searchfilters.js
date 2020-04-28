@@ -1,5 +1,5 @@
 const searchFilters = () => {
-  console.log('loaded searchFilters')
+  console.log('loaded searchFilters');
 
   // Edit this to change icon class
   const removeIconClass = 'fas fa-times';
@@ -7,7 +7,6 @@ const searchFilters = () => {
   // used to identify objects within this page
   let counter = 0;
 
-  let SELECTEDBUTTON;
   let selection = {
     positive_actors: [],
     positive_directors: [],
@@ -20,7 +19,6 @@ const searchFilters = () => {
   // ACTOR BUTTON WITH RELATED LISTENER
   const actorSelectButton = document.getElementById("actor-btn");
   actorSelectButton.addEventListener("click", event => {
-    SELECTEDBUTTON = event.target.dataset.value;
     document.getElementById("genre-input").style.display = "none";
     document.getElementById("director-input").style.display = "none";
     document.getElementById("actor-input").style.display = "block";
@@ -30,7 +28,6 @@ const searchFilters = () => {
   // DIRECTOR BUTTON WITH RELATED LISTENER
   const directorSelectButton = document.getElementById("director-btn");
   directorSelectButton.addEventListener("click", event => {
-    SELECTEDBUTTON = event.target.dataset.value;
     document.getElementById("actor-input").style.display = "none";
     document.getElementById("genre-input").style.display = "none";
     document.getElementById("director-input").style.display = "block";
@@ -40,7 +37,6 @@ const searchFilters = () => {
   // GENRE BUTTON WITH RELATED LISTENER
   const genreSelectButton = document.getElementById("genre-btn");
   genreSelectButton.addEventListener("click", event => {
-    SELECTEDBUTTON = event.target.dataset.value;
     document.getElementById("actor-input").style.display = "none";
     document.getElementById("director-input").style.display = "none";
     document.getElementById("genre-input").style.display = "block";

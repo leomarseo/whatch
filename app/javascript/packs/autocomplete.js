@@ -1,70 +1,74 @@
 import 'js-autocomplete/auto-complete.css';
 import autocomplete from 'js-autocomplete';
 
-const renderItem = function (item, search) {
-    let icon;
-    let image;
-    icon = `<p class="${item.id} smart-add-button" style="z-index: 999;">funzionaaa</p>`;
-    if (item.photo === 'placeholder') {
-      image = '<img src="avatar.png" style="width: 40px;">';
-    } else {
-    image = `<img src="https://image.tmdb.org/t/p/w200${item.photo}" style="width: 40px; height: 60px;">`;
-    };
+const autocompleteWrapper = function() {
 
-    search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-    var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
-    return `<div id="${item.id}" class="autocomplete-suggestion" data-val="` + item.name + '">' + image + item.name.replace(re, "<b>$1</b>") + '</div>';
-};
+  console.log("the autocomplete.js file was loaded successfully");
+
+  let SELECTEDBUTTON
 
 
-let SELECTION;
-let searchContainer = document.getElementById("mySelect");
-searchContainer.addEventListener("change", {
-    handleEvent: function (event) {
-      SELECTION = searchContainer.value
-      autocompleteSearch()
-    }
+  const actorSelectButton = document.getElementById("actor-btn");
+  const directorSelectButton = document.getElementById("director-btn");
+  const genreSelectButton = document.getElementById("genre-btn");
+
+  actorSelectButton.addEventListener("click", event => {
+      SELECTEDBUTTON = event.target.dataset.value;
+      autocompleteSearch(SELECTEDBUTTON);
   });
 
-const autocompleteSearch = function() {
-  console.log("the autocomplete.js file was loaded successfully");
-  const actorsNames = JSON.parse(document.getElementById('search-bar').dataset.actorsnames);
-  const actorsPhotos = JSON.parse(document.getElementById('search-bar').dataset.actorsphotos);
-  const directorsNames = JSON.parse(document.getElementById('search-bar').dataset.directorsnames);
-  const directorsPhotos = JSON.parse(document.getElementById('search-bar').dataset.directorsphotos);
-  const genresNames = JSON.parse(document.getElementById('search-bar').dataset.genresnames);
-  const genresPhotos = JSON.parse(document.getElementById('search-bar').dataset.genresphotos);
-  const searchInput = document.getElementById('search-bar-field');
-
-  if (actorsNames && searchInput) {
-    new autocomplete({
-      selector: searchInput,
-      minChars: 3,
-      source: function(term, suggest){
-          term = term.toLowerCase();
-          let choices = actorsNames;
-          let photos = actorsPhotos;
-          if (SELECTION === 'actor') {
-            choices = actorsNames;
-            photos = actorsPhotos;
-          }
-          if (SELECTION === 'director') {
-            choices = directorsNames;
-            photos = directorsPhotos;
-          }
-          if (SELECTION === 'genre') {
-            choices = genresNames;
-            photos = genresPhotos;
-          }
-          const matches = [];
-          for (let i = 0; i < choices.length; i++)
-              if (~choices[i].toLowerCase().indexOf(term)) matches.push( { name: choices[i], photo: photos[i], id: i } );
-          suggest(matches);
-      },
-      renderItem: renderItem,
+  directorSelectButton.addEventListener("click", event => {
+      SELECTEDBUTTON = event.target.dataset.value;
+      autocompleteSearch(SELECTEDBUTTON);
     });
 
-  }
+    // GENRE BUTTON WITH RELATED LISTENER
+  genreSelectButton.addEventListener("click", event => {
+    SELECTEDBUTTON = event.target.dataset.value;
+    autocompleteSearch(SELECTEDBUTTON);
+  });
+
+  const renderItem = function (item, search) {
+      let icon;
+      let image;
+      icon = `<p class="${item.id} smart-add-button" style="z-index: 999;">funzionaaa</p>`;
+      if (item.photo === 'placeholder') {
+        image = '<img src="avatar.png" style="width: 40px;">';
+      } else {
+      image = `<img src="https://image.tmdb.org/t/p/w200${item.photo}" style="width: 40px; height: 60px;">`;
+      };
+
+      search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+      var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+      return `<div id="${item.id}" class="autocomplete-suggestion" data-val="` + item.name + '">' + image + item.name.replace(re, "<b>$1</b>") + '</div>';
+  };
+
+  const autocompleteSearch = (selectedButton) => {
+    let searchInput = document.getElementById(`${SELECTEDBUTTON}-input`);
+    console.log(searchInput);
+    let names = JSON.parse(searchInput.dataset.names);
+    let photos = JSON.parse(searchInput.dataset.photos);
+
+    if (searchInput) {
+      new autocomplete({
+        selector: searchInput,
+        minChars: 3,
+        source: function(term, suggest){
+            term = term.toLowerCase();
+            let choices = names;
+            console.log('ciao');
+            let pictures = photos;
+            const matches = [];
+            for (let i = 0; i < choices.length; i++)
+                if (~choices[i].toLowerCase().indexOf(term)) matches.push( { name: choices[i], photo: photos[i], id: i } );
+            suggest(matches);
+        },
+        renderItem: renderItem,
+      });
+
+    }
+  };
+
 };
 
 // const button = document.querySelector(".641");
@@ -83,4 +87,4 @@ const autocompleteSearch = function() {
 //   });
 
 
-export { autocompleteSearch };
+export { autocompleteWrapper };
