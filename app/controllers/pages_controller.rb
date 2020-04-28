@@ -35,4 +35,8 @@ class PagesController < ApplicationController
       @genres_photos << 'genre_placeholder'
     end
   end
+
+  def profile
+
+  end
 end
