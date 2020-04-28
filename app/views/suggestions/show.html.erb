@@ -10,14 +10,18 @@
   first_button_path: pass_suggestion_path(suggestion_id: @current_suggestion.first.id),
   first_button_image: "icons/pass_action.png",
   first_button_class: "pass-action",
+  first_button_label: "pass",
   second_button_path: already_seen_path(suggestion_id: @current_suggestion.first.id),
   second_button_image: "icons/seen_action.png",
   second_button_class: "seen-action",
+  second_button_label: "seen",
   third_button_path: move_to_later_path(suggestion_id: @current_suggestion.first.id),
   third_button_image: "icons/save_action.png",
   third_button_class: "save-action",
+  third_button_label: "save",
   fourth_button_path: move_to_later_path(suggestion_id: @current_suggestion.first.id),
   fourth_button_image: "icons/watch_action.png",
-  fourth_button_class: "watch_action"
+  fourth_button_class: "watch_action",
+  fourth_button_label: "watch"
   } do %>
 <% end %>

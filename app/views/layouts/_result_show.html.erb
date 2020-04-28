@@ -19,20 +19,20 @@
       <div class="action-button">
         <%= link_to (image_tag first_button_image, size: 48), first_button_path, class:first_button_class %>
         <div class="action-label">
-          <p>pass</p>
+          <p><%= first_button_label %></p>
         </div>
       </div>
       <div class="action-button">
         <%= link_to (image_tag second_button_image, size: 48), second_button_path, class:second_button_class %>
         <div class="action-label">
-          <p>seen</p>
+          <p><%= second_button_label %></p>
         </div>
       </div>
       <% if number_of_buttons >= 3 %>
         <div class="action-button">
           <%= link_to (image_tag third_button_image, size: 48), third_button_path, class:third_button_class %>
           <div class="action-label">
-            <p>save</p>
+            <p><%= third_button_label %></p>
           </div>
         </div>
       <% end %>
@@ -40,7 +40,7 @@
         <div class="action-button">
           <%= link_to (image_tag fourth_button_image, size: 48), fourth_button_path, class:fourth_button_class %>
           <div class="action-label">
-            <p>watch</p>
+            <p><%= fourth_button_label %></p>
           </div>
         </div>
       <% end %>
