@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     # other routes (e.g. update) are already present thanks to devise. USE THEM!!
 
   # routes related to 'Saved' button in navbar
-  get '/saved/:id', to: 'saved_movies#saved_show', as: "saved_movie" # saved show page, only one movie is show
+  get '/saved', to: 'saved_movies#saved_show', as: "saved_movie" # saved show page, only one movie is show
   delete '/saved/:id', to: 'saved_movies#saved_destroy' # remove button
 
   # routes related to 'Watch now' button in navbar

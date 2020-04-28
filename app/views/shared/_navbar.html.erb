@@ -35,10 +35,10 @@
         </li>
         <!-- IMPORTANT: remember to insert the proper path below -->
         <li class="nav-item whatch-nav-item">
-          <% if current_page?("/#") %>
-          <%= link_to "Saved", "#", class: "nav-link whatch-nav-item-active" %>
+          <% if current_page?("/saved") %>
+          <%= link_to "Saved", "/saved", class: "nav-link whatch-nav-item-active" %>
           <% else %>
-          <%= link_to "Saved", "#", class: "nav-link" %>
+          <%= link_to "Saved", "/saved", class: "nav-link" %>
           <% end %>
         </li>
         <li class="nav-item  whatch-nav-item">
