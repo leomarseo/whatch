@@ -2,6 +2,10 @@
 // all the other classes are implicit in the simple_form: in order to see them inspect
 // the page on the browser
 
+// N.b. 2) from line 31 to line 43:
+// this code prevent to chrome to change background color
+// of the form fields of email and current pwd
+
 
 .form-container {
   h1 {
@@ -55,7 +59,7 @@
 
 
 
-.form-group {
+.form-group { //This is the div that contains the single field with his label
   margin: 32px 0;
 }
 
@@ -65,6 +69,3 @@
 }
 
 //***************************************************
-.form-control.is-valid {
-  background-image: none;
-}
