@@ -4,6 +4,7 @@ require("channels")
 // require("packs/searchfilters")
 
 import { searchFilters } from './searchfilters.js';
+import { autocompleteWrapper } from './autocomplete.js';
 import "bootstrap";
 
 document.addEventListener('turbolinks:load', () => {
@@ -12,3 +13,4 @@ document.addEventListener('turbolinks:load', () => {
 });
 
 searchFilters();
+autocompleteWrapper();
