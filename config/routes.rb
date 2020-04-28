@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   # home route
   root to: 'pages#home'
+  get '/profile', to: 'pages#profile'
 
   # TMDB suggestions route after user selection of filters
 
