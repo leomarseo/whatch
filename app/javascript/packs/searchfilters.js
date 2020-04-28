@@ -1,5 +1,5 @@
 const searchFilters = () => {
-  console.log('loaded searchFilters')
+  console.log('loaded searchFilters');
 
   // Edit this to change icon class
   const removeIconClass = 'fas fa-times';
