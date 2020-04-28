@@ -17,25 +17,25 @@
     </div>
     <div class="result-actions">
       <div class="action-button">
-        <% link_to image_tag('/icons/pass_action.png'), pass_suggestion_path(suggestion_id: @current_suggestion.first.id), class:"pass-action" %>
+        <%= link_to (image_tag 'icons/pass_action.png', size: 48), pass_suggestion_path(suggestion_id: @current_suggestion.first.id), class:"pass-action" %>
         <div class="action-label">
           <p>pass</p>
         </div>
       </div>
       <div class="action-button">
-        <% link_to image_tag('/icons/seen_action.png'), already_seen_path(suggestion_id: @current_suggestion.first.id), class:"seen-action" %>
+        <%= link_to (image_tag 'icons/seen_action.png', size: 48), already_seen_path(suggestion_id: @current_suggestion.first.id), class:"seen-action" %>
         <div class="action-label">
           <p>seen</p>
         </div>
       </div>
       <div class="action-button">
-        <% link_to image_tag('/icons/save_action.png'), move_to_later_path(suggestion_id: @current_suggestion.first.id), class:"save-action" %>
+        <%= link_to (image_tag 'icons/save_action.png', size: 48), move_to_later_path(suggestion_id: @current_suggestion.first.id), class:"save-action" %>
         <div class="action-label">
           <p>save</p>
         </div>
       </div>
       <div class="action-button">
-        <% link_to image_tag('/icons/watch_action.png'), class:"watch_action" %>
+        <%= link_to (image_tag 'icons/watch_action.png', size: 48), class:"watch_action" %>
         <div class="action-label">
           <p>watch</p>
         </div>
@@ -91,7 +91,7 @@
       <!-- TODO: must accept 15, in a side-scrolling list -->
       <% starring_actors.take(7).each do |actor| %>
         <div class="cast-member">
-          <%= image_tag "/icons/placeholder_actor.png", class:"cast-icon" %>
+          <%= image_tag("icons/placeholder_actor.png", size: 48, class:"cast-icon") %>
           <p>
             <%= Actor.find(actor.actor_id).name %>
           </p>

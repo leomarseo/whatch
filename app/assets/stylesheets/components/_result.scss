@@ -4,30 +4,45 @@
   min-height: 720px;
   padding-top: 120px;
   padding-bottom: 120px;
+  margin-left: 10vw;
 }
 
 .result-left {
-
+  margin-right: 24px;
 }
 
 .result-cards {
   position: relative;
-  min-width: 360px;
+  min-width: 260px;
 }
 
 .first-result {
-  position: absolute;
-  z-index: 9999;
-  top: 16px;
-  left: 16px;
-  border-style: solid;
-  border-color: white;
-  border-width: 2px;
+  img {
+    width: 240px;
+    height: 360px;
+    position: absolute;
+    z-index: 1;
+    top: 16px;
+    left: 16px;
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+  }
 }
 
 .second-result {
-  position: absolute;
-  top: 8px;
+  img {
+    width: 240px;
+    height: 360px;
+    position: absolute;
+    z-index: 0;
+    top: 10px;
+    left: 6px;
+    transform:rotate(-2deg);
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+  }
 }
 
 .result-actions {
@@ -36,7 +51,8 @@
 }
 
 .result-right {
-  background-image: url("../../images/backgrounds/ticket_background.png");
+  background: url(image_path('backgrounds/ticket_background.png'));
+
 }
 
 .film-header {
