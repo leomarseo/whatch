@@ -58,7 +58,6 @@
 }
 
 
-
 .form-group { //This is the div that contains the single field with his label
   margin: 32px 0;
 }
@@ -67,5 +66,16 @@
   margin-top: 8px;
   margin-bottom: 24px;
 }
+
+.form-control.is-valid { //
+  background-image: none;
+}
+//⬆️ This (.form-control.is-valid) delete the "v" that appears when you put
+//something correct in the field. I didn't create this class: i found it
+//inspecting the page.
+//I think this comment is not very understandable but made with love.
+// So, if you don't understand, call me.
+//GM
+
 
 //***************************************************
