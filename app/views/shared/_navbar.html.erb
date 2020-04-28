@@ -13,20 +13,40 @@
     <ul class="nav nav-pills">
       <% if user_signed_in? %>
         <li class="nav-item whatch-nav-item">
-          <%= link_to "Watch Now", "#", class: "nav-link" %>
-        </li>
-        <!-- the class .whatch-nav-item-active must be toggled depending on the current page -->
-        <li class="nav-item whatch-nav-item whatch-nav-item-active">
-          <%= link_to "History", "#", class: "nav-link" %>
-        </li>
-        <li class="nav-item whatch-nav-item">
-          <%= link_to "Achievements", "#", class: "nav-link" %>
+          <% if current_page?("/") %>
+          <%= link_to "Watch Now", "/", class: "nav-link whatch-nav-item-active" %>
+          <% else %>
+          <%= link_to "Watch Now", "/", class: "nav-link" %>
+          <% end %>
         </li>
         <li class="nav-item whatch-nav-item">
+          <% if current_page?("/history") %>
+          <%= link_to "History", "/history", class: "nav-link whatch-nav-item-active" %>
+          <% else %>
+          <%= link_to "History", "/history", class: "nav-link" %>
+          <% end %>
+        </li>
+        <li class="nav-item whatch-nav-item">
+          <% if current_page?("/achievements") %>
+          <%= link_to "Achievements", "/achievements", class: "nav-link whatch-nav-item-active" %>
+          <% else %>
+          <%= link_to "Achievements", "/achievements", class: "nav-link" %>
+          <% end %>
+        </li>
+        <!-- IMPORTANT: remember to insert the proper path below -->
+        <li class="nav-item whatch-nav-item">
+          <% if current_page?("/#") %>
+          <%= link_to "Saved", "#", class: "nav-link whatch-nav-item-active" %>
+          <% else %>
           <%= link_to "Saved", "#", class: "nav-link" %>
+          <% end %>
         </li>
         <li class="nav-item  whatch-nav-item">
-          <%= link_to "Profile", "#", class: "nav-link" %>
+          <% if current_page?("/profile") %>
+          <%= link_to "Profile", "/profile", class: "nav-link whatch-nav-item-active" %>
+          <% else %>
+          <%= link_to "Profile", "/profile", class: "nav-link" %>
+          <% end %>
       <% else %>
         <li class="nav-item whatch-nav-item">
           <%= link_to "Login", new_user_session_path, class: "nav-link whatch-nav-item" %>
