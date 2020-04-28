@@ -1,0 +1,103 @@
+<!-- every page that renders this result_show partial needs to define the following locals: current_suggestion, movie_director, starring_actors -->
+<!-- example: current_suggestion = @current_suggestion (if @current_suggestion is passed on from controller) -->
+
+<div class="result-container">
+
+  <div class="result-left">
+    <div class="result-cards">
+      <div class="first-result">
+        <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}", class:"first-result" %>
+      </div>
+      <div class="second-result">
+        <!-- TODO: image path below must be updated with the second suggestion -->
+        <% if !second_suggestion.first.movie.photo_url.nil? %>
+          <%= image_tag "https://image.tmdb.org/t/p/w300/#{second_suggestion.first.movie.photo_url}", class:"second-result" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="result-actions">
+      <div class="action-button">
+        <% link_to image_tag('/icons/pass_action.png'), pass_suggestion_path(suggestion_id: @current_suggestion.first.id), class:"pass-action" %>
+        <div class="action-label">
+          <p>pass</p>
+        </div>
+      </div>
+      <div class="action-button">
+        <% link_to image_tag('/icons/seen_action.png'), already_seen_path(suggestion_id: @current_suggestion.first.id), class:"seen-action" %>
+        <div class="action-label">
+          <p>seen</p>
+        </div>
+      </div>
+      <div class="action-button">
+        <% link_to image_tag('/icons/save_action.png'), move_to_later_path(suggestion_id: @current_suggestion.first.id), class:"save-action" %>
+        <div class="action-label">
+          <p>save</p>
+        </div>
+      </div>
+      <div class="action-button">
+        <% link_to image_tag('/icons/watch_action.png'), class:"watch_action" %>
+        <div class="action-label">
+          <p>watch</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result-right">
+    <div class="film-header">
+      <h1>
+        <%= current_suggestion.first.movie.title %>
+      </h1>
+      <p>
+        <%= current_suggestion.first.movie.overview %>
+      </p>
+    </div>
+    <div class="film-details">
+      <div class="film-details-item">
+        <h2>
+          Director
+        </h2>
+        <p>
+          <%= movie_director.name %>
+        </p>
+      </div>
+      <div class="film-details-item">
+        <h2>
+          Genre
+        </h2>
+        <p>
+          <!-- TODO: Genre goes here -->
+          Placeholder
+        </p>
+      </div>
+      <div class="film-details-item">
+        <h2>
+          Year
+        </h2>
+        <p>
+          <%= current_suggestion.first.movie.release_date %>
+        </p>
+      </div>
+      <div class="film-details-item">
+        <h2>
+          Runtime
+        </h2>
+        <p>
+          <%= current_suggestion.first.movie.runtime %> min
+        </p>
+      </div>
+    </div>
+    <div class="film-cast">
+      <!-- TODO: must accept 15, in a side-scrolling list -->
+      <% starring_actors.take(7).each do |actor| %>
+        <div class="cast-member">
+          <%= image_tag "/icons/placeholder_actor.png", class:"cast-icon" %>
+          <p>
+            <%= Actor.find(actor.actor_id).name %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

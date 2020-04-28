@@ -1,28 +1,10 @@
 
-<!-- should be current_user -->
-<div class="suggestion-details">
-  <% movie_director = @current_suggestion.first.movie.director %>
-  <% starring_actors = @current_suggestion.first.movie.starring_actors %>
-  <% available_services = @current_suggestion.first.movie.available_services %>
-  <%= image_tag "https://image.tmdb.org/t/p/w300/#{@current_suggestion.first.movie.photo_url}" %>
-  <h2><%= @current_suggestion.first.movie.title %></h3>
-  <p><%= @current_suggestion.first.movie.release_date %></p>
-  <p><%= @current_suggestion.first.movie.runtime %> minutes</p>
-  <p><%= @current_suggestion.first.movie.overview %></p>
-  <h3>Starring Actors:</h3>
-  <!-- Line below should only display the first 7 actors (quantity to be confirmed with group) -->
-  <% starring_actors.take(7).each do |actor| %>
-    <p><%= Actor.find(actor.actor_id).name %></p>
-  <% end %>
-  <h3>Director: </h3>
-  <p><%= movie_director.name %></p>
-  <h3>Available on: </h3>
-  <% available_services.each do |service| %>
-    <p><%= Service.find(service.service_id).company %></p>
-  <% end %>
-</div>
-<%= link_to 'Pass', pass_suggestion_path(suggestion_id: @current_suggestion.first.id), remote: true %>
-<%= link_to 'Later', move_to_later_path(suggestion_id: @current_suggestion.first.id) %>
-<%= link_to 'Seen', already_seen_path(suggestion_id: @current_suggestion.first.id) %>
-<%= link_to 'Watch' %>
-
+<!-- render partial with the result show -->
+<!-- define locals used in partial -->
+<%= render layout:"layouts/result_show", locals: {
+  current_suggestion: @current_suggestion,
+  second_suggestion: @second_suggestion,
+  movie_director: @current_suggestion.first.movie.director,
+  starring_actors: @current_suggestion.first.movie.starring_actors
+  } do %>
+<% end %>

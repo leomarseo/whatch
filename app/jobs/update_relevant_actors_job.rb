@@ -1,24 +1,16 @@
 class UpdateRelevantActorsJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
-    Movie.includes(:starring_actors).first(10000).each do |movie|
+  def perform(amount, starting)
+    actor_counter = 0
+    Actor.order(id: :asc).limit(amount).offset(starting).each do |actor|
 
-      movie.starring_actors.drop(15).each do |starring_actor|
-        StarringActor.find(starring_actor.id).destroy
+      if actor.starring_actors == []
+        actor.destroy
+        actor_counter += 1
       end
     end
 
-
-    # actor_counter = 0
-    # Actor.includes(:starring_actors).each do |actor|
-
-    #   if actor.starring_actors == []
-    #     Actor.find(actor.id).destroy
-    #     actor_counter += 1
-    #   end
-    # end
-
-    # puts "destroyed #{actor_counter} actors"
+    puts "destroyed #{actor_counter} actors"
   end
 end
