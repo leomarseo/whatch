@@ -1,16 +1,42 @@
-.simple_form {
-  // text-transform: uppercase;
-  font-variant: small-caps;
-  color: #a3a3a3;
-  input {
-    background: #606f75;
-    color: white;
-    border-radius: 8px;
-    border: none;
+// N.b. Exept for the first selector (.form-container) - that is a class made by me -
+// all the other classes are implicit in the simple_form: in order to see them inspect
+// the page on the browser
+
+
+.form-container {
+  h1 {
+    margin-bottom: 32px;
   }
 }
 
-.form-control {
-  width: 40%;
+//***Simple-form classes***************************
+
+.simple_form {
+  font-variant: small-caps;
+  font-weight: bold;
+  color: #a3a3a3;
 }
+
+.form-control { // These are the fields and their labels
+  width: 40%;
+  background: #606f75;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  &:focus {
+      background: #606f75
+  }
+}
+
+
+.form-group {
+  margin: 16px 0;
+}
+
+.form-actions { // These are the buttons
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+
+//***************************************************
 

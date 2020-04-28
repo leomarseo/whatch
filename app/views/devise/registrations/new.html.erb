@@ -1,5 +1,13 @@
+<!-- The style of the sign-up, login, and basically all the similar forms is:
+- for the main container, called the form-container, look in /container.scss
+- for the classes regarding the text and the field look in /_form.scss
+- for the buttons look in /_button.scss and in the /_form.scss
+N.b. it appens that the last button is a render: follow the link and you
+will find where the button class was applied -->
+
+
 <div class="form-container">
-  <h2>Sign up</h2>
+  <h1>Sign up</h1>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= f.error_notification %>
@@ -13,6 +21,10 @@
                   required: true,
                   autofocus: true,
                   input_html: { autocomplete: "last_name" }%>
+      <%= f.input :country,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "country" }%>
       <%= f.input :email,
                   required: true,
                   autofocus: true,
@@ -27,7 +39,7 @@
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Sign up" %>
+      <%= f.button :submit, "Sign up", class: "button-full" %>
     </div>
   <% end %>
 
