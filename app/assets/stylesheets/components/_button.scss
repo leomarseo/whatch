@@ -1,0 +1,18 @@
+.button-full { // button with full background
+  padding: 6px 24px;
+  color: white;
+  background: $cyan;
+  border-radius: 8px;
+}
+
+.button-empty { // empty background and coloured border
+  padding: 6px 24px;
+  color: $cyan;
+  border: 1px solid $cyan;
+  border-radius: 8px;
+  &:hover {
+    text-decoration: none;
+    color: $cyan;
+  }
+}
+
