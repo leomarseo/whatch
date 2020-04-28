@@ -41,5 +41,15 @@
   p {
     margin: 32px 16px;
   }
+}
 
+.profile-card {
+  margin: 32px 0;
+  h2 {
+    color: $light-gray;
+    opacity: 0.33;
+  }
+  p {
+    color: white;
+  }
 }
