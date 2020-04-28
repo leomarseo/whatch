@@ -1,33 +1,47 @@
 .result-container {
   display: flex;
-  min-width: 800px;
-  min-height: 720px;
   padding-top: 120px;
   padding-bottom: 120px;
+  margin-left: 15vw;
 }
 
 .result-left {
-
+  margin-right: 64px;
 }
 
 .result-cards {
   position: relative;
-  min-width: 360px;
+  min-width: 260px;
+  height: 400px;
 }
 
 .first-result {
-  position: absolute;
-  z-index: 9999;
-  top: 16px;
-  left: 16px;
-  border-style: solid;
-  border-color: white;
-  border-width: 2px;
+  img {
+    width: 240px;
+    height: 360px;
+    position: absolute;
+    z-index: 1;
+    top: 16px;
+    left: 16px;
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+  }
 }
 
 .second-result {
-  position: absolute;
-  top: 8px;
+  img {
+    width: 240px;
+    height: 360px;
+    position: absolute;
+    z-index: 0;
+    top: 10px;
+    left: 6px;
+    transform:rotate(-2deg);
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+  }
 }
 
 .result-actions {
@@ -35,19 +49,43 @@
   justify-content: space-between;
 }
 
-.result-right {
-  background-image: url("../../images/backgrounds/ticket_background.png");
+.action-label {
+  text-align: center;
 }
 
-.film-header {
+.result-right {
+  h2 {
+    margin: 0;
+  }
+}
+
+.result-right-top {
+  background: url(image_path('backgrounds/ticket_background_top.svg'));
+  height: 48px;
+  background-size: cover;
+}
+
+.result-right-main {
+  background-color: rgba(0,0,0, 0.33);
   padding-left: 56px;
   padding-right: 240px;
+}
+
+.result-right-bottom {
+  background: url(image_path('backgrounds/ticket_background_bottom.svg'));
+  height: 48px;
+  background-size: cover;
+  background-position: left bottom;
+}
+
+
+.film-header {
+
 }
 
 .film-details {
   display: flex;
-  padding-left: 56px;
-  padding-right: 240px;
+  padding: 16px 0 16px 0;
 }
 
 .film-details-item {
@@ -57,10 +95,18 @@
 .film-cast {
   display: flex;
   justify-content: space-between;
-  padding-left: 56px;
-  padding-right: 240px;
+  margin-top: 12px;
 }
 
 .cast-member {
-  width: 80px;
+  width: 96px;
+  p {
+    line-height: 1.5em;
+
+  }
+}
+
+.cast-centered {
+  text-align: center;
+  width: 64px;
 }
