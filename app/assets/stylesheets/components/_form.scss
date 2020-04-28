@@ -26,6 +26,19 @@
     color: white;
     opacity: 0.25;
   }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active,
+  input:-webkit-autofill:valid,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus
+  {
+      -webkit-transition-delay: 99999s;
+      -webkit-text-fill-color:white;
+      transition: background-color 5000s ease-in-out 0s;
+  }
 }
 
 .form-control { // These are the fields and their labels
@@ -41,6 +54,7 @@
 }
 
 
+
 .form-group {
   margin: 32px 0;
 }
@@ -51,4 +65,6 @@
 }
 
 //***************************************************
-
+.form-control.is-valid {
+  background-image: none;
+}
