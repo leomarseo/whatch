@@ -11,6 +11,8 @@ require 'open-uri'
 
 class TmdbSuggestionsController < ApplicationController
   def fetcher
+    parsed_params = JSON.parse(params['params'])
+    raise
     query = create_query_object
     all_suggestions = [] # here we'll store all results from different api calls
 

@@ -1,46 +1,156 @@
 const searchFilters = () => {
-  console.log("the searchfilters.js file was loaded successfully")
-// here we get the user selection
-  let searchContainer = document.getElementById("mySelect");
+  console.log('loaded searchFilters')
 
-// this function reveals the searchbar with the corresponding user selection
-  function showSearchbar() {
-    let x = document.getElementById("mySelect").value;
-    let y = document.getElementById("search-bar").classList.item(0);
-    document.getElementById("search-bar").style.display = "block";
-    document.getElementById("search-bar").classList.remove(y);
-    document.getElementById("search-bar").classList.add(x);
-    document.getElementById("search-bar-field").placeholder = x;
+  // Edit this to change icon class
+  const removeIconClass = 'fas fa-times';
+
+  // used to identify objects within this page
+  let counter = 0;
+
+  let SELECTEDBUTTON;
+  let selection = {
+    positive_actors: [],
+    positive_directors: [],
+    positive_genres: [],
+    negative_actors: [],
+    negative_directors: [],
+    negative_genres: [],
   }
 
-  // this is part of the autocomplete
-  searchContainer.addEventListener("change", showSearchbar);
+  // ACTOR BUTTON WITH RELATED LISTENER
+  const actorSelectButton = document.getElementById("actor-btn");
+  actorSelectButton.addEventListener("click", event => {
+    SELECTEDBUTTON = event.target.dataset.value;
+    document.getElementById("genre-input").style.display = "none";
+    document.getElementById("director-input").style.display = "none";
+    document.getElementById("actor-input").style.display = "block";
 
-  // this is a listener for the add button
-  const addButton = document.getElementById("add-button");
-  addButton.addEventListener("click", (event) => {
-    let currentSelection = document.getElementById("search-bar").classList.item(0);
-    let currentTextInput = document.getElementById("search-bar-field").value;
-    let hiddenFormInput = document.querySelector(`.${currentSelection}s_positive`).value
-    if (hiddenFormInput === "") {
-      document.querySelector(`.${currentSelection}s_positive`).value = currentTextInput;
-      } else {
-      document.querySelector(`.${currentSelection}s_positive`).value = hiddenFormInput + "," + currentTextInput;
-    }
-  })
+  });
 
-  // now for the remove button
-  const removeButton = document.getElementById("remove-button");
-  removeButton.addEventListener("click", (event) => {
-    let currentSelection = document.getElementById("search-bar").classList.item(0);
-    let currentTextInput = document.getElementById("search-bar-field").value;
-    let hiddenFormInput = document.querySelector(`.${currentSelection}s_negative`).value
-    if (hiddenFormInput === "") {
-      document.querySelector(`.${currentSelection}s_negative`).value = currentTextInput;
-      } else {
-      document.querySelector(`.${currentSelection}s_negative`).value = hiddenFormInput + "," + currentTextInput;
-    }
-  })
+  // DIRECTOR BUTTON WITH RELATED LISTENER
+  const directorSelectButton = document.getElementById("director-btn");
+  directorSelectButton.addEventListener("click", event => {
+    SELECTEDBUTTON = event.target.dataset.value;
+    document.getElementById("actor-input").style.display = "none";
+    document.getElementById("genre-input").style.display = "none";
+    document.getElementById("director-input").style.display = "block";
+
+  });
+
+  // GENRE BUTTON WITH RELATED LISTENER
+  const genreSelectButton = document.getElementById("genre-btn");
+  genreSelectButton.addEventListener("click", event => {
+    SELECTEDBUTTON = event.target.dataset.value;
+    document.getElementById("actor-input").style.display = "none";
+    document.getElementById("director-input").style.display = "none";
+    document.getElementById("genre-input").style.display = "block";
+
+  });
+
+
+  // ADD AND REMOVE BUTTONS WITH RELATED LISTENERS
+
+  // ACTOR
+  const actorAddButton = document.getElementById("actor-add-button")
+  actorAddButton.addEventListener("click", event => {
+    selection['positive_actors'].push([ counter, document.getElementById("actor-input-field").value ]);
+    updateSelectionContainer();
+  });
+
+  const actorRemoveButton = document.getElementById("actor-remove-button")
+  actorRemoveButton.addEventListener("click", event => {
+    selection['negative_actors'].push([ counter, document.getElementById("actor-input-field").value ]);
+    updateSelectionContainer();
+  });
+
+  // DIRECTOR
+  const directorAddButton = document.getElementById("director-add-button")
+  directorAddButton.addEventListener("click", event => {
+    selection['positive_directors'].push([ counter, document.getElementById("director-input-field").value ]);
+    updateSelectionContainer();
+  });
+
+  const directorRemoveButton = document.getElementById("director-remove-button")
+  directorRemoveButton.addEventListener("click", event => {
+    selection['negative_directors'].push([ counter, document.getElementById("director-input-field").value ]);
+    updateSelectionContainer();
+  });
+
+
+  // GENRE
+  const genreAddButton = document.getElementById("genre-add-button")
+  genreAddButton.addEventListener("click", event => {
+    selection['positive_genres'].push([ counter, document.getElementById("genre-input-field").value ]);
+    updateSelectionContainer();
+  });
+
+  const genreRemoveButton = document.getElementById("genre-remove-button")
+  genreRemoveButton.addEventListener("click", event => {
+    selection['negative_genres'].push([ counter, document.getElementById("genre-input-field").value ]);
+    updateSelectionContainer();
+  });
+
+
+  // UPDATES SELECTION BOX TO BE SHOWN TO USER WITH RELEVANT INPUT
+  const updateSelectionContainer = () => {
+    counter = counter + 1;
+    let container = document.getElementById("all-selections");
+    container.textContent = '';
+    Object.values(selection).forEach((array_of_values) => {
+      Object.values(array_of_values).forEach((value) => {
+        container.appendChild(createChildSelection(value));
+      });
+    });
+  }
+
+  // CREATES CHILD TO BE APPENDED TO THE SELECTION BOX CONTAINER
+  const createChildSelection = (value) => {
+    let child = document.createElement('div');
+    child.setAttribute('class', 'selection');
+    child.setAttribute('data-value', value[1]);
+    child.setAttribute('data-id', value[0]);
+    child.style.display = "flex";
+    let childValue = document.createElement('p');
+    childValue.textContent = value[1];
+    let removeIcon = document.createElement('button');
+    removeIcon.setAttribute('class', removeIconClass);
+    addRemoveEventListener(removeIcon);
+    child.appendChild(childValue);
+    child.appendChild(removeIcon);
+    return child;
+  }
+
+  // LISTENS TO REMOVE BUTTONS (IN SELECTION BOX), TO UPDATE SELECTION VARIABLE AND SELECTION BOX
+  const addRemoveEventListener = (button) => {
+    button.addEventListener("click", event => {
+      let id = event.target.parentNode.dataset.id;
+
+      Object.values(selection).forEach(current_array => {
+        current_array.forEach((array, index) => {
+          if (array[0] === Number.parseInt(id, 10)) {
+            current_array.splice(index, 1);
+          }
+        });
+      });
+      updateSelectionContainer();
+    });
+  }
+
+  // LISTENS TO WHATCH BUTTON TO CREATE THE PROPER GET REQUEST TO TMDB_SUGGESTIONS_CONTROLLER
+  const watchButton = document.getElementById("watch-btn");
+  watchButton.addEventListener("click", event => {
+    document.location.href = `/tmdb_suggestions/${JSON.stringify(refineSelection())}`;
+  });
+
+  const refineSelection = () => {
+    Object.values(selection).forEach(current_array => {
+      current_array.forEach((array) => {
+        array.splice(0, 1);
+      });
+    });
+    return selection;
+  }
 
 }
+
 export { searchFilters }
