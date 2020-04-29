@@ -70,7 +70,8 @@ const autocompleteWrapper = function() {
   }
 
   const toggleAddRemoveButtons = () => {
-
+    document.getElementById(`${SELECTEDBUTTON}-add-button`).style.display = "block";
+    document.getElementById(`${SELECTEDBUTTON}-remove-button`).style.display = "block";
   };
 
 
