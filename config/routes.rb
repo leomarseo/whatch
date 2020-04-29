@@ -30,7 +30,8 @@ Rails.application.routes.draw do
 
   # routes related to 'Saved' button in navbar
   get '/saved', to: 'saved_movies#saved_show', as: "saved_movie" # saved show page, only one movie is show
-  get '/saved_remove', to: 'saved_movies#saved_destroy', as: "remove_saved_movie" # remove button
+  get '/saved/pass', to: 'saved_movies#saved_pass', as: "pass_saved_movie"
+  get '/saved/remove', to: 'saved_movies#saved_destroy', as: "remove_saved_movie" # remove button
 
   # routes related to 'Watch now' button in navbar
   get '/search', to: 'suggestions#home'
