@@ -51,12 +51,16 @@ const searchFilters = () => {
   actorAddButton.addEventListener("click", event => {
     selection['positive_actors'].push([ counter, document.getElementById("actor-input-field").value ]);
     updateSelectionContainer();
+    resetButtons(event);
+
   });
 
   const actorRemoveButton = document.getElementById("actor-remove-button")
   actorRemoveButton.addEventListener("click", event => {
     selection['negative_actors'].push([ counter, document.getElementById("actor-input-field").value ]);
     updateSelectionContainer();
+    resetButtons(event);
+
   });
 
   // DIRECTOR
@@ -64,12 +68,14 @@ const searchFilters = () => {
   directorAddButton.addEventListener("click", event => {
     selection['positive_directors'].push([ counter, document.getElementById("director-input-field").value ]);
     updateSelectionContainer();
+    resetButtons(event);
   });
 
   const directorRemoveButton = document.getElementById("director-remove-button")
   directorRemoveButton.addEventListener("click", event => {
     selection['negative_directors'].push([ counter, document.getElementById("director-input-field").value ]);
     updateSelectionContainer();
+    resetButtons(event);
   });
 
 
@@ -78,12 +84,14 @@ const searchFilters = () => {
   genreAddButton.addEventListener("click", event => {
     selection['positive_genres'].push([ counter, document.getElementById("genre-input-field").value ]);
     updateSelectionContainer();
+    resetButtons(event);
   });
 
   const genreRemoveButton = document.getElementById("genre-remove-button")
   genreRemoveButton.addEventListener("click", event => {
     selection['negative_genres'].push([ counter, document.getElementById("genre-input-field").value ]);
     updateSelectionContainer();
+    resetButtons(event);
   });
 
 
@@ -98,6 +106,12 @@ const searchFilters = () => {
       });
     });
   }
+
+  const resetButtons = (event) => {
+    event.target.parentNode.children[0].value = "";
+    event.target.parentNode.children[1].style.display = "none";
+    event.target.parentNode.children[2].style.display = "none";
+  };
 
   // CREATES CHILD TO BE APPENDED TO THE SELECTION BOX CONTAINER
   const createChildSelection = (value) => {

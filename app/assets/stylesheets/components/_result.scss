@@ -44,6 +44,28 @@
   }
 }
 
+.single-result {
+  img {
+    width: 312px;
+    height: 468px;
+    position: absolute;
+    z-index: 1;
+    top: 8px;
+    left: 10px;
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+  }
+  &.large {
+    img {
+      width: 288px;
+      height: 432px;
+      left: -8px;
+      top: 16px;
+    }
+  }
+}
+
 .result-actions {
   display: flex;
   justify-content: space-between;
@@ -63,6 +85,7 @@
 }
 
 .result-right {
+  width: 100%;
   h2 {
     margin: 0;
   }
@@ -78,6 +101,45 @@
   background-color: rgba(0,0,0, 0.33);
   padding-left: 56px;
   padding-right: 240px;
+  &.confirmation {
+    display: flex;
+    min-height: 376px;
+    justify-content: space-between;
+    padding-right: 32px;
+  }
+}
+
+.confirmation-details {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  min-width: 640px;
+  h1 {
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-size: 32px;
+  }
+  h2 {
+    text-transform: capitalize;
+    line-height: 1.5em;
+    font-weight: normal;
+    font-size: 18px;
+  }
+}
+
+.confirmation-header {
+
+}
+
+.confirmation-message {
+
+}
+
+.confirmation-admit-one {
+  background: url(image_path('backgrounds/admit_one.svg'));
+  background-size: cover;
+  height: auto;
+  min-width: 56px;
 }
 
 .result-right-bottom {
@@ -89,7 +151,11 @@
 
 
 .film-header {
-
+  overflow-x: hidden;
+  overflow-y: scroll;
+    &::-webkit-scrollbar {
+    display: none;
+    }
 }
 
 .film-details {

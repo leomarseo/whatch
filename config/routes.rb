@@ -20,8 +20,8 @@ Rails.application.routes.draw do
 
   # routes related to 'History' button in navbar
   get '/history', to: 'saved_movies#history_index' #history index
-  get '/history/movie/:id', to: 'saved_movies#history_show' # history show page
-  patch '/history/movie/:id', to: 'saved_movies#history_update' # change rating button
+  patch '/history/movie/update/:id', to: 'saved_movies#history_update', as: 'history_update' # change rating button
+  get '/history/movie/:id', to: 'saved_movies#history_show', as: 'history_show'  # history show page
   delete '/history/movie/:id', to: 'saved_movies#history_destroy' # remove button
 
   # routes related to 'Avatar' button in navbar
@@ -30,7 +30,9 @@ Rails.application.routes.draw do
 
   # routes related to 'Saved' button in navbar
   get '/saved', to: 'saved_movies#saved_show', as: "saved_movie" # saved show page, only one movie is show
-  delete '/saved/:id', to: 'saved_movies#saved_destroy' # remove button
+  get '/saved/pass', to: 'saved_movies#saved_pass', as: "pass_saved_movie"
+  get '/saved/remove', to: 'saved_movies#saved_destroy', as: "remove_saved_movie" # remove button
+  get '/saved/watch', to: 'saved_movies#saved_watch', as: 'watch_saved_movie'
 
   # routes related to 'Watch now' button in navbar
   get '/search', to: 'suggestions#home'
@@ -44,5 +46,6 @@ Rails.application.routes.draw do
 
   # pass, later and seen buttons won't trigger a new route, they will trigger only different methods that will
   # be activated based on the JS button listener. These methods will be created in the suggestions controller
-  get '/suggestion/:id/confirmation', to: 'suggestions#confirmation', as: 'confirmation'
+  get '/pages/confirmation', to: 'pages#confirmation', as: 'watch_confirmation'
+  get '/pages/after_confirmation', to: 'pages#after_confirmation', as: 'after_confirmation'
 end

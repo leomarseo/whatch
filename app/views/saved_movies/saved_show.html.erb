@@ -1,24 +1,58 @@
-<!-- We need to create a "ghost movie" to prevent saved show to break in case of missing saved movies.
-Movie.create(title: "You haven't seen any movie", release_date: Date.today, photo_url: 'a nice placeholder', director: Director.first) -->
+<% @multiple_cards = false if @second_saved_movie == [] %>
 
-<%= render layout:"layouts/result_show", locals: {
-  current_suggestion: [@current_movie],
-  second_suggestion: [@second_movie],
-  movie_director: @current_movie.movie.director,
-  starring_actors: @current_movie.movie.starring_actors,
-  number_of_buttons: 3,
-  first_button_path: '#',
-  first_button_image: "icons/pass_action.svg",
-  first_button_class: "pass-action",
-  first_button_label: "remove",
-  second_button_path: '#',
-  second_button_image: "icons/next_action.svg",
-  second_button_class: "next-action",
-  second_button_label: "next",
-  third_button_path: '#',
-  third_button_image: "icons/watch_action.svg",
-  third_button_class: "watch_action",
-  third_button_label: "watch"
-  } do %>
+<% if @render_static_page %>
+  <p>you have no saved movies</p>
+<% elsif @multiple_movies %>
+
+  <%= render layout:"layouts/result_show", locals: {
+    current_suggestion: @current_saved_movie,
+    second_suggestion: @second_saved_movie,
+    movie_director: @current_saved_movie.first.movie.director,
+    starring_actors: @current_saved_movie.first.movie.starring_actors,
+
+    # NOTE: if the number_of_buttons you specify is 2 or 3, you can delete the lines for buttons you don't need
+    # e.g., if you need only two buttons, you can delete all lines that start with "third_button" and "fourth_button"
+    number_of_buttons: 3,
+    multiple_cards: @multiple_cards,
+
+    first_button_path: remove_saved_movie_path(id: @current_saved_movie.first.id), remote:true,
+    first_button_image: "icons/pass_action.svg",
+    first_button_class: "pass-action",
+    first_button_label: "remove",
+
+    second_button_path: pass_saved_movie_path(id: @current_saved_movie.first.id), remote: true,
+    second_button_image: "icons/next_action.svg",
+    second_button_class: "next-action",
+    second_button_label: "next",
+
+    third_button_path: watch_saved_movie_path(id: @current_saved_movie.first.id), remote: true,
+    third_button_image: "icons/watch_action.svg",
+    third_button_class: "watch_action",
+    third_button_label: "watch"
+    } do %>
+  <% end %>
+
+<% else %>
+  <%= render layout:"layouts/result_show", locals: {
+    current_suggestion: @current_saved_movie,
+    movie_director: @current_saved_movie.first.movie.director,
+    starring_actors: @current_saved_movie.first.movie.starring_actors,
+
+    # NOTE: if the number_of_buttons you specify is 2 or 3, you can delete the lines for buttons you don't need
+    # e.g., if you need only two buttons, you can delete all lines that start with "third_button" and "fourth_button"
+    number_of_buttons: 2,
+    multiple_cards: @multiple_cards,
+
+    first_button_path: remove_saved_movie_path(id: @current_saved_movie.first.id), remote:true,
+    first_button_image: "icons/pass_action.svg",
+    first_button_class: "pass-action",
+    first_button_label: "remove",
+
+    second_button_path: watch_saved_movie_path(id: @current_saved_movie.first.id), remote: true,
+    second_button_image: "icons/watch_action.svg",
+    second_button_class: "watch_action",
+    second_button_label: "watch"
+    } do %>
+  <% end %>
+
 <% end %>
-

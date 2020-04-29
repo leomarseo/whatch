@@ -9,6 +9,7 @@
   # NOTE: if the number_of_buttons you specify is 2 or 3, you can delete the lines for buttons you don't need
   # e.g., if you need only two buttons, you can delete all lines that start with "third_button" and "fourth_button"
   number_of_buttons: 4,
+  multiple_cards: true,
 
   first_button_path: pass_suggestion_path(suggestion_id: @current_suggestion.first.id),
   first_button_image: "icons/pass_action.svg",
@@ -25,7 +26,7 @@
   third_button_class: "save-action",
   third_button_label: "save",
 
-  fourth_button_path: move_to_later_path(suggestion_id: @current_suggestion.first.id),
+  fourth_button_path: confirmation_path(@current_suggestion.first.id),
   fourth_button_image: "icons/watch_action.svg",
   fourth_button_class: "watch_action",
   fourth_button_label: "watch"
