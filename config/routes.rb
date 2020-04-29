@@ -19,10 +19,10 @@ Rails.application.routes.draw do
   get '/achievements', to: 'achievements#index'
 
   # routes related to 'History' button in navbar
-  get '/history', to: 'saved_movies#history_index' #history index
+  get '/history', to: 'saved_movies#history_index', as: 'history_index' #history index
   patch '/history/movie/update/:id', to: 'saved_movies#history_update', as: 'history_update' # change rating button
   get '/history/movie/:id', to: 'saved_movies#history_show', as: 'history_show'  # history show page
-  delete '/history/movie/:id', to: 'saved_movies#history_destroy' # remove button
+  delete '/history/movie/:id', to: 'saved_movies#history_destroy', as: 'history_destroy' # remove button
 
   # routes related to 'Avatar' button in navbar
   get '/user/:id', to: 'user#show' # profile page that you open when you click on the avatar

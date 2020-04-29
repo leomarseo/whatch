@@ -79,4 +79,9 @@ class SavedMoviesController < ApplicationController
     @saved_movie.user_rating == 1 ? @saved_movie.update(user_rating: 0) : @saved_movie.update(user_rating: 1)
     redirect_to history_show_path(@saved_movie)
   end
+
+  def history_destroy
+    SavedMovie.find(params[:id]).destroy
+    redirect_to history_index_path
+  end
 end

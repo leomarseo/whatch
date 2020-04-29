@@ -32,13 +32,13 @@
     <!-- Creates dynamic left/right padding based on number of buttons to display -->
     <div class="result-actions <%= result_actions %>">
       <div class="action-button">
-        <%= link_to (image_tag first_button_image, size: 48), first_button_path, class:first_button_class %>
+        <%= link_to (image_tag first_button_image, size: 48), first_button_path, method: first_button_method, class:first_button_class %>
         <div class="action-label">
           <p><%= first_button_label %></p>
         </div>
       </div>
       <div class="action-button">
-        <%= link_to (image_tag second_button_image, size: 48), second_button_path, class:second_button_class %>
+        <%= link_to (image_tag second_button_image, size: 48), second_button_path, method: second_button_method, class:second_button_class %>
         <div class="action-label">
           <p><%= second_button_label %></p>
         </div>
