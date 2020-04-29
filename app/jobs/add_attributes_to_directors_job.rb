@@ -1,7 +1,7 @@
 require "json"
 require 'open-uri'
 
-class AddAttributesToActorsJob < ApplicationJob
+class AddAttributesToDirectorsJob < ApplicationJob
   queue_as :default
 
   def perform
