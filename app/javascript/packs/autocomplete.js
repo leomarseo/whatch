@@ -2,9 +2,6 @@ import 'js-autocomplete/auto-complete.css';
 import autocomplete from 'js-autocomplete';
 
 const autocompleteWrapper = function() {
-
-  const excludeIconClass = 'fas fa-times';
-  const includeIconClass = 'fas fa-times';
   console.log("the autocomplete.js file was loaded successfully");
 
   let SELECTEDBUTTON
@@ -69,7 +66,14 @@ const autocompleteWrapper = function() {
 
   const onSelect = () => {
     // write code to generate two buttons at mouse location after you select an actor
+    toggleAddRemoveButtons();
   }
+
+  const toggleAddRemoveButtons = () => {
+
+  };
+
+
 
 };
 
