@@ -69,7 +69,10 @@ const autocompleteWrapper = function() {
 
   const onSelect = () => {
     // write code to generate two buttons at mouse location after you select an actor
+    console.log(event);
   }
+
+
 
 };
 
