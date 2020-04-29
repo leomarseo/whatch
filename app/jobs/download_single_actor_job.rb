@@ -6,7 +6,7 @@ class DownloadSingleActorJob < ApplicationJob
     begin
       url_details = open(url).read
     rescue OpenURI::HTTPError
-      next # skips the whole creation process if url is not found
+      return # skips the whole creation process if url is not found
     else
       person_details = JSON.parse(url_details)
       Actor.find_by(tmdb_id: tmdb_id).update(
