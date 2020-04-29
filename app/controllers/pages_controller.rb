@@ -15,7 +15,7 @@ class PagesController < ApplicationController
       end
     end
 
-    directors = Director.pluck(:name, :photo_url)
+    directors = Director.order(popularity: :desc).pluck(:name, :photo_url)
     @directors_names = []
     @directors_photos = []
     directors.each do |director|
@@ -27,7 +27,7 @@ class PagesController < ApplicationController
       end
     end
 
-    genres = Genre.pluck(:name, :tmdb_id)
+    genres = Genre.pluck(:name)
     @genres_names = []
     @genres_photos = []
     genres.each do |genre|
