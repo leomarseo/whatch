@@ -79,6 +79,7 @@ class DownloadSingleMovieJob < ApplicationJob
               tmdb_id: cast_member['id'],
               photo_url: cast_member['profile_path']
             )
+            DownloadSingleActorJob.perform_now(cast_member['id'])
           end
 
           # creates association between actors and movies for each actor present in API response to movie credits
