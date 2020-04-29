@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_04_29_151146) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +23,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_151146) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "category"
     t.integer "number"
+    t.string "difficulty"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
