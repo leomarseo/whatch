@@ -1,27 +1,35 @@
 class SavedMoviesController < ApplicationController
   def saved_show
-    ghost_movie = Movie.find_by(tmdb_id: -1)
-    current_user.saved_movies.where(movie_id: ghost_movie.id).each do |saved_movie|
-      saved_movie.destroy
+    @current_saved_movie = []
+    @second_saved_movie = []
+    @saved_movies = current_user.saved_movies.where(seen: false)
+    counter = 0;
+
+    # every time we create a user, we'll add two saved_movies connected to the ghost movie
+    # whenever we have more than 2 saved movies, it means the user has saved some movies, so we can skip the first and the second ghost ones
+    if @saved_movies.size > 2
+      @saved_movies.first(2).each do |saved_movie|
+        saved_movie.update(skip: true)
+      end
     end
 
-    @saved_movies = current_user.saved_movies.where(seen: false)
-
-    if @saved_movies.length == 0
-      SavedMovie.create(user: current_user, movie: Movie.find_by(tmdb_id: -1))
-      SavedMovie.create(user: current_user, movie: Movie.find_by(tmdb_id: -1))
-    elsif @saved_movies.length == 1
-      SavedMovie.create(user: current_user, movie: Movie.find_by(tmdb_id: -1))
+    @saved_movies.each do |saved_movie|
+      if saved_movie.skip == false && counter == 0
+        @current_saved_movie << saved_movie
+        counter += 1
+      elsif saved_movie.skip == false && counter == 1
+        @second_saved_movie << saved_movie
+        counter = 0
+        break
+      end
     end
 
-    @saved_movies = current_user.saved_movies.where(seen: false)
-
-    if params[:id] == 'nav'
-      @current_movie = @saved_movies.sample
-      @second_movie = SavedMovie.find(find_next_id(@current_movie))
-    else
-      @current_movie = SavedMovie.find(params[:id])
-      @second_movie = SavedMovie.find(find_next_id(@current_movie))
+    # this loop resets the situation when we reached the last suggestions
+    if @current_saved_movie == []
+      @current_saved_movie << @saved_movies.first
+      @saved_movies.each do |saved_movie|
+        saved_movie.update(skip: false)
+      end
     end
   end
 
@@ -29,7 +37,7 @@ class SavedMoviesController < ApplicationController
     @saved_movie = SavedMovie.find(params[:id])
     next_id = find_next_id(@saved_movie)
     @saved_movie.destroy
-    redirect_to saved_movie_path(next_id)
+    redirect_to saved_movie_path(id: next_id)
   end
 
   def find_next_id(current_movie)

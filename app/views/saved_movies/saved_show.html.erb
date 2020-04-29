@@ -1,12 +1,13 @@
 <!-- We need to create a "ghost movie" to prevent saved show to break in case of missing saved movies.
-Movie.create(title: "You haven't seen any movie", release_date: Date.today, photo_url: 'a nice placeholder', director: Director.first) -->
+Movie.create(title: "You haven't seen any movie", tmdb_id: -1, release_date: Date.today, photo_url: 'a nice placeholder', director: Director.first) -->
+<% @saved_movies.size > 2 ? buttons = 3 : buttons = 0 %>
 
 <%= render layout:"layouts/result_show", locals: {
-  current_suggestion: [@current_movie],
-  second_suggestion: [@second_movie],
-  movie_director: @current_movie.movie.director,
-  starring_actors: @current_movie.movie.starring_actors,
-  number_of_buttons: 3,
+  current_suggestion: @current_saved_movie,
+  second_suggestion: @second_saved_movie,
+  movie_director: @current_saved_movie.first.movie.director,
+  starring_actors: @current_saved_movie.first.movie.starring_actors,
+  number_of_buttons: buttons,
   first_button_path: '#',
   first_button_image: "icons/pass_action.svg",
   first_button_class: "pass-action",
