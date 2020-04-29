@@ -3,10 +3,11 @@ import autocomplete from 'js-autocomplete';
 
 const autocompleteWrapper = function() {
 
+  const excludeIconClass = 'fas fa-times';
+  const includeIconClass = 'fas fa-times';
   console.log("the autocomplete.js file was loaded successfully");
 
   let SELECTEDBUTTON
-
 
   const actorSelectButton = document.getElementById("actor-btn");
   const directorSelectButton = document.getElementById("director-btn");
@@ -29,25 +30,24 @@ const autocompleteWrapper = function() {
   });
 
   const renderItem = function (item, search) {
-      let icon;
       let image;
-      icon = `<p class="${item.id} smart-add-button" style="z-index: 999;">funzionaaa</p>`;
       if (item.photo === 'placeholder') {
         image = '<img src="avatar.png" style="width: 40px;">';
       } else {
-      image = `<img src="https://image.tmdb.org/t/p/w200${item.photo}" style="width: 40px; height: 60px;">`;
+        image = `<img src="https://image.tmdb.org/t/p/w200${item.photo}" style="width: 40px; height: 60px;">`;
       };
 
       search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
       var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
-      return `<div id="${item.id}" class="autocomplete-suggestion" data-val="` + item.name + '">' + image + item.name.replace(re, "<b>$1</b>") + '</div>';
+
+      return `<div id="${item.id}" class="autocomplete-suggestion" data-val="` + item.name + '">' + image + item.name.replace(re, "<b>$1</b>") + `</div>`;
   };
 
   const autocompleteSearch = (selectedButton) => {
-    let searchInput = document.getElementById(`${SELECTEDBUTTON}-input`);
-    console.log(searchInput);
-    let names = JSON.parse(searchInput.dataset.names);
-    let photos = JSON.parse(searchInput.dataset.photos);
+    let inputDiv = document.getElementById(`${SELECTEDBUTTON}-input`);
+    let names = JSON.parse(inputDiv.dataset.names);
+    let photos = JSON.parse(inputDiv.dataset.photos);
+    let searchInput = inputDiv.children[0];
 
     if (searchInput) {
       new autocomplete({
@@ -55,36 +55,22 @@ const autocompleteWrapper = function() {
         minChars: 3,
         source: function(term, suggest){
             term = term.toLowerCase();
-            let choices = names;
-            console.log('ciao');
-            let pictures = photos;
             const matches = [];
-            for (let i = 0; i < choices.length; i++)
-                if (~choices[i].toLowerCase().indexOf(term)) matches.push( { name: choices[i], photo: photos[i], id: i } );
+            for (let i = 0; i < names.length; i++)
+                if (~names[i].toLowerCase().indexOf(term)) matches.push( { name: names[i], photo: photos[i], id: i } );
             suggest(matches);
         },
         renderItem: renderItem,
+        onSelect: onSelect,
       });
 
     }
   };
 
+  const onSelect = () => {
+    // write code to generate two buttons at mouse location after you select an actor
+  }
+
 };
-
-// const button = document.querySelector(".641");
-//   button.addEventListener("click", {
-//     handleEvent: function (event) {
-//       let id = button.classList.item(0);
-//       let currentTextInput = document.getElementById(id).innerText;
-//       console.log(SELECTION);
-//       let hiddenFormInput = document.querySelector(`.${SELECTION}s_positive`).value
-//       if (hiddenFormInput === "") {
-//         document.querySelector(`.${SELECTION}s_positive`).value = currentTextInput;
-//       } else {
-//         document.querySelector(`.${SELECTION}s_positive`).value = hiddenFormInput + "," + currentTextInput;
-//       }
-//   }
-//   });
-
 
 export { autocompleteWrapper };
