@@ -36,9 +36,9 @@
         <!-- IMPORTANT: remember to insert the proper path below -->
         <li class="nav-item whatch-nav-item">
           <% if current_page?("/saved") %>
-          <%= link_to "Saved", saved_movie_path(id: 'nav'), class: "nav-link whatch-nav-item-active" %>
+          <%= link_to "Saved", saved_movie_path, class: "nav-link whatch-nav-item-active" %>
           <% else %>
-          <%= link_to "Saved", saved_movie_path(id: 'nav'), class: "nav-link" %>
+          <%= link_to "Saved", saved_movie_path, class: "nav-link" %>
           <% end %>
         </li>
         <li class="nav-item  whatch-nav-item">
