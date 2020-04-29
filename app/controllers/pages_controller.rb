@@ -31,7 +31,7 @@ class PagesController < ApplicationController
     @genres_names = []
     @genres_photos = []
     genres.each do |genre|
-      @genres_names << genre.first
+      @genres_names << genre
       @genres_photos << 'genre_placeholder'
     end
   end
