@@ -5,7 +5,9 @@ require("channels")
 
 import { searchFilters } from './searchfilters.js';
 import { autocompleteWrapper } from './autocomplete.js';
+import { achievements } from './achievements.js';
 import "bootstrap";
+
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -14,3 +16,6 @@ document.addEventListener('turbolinks:load', () => {
 
 searchFilters();
 autocompleteWrapper();
+
+achievements();
+

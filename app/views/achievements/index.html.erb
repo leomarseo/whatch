@@ -1,19 +1,165 @@
-<div class="background-gradient">
-  <div class="achievements-container">
-    <% @achievements.each do |achievement| %>
-      <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
-        <div class="achievement-card-earned">
-          <h3><%= achievement.name %></h3>
-          <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
-          <p><%= achievement.description %></p>
-        </div>
-      <% else %>
-        <div class="achievement-card">
-          <h3><%= achievement.name %></h3>
-          <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
-          <p><%= achievement.description %></p>
-        </div>
-      <% end %>
-    <% end %>
+<div class="mainach-container">
+
+  <h1>Achievements</h1>
+
+
+  <div class="buttons">
+    <ul>
+      <li><button id="button-1" class="achievement-button" data-id="1">Movies</button></li>
+      <li><button id="button-2" class="achievement-button" data-id="2">Collection</button></li>
+      <li><button id="button-3" class="achievement-button" data-id="3">Genre</button></li>
+      <li><button id="button-4" class="achievement-button" data-id="4">Hours and queries </button></li>
+      <li><button id="button-5" class="achievement-button" data-id="5">Other</button></li>
+      <li><button id="button-6" class="achievement-button" data-id="6">Special</button></li>
+      <li><button id="button-7" class="achievement-button" data-id="7">All</button></li>
+    </ul>
   </div>
+
+  <div id="all-achievements">
+
+
+
+    <div class="scroll" id="1">
+      <div class="achievements-container">
+        <% @achievements.where(difficulty: "number").each do |achievement| %>
+          <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
+            <div class="achievement-card">
+              <h3><%= achievement.name %></h3>
+              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <p><%= achievement.description %></p>
+            </div>
+          <% else %>
+            <div class="achievement-card not-earned">
+              <h3><%= achievement.name %></h3>
+              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <p><%= achievement.description %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="scroll" id="2">
+      <div class="achievements-container">
+        <% @achievements.where(difficulty: "collection").each do |achievement| %>
+          <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
+            <div class="achievement-card">
+              <h3><%= achievement.name %></h3>
+              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <p><%= achievement.description %></p>
+            </div>
+          <% else %>
+            <div class="achievement-card not-earned">
+              <h3><%= achievement.name %></h3>
+              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <p><%= achievement.description %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="scroll" id="3">
+      <div class="achievements-container">
+        <% @achievements.where(difficulty: "genre").each do |achievement| %>
+          <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
+            <div class="achievement-card">
+              <h3><%= achievement.name %></h3>
+              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <p><%= achievement.description %></p>
+            </div>
+          <% else %>
+            <div class="achievement-card not-earned">
+              <h3><%= achievement.name %></h3>
+              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <p><%= achievement.description %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="scroll" id="4">
+      <div class="achievements-container">
+        <% @achievements.where(difficulty: "hours and queries").each do |achievement| %>
+          <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
+            <div class="achievement-card">
+              <h3><%= achievement.name %></h3>
+              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <p><%= achievement.description %></p>
+            </div>
+          <% else %>
+            <div class="achievement-card not-earned">
+              <h3><%= achievement.name %></h3>
+              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <p><%= achievement.description %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="scroll" id="5">
+      <div class="achievements-container">
+        <% @achievements.where(difficulty: "other").each do |achievement| %>
+          <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
+            <div class="achievement-card">
+              <h3><%= achievement.name %></h3>
+              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <p><%= achievement.description %></p>
+            </div>
+          <% else %>
+            <div class="achievement-card not-earned">
+              <h3><%= achievement.name %></h3>
+              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <p><%= achievement.description %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="scroll" id="6">
+      <div class="achievements-container">
+        <% @achievements.where(difficulty: "special").each do |achievement| %>
+          <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
+            <div class="achievement-card">
+              <h3><%= achievement.name %></h3>
+              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <p><%= achievement.description %></p>
+            </div>
+          <% else %>
+            <div class="achievement-card not-earned">
+              <h3><%= achievement.name %></h3>
+              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <p><%= achievement.description %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="scroll" id="7">
+      <div class="achievements-container">
+        <% @achievements.each do |achievement| %>
+          <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
+            <div class="achievement-card">
+              <h3><%= achievement.name %></h3>
+              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <p><%= achievement.description %></p>
+            </div>
+          <% else %>
+            <div class="achievement-card not-earned">
+              <h3><%= achievement.name %></h3>
+              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <p><%= achievement.description %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+
 </div>
