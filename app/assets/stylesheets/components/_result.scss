@@ -46,8 +46,8 @@
 
 .single-result {
   img {
-    width: 240px;
-    height: 360px;
+    width: 312px;
+    height: 468px;
     position: absolute;
     z-index: 1;
     top: 8px;
@@ -55,6 +55,14 @@
     border-style: solid;
     border-color: white;
     border-width: 2px;
+  }
+  &.large {
+    img {
+      width: 288px;
+      height: 432px;
+      left: -8px;
+      top: 16px;
+    }
   }
 }
 
@@ -92,6 +100,45 @@
   background-color: rgba(0,0,0, 0.33);
   padding-left: 56px;
   padding-right: 240px;
+  &.confirmation {
+    display: flex;
+    min-height: 376px;
+    justify-content: space-between;
+  }
+}
+
+.confirmation-details {
+  justify-content: space-between;
+  position: relative;
+  h1 {
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-size: 32px;
+  }
+  h2 {
+    text-transform: capitalize;
+    line-height: 1.5em;
+    font-weight: normal;
+    font-size: 18px;
+  }
+}
+
+.confirmation-header {
+  position: absolute;
+  top: 0px;
+}
+
+.confirmation-message {
+  position: absolute;
+  bottom: 0;
+}
+
+.confirmation-admit-one {
+  background: url(image_path('backgrounds/admit_one.svg'));
+  height: 360px;
+  width: 56px;
+  background-size: cover;
+  right: 128px;
 }
 
 .result-right-bottom {

@@ -38,6 +38,11 @@ class SuggestionsController < ApplicationController
   def move_to_later; end
   def already_seen; end
 
+  def confirmation
+    @current_suggestion = []
+    @current_suggestion << Suggestion.find(params[:id])
+  end
+
   # def destroy
   #   @suggestion = Suggestion.find(params[:id])
   #   @suggestion.update(skip: true)
