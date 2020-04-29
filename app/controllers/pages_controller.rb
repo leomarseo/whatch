@@ -21,13 +21,13 @@ class PagesController < ApplicationController
     directors.each do |director|
       @directors_names << director.first
       if director.last.nil?
-        @directors_photos << 'director_placeholder'
+        @directors_photos << 'placeholder'
       else
         @directors_photos << director.last
       end
     end
 
-    genres = Genre.pluck(:name)
+    genres = Genre.order(name: :asc).pluck(:name)
     @genres_names = []
     @genres_photos = []
     genres.each do |genre|

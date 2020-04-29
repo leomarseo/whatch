@@ -34,6 +34,8 @@ const autocompleteWrapper = function() {
         image = `<img src="https://image.tmdb.org/t/p/w200${item.photo}" style="width: 40px; height: 60px;">`;
       };
 
+      if (SELECTEDBUTTON == "genre") { image = "" };
+
       search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
       var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
 
@@ -45,11 +47,13 @@ const autocompleteWrapper = function() {
     let names = JSON.parse(inputDiv.dataset.names);
     let photos = JSON.parse(inputDiv.dataset.photos);
     let searchInput = inputDiv.children[0];
+    let chars = 3;
+    if (SELECTEDBUTTON == "genre") { chars = 1 };
 
     if (searchInput) {
       new autocomplete({
         selector: searchInput,
-        minChars: 3,
+        minChars: chars,
         source: function(term, suggest){
             term = term.toLowerCase();
             const matches = [];
