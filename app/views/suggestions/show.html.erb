@@ -1,4 +1,3 @@
-
 <!-- render partial with the result show -->
 <!-- define locals used in partial -->
 <%= render layout:"layouts/result_show", locals: {
@@ -6,21 +5,28 @@
   second_suggestion: @second_suggestion,
   movie_director: @current_suggestion.first.movie.director,
   starring_actors: @current_suggestion.first.movie.starring_actors,
+
+  # NOTE: if the number_of_buttons you specify is 2 or 3, you can delete the lines for buttons you don't need
+  # e.g., if you need only two buttons, you can delete all lines that start with "third_button" and "fourth_button"
   number_of_buttons: 4,
+
   first_button_path: pass_suggestion_path(suggestion_id: @current_suggestion.first.id),
-  first_button_image: "icons/pass_action.png",
+  first_button_image: "icons/pass_action.svg",
   first_button_class: "pass-action",
   first_button_label: "pass",
+
   second_button_path: already_seen_path(suggestion_id: @current_suggestion.first.id),
-  second_button_image: "icons/seen_action.png",
+  second_button_image: "icons/seen_action.svg",
   second_button_class: "seen-action",
   second_button_label: "seen",
+
   third_button_path: move_to_later_path(suggestion_id: @current_suggestion.first.id),
-  third_button_image: "icons/save_action.png",
+  third_button_image: "icons/save_action.svg",
   third_button_class: "save-action",
   third_button_label: "save",
+
   fourth_button_path: move_to_later_path(suggestion_id: @current_suggestion.first.id),
-  fourth_button_image: "icons/watch_action.png",
+  fourth_button_image: "icons/watch_action.svg",
   fourth_button_class: "watch_action",
   fourth_button_label: "watch"
   } do %>

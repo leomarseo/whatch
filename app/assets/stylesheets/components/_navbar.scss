@@ -1,7 +1,7 @@
 .navbar-whatch {
   justify-content: space-between;
-  // background: black;
   color: white;
+  margin-top: 16px;
 }
 
 .navbar-whatch .navbar-collapse {
@@ -9,7 +9,8 @@
 }
 
 .navbar-whatch .navbar-brand img {
-  width: 128px;
+  width: 112px;
+  margin-left: 24px;
 }
 
 
@@ -17,13 +18,15 @@
   color: white;
   // padding-right: 20px !important;
   // padding-left: 20px !important;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
+  margin-left: 0.3em;
+  margin-right: 0.3em;
   font-weight: bold;
 }
 
 .whatch-nav-item a {
   color: white;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .whatch-nav-item-active {

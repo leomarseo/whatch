@@ -1,8 +1,8 @@
 .result-container {
   display: flex;
-  padding-top: 120px;
+  padding-top: 96px;
   padding-bottom: 120px;
-  margin-left: 15vw;
+  margin-left: 16vw;
 }
 
 .result-left {
@@ -47,9 +47,18 @@
 .result-actions {
   display: flex;
   justify-content: space-between;
+  &.two-buttons {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+  &.three-buttons {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 }
 
 .action-label {
+  padding-top: 4px;
   text-align: center;
 }
 
@@ -94,19 +103,24 @@
 
 .film-cast {
   display: flex;
-  justify-content: space-between;
   margin-top: 12px;
-}
-
-.cast-member {
-  width: 96px;
-  p {
-    line-height: 1.5em;
-
+  overflow-x: scroll;
+  overflow-y: hidden;
+  max-width: 640px;
+    &::-webkit-scrollbar {
+    display: none;
+    }
+  .cast-member {
+    width: 160px;
+    p {
+      padding-top: 8px;
+      line-height: 1em;
+    }
   }
 }
 
+
 .cast-centered {
   text-align: center;
-  width: 64px;
+  width: 112px;
 }
