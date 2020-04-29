@@ -85,6 +85,7 @@
 }
 
 .result-right {
+  width: 100%;
   h2 {
     margin: 0;
   }
@@ -104,12 +105,15 @@
     display: flex;
     min-height: 376px;
     justify-content: space-between;
+    padding-right: 32px;
   }
 }
 
 .confirmation-details {
   justify-content: space-between;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 640px;
   h1 {
     text-transform: uppercase;
     letter-spacing: 0.01em;
@@ -124,21 +128,18 @@
 }
 
 .confirmation-header {
-  position: absolute;
-  top: 0px;
+
 }
 
 .confirmation-message {
-  position: absolute;
-  bottom: 0;
+
 }
 
 .confirmation-admit-one {
   background: url(image_path('backgrounds/admit_one.svg'));
-  height: 360px;
-  width: 56px;
   background-size: cover;
-  right: 128px;
+  height: auto;
+  min-width: 56px;
 }
 
 .result-right-bottom {
@@ -150,7 +151,11 @@
 
 
 .film-header {
-
+  overflow-x: hidden;
+  overflow-y: scroll;
+    &::-webkit-scrollbar {
+    display: none;
+    }
 }
 
 .film-details {
