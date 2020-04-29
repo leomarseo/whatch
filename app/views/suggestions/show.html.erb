@@ -26,7 +26,7 @@
   third_button_class: "save-action",
   third_button_label: "save",
 
-  fourth_button_path: move_to_later_path(suggestion_id: @current_suggestion.first.id),
+  fourth_button_path: confirmation_path(@current_suggestion.first.id),
   fourth_button_image: "icons/watch_action.svg",
   fourth_button_class: "watch_action",
   fourth_button_label: "watch"
