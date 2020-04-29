@@ -57,6 +57,7 @@ class DownloadSingleMovieJob < ApplicationJob
               tmdb_id: crew_member['id'],
               photo_url: crew_member['profile_path']
               )
+            DownloadSingleDirectorJob.perform_now(crew_member['id'])
           end
 
           # assigns newly created director to previously created movie, replacing placeholder
