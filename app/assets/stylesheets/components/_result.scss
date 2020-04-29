@@ -44,6 +44,20 @@
   }
 }
 
+.single-result {
+  img {
+    width: 240px;
+    height: 360px;
+    position: absolute;
+    z-index: 1;
+    top: 8px;
+    left: 10px;
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+  }
+}
+
 .result-actions {
   display: flex;
   justify-content: space-between;
