@@ -1,11 +1,8 @@
-<!-- below is a dropdown menu for the user to select the filters to include or exclude in the search -->
+
 <button id="actor-btn" data-value="actor">Actors</button>
 <button id="director-btn" data-value="director">Directors</button>
 <button id="genre-btn" data-value="genre">Genres</button>
 <button id="watch-btn">Whatch Now!!</button>
-<!-- the searchbar and the "add/remove" buttons are created after the user selects an option from the menu above -->
-
-
 
 <div id="selection-wrapper">
   <div id="all-selections">
@@ -15,21 +12,18 @@
 
 <div id="actor-input" style="display: none;" data-names="<%= @actors_names.to_json %>" data-photos="<%= @actors_photos.to_json %>">
   <input id="actor-input-field" type="text" placeholder="search actors" style="width: 100%;">
-  <button id="actor-add-button">search movies with this actor</button>
-  <button id="actor-remove-button">search movies without this actor</button>
+  <button id="actor-add-button" style="display: none;">search movies with this actor</button>
+  <button id="actor-remove-button" style="display: none;">search movies without this actor</button>
 </div>
 
 <div id="director-input" style="display: none;" data-names="<%= @directors_names.to_json %>" data-photos="<%= @directors_photos.to_json %>">
   <input id="director-input-field" type="text" placeholder="search directors" style="width: 100%;">
-  <button id="director-add-button">search movies with this director</button>
-  <button id="director-remove-button">search movies without this director</button>
+  <button id="director-add-button" style="display: none;">search movies with this director</button>
+  <button id="director-remove-button" style="display: none;">search movies without this director</button>
 </div>
 
 <div id="genre-input" style="display: none;" data-names="<%= @genres_names.to_json %>" data-photos="<%= @genres_photos.to_json %>">
   <input id="genre-input-field" type="text" placeholder="search genres" style="width: 100%;">
-  <button id="genre-add-button">search movies with this genre</button>
-  <button id="genre-remove-button">search movies without this genre</button>
-</div>
-
-<!-- this form should become hidden later, when finishing the frontend -->
+  <button id="genre-add-button" style="display: none;">search movies with this genre</button>
+  <button id="genre-remove-button" style="display: none;">search movies without this genre</button>
 </div>
