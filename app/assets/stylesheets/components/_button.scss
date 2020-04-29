@@ -23,3 +23,12 @@
     color: $cyan;
   }
 }
+
+.filter-option {
+  min-width: 64px;
+  border-radius: 48px;
+  background-color: rgba(0, 0, 0, 0.33);
+  color: white;
+  border: none;
+  padding: 8px 24px;
+}
