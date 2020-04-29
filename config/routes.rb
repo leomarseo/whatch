@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get '/saved', to: 'saved_movies#saved_show', as: "saved_movie" # saved show page, only one movie is show
   get '/saved/pass', to: 'saved_movies#saved_pass', as: "pass_saved_movie"
   get '/saved/remove', to: 'saved_movies#saved_destroy', as: "remove_saved_movie" # remove button
+  get '/saved/watch', to: 'saved_movies#saved_watch', as: 'watch_saved_movie'
 
   # routes related to 'Watch now' button in navbar
   get '/search', to: 'suggestions#home'
@@ -45,5 +46,5 @@ Rails.application.routes.draw do
 
   # pass, later and seen buttons won't trigger a new route, they will trigger only different methods that will
   # be activated based on the JS button listener. These methods will be created in the suggestions controller
-  get '/suggestion/:id/confirmation', to: 'suggestions#confirmation', as: 'confirmation'
+  get '/pages/confirmation', to: 'pages#confirmation', as: 'watch_confirmation'
 end

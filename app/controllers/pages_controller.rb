@@ -38,4 +38,15 @@ class PagesController < ApplicationController
 
   def profile
   end
+
+  def confirmation
+    @movie = Movie.find(params[:movie_id])
+  end
+
+  def after_confirmation
+    # need to code the actions to be performed after user presses the confirmation button
+    # if movie is found in saved_movies, update seen value to true
+    # else create a saved_movie instance with current_user and movie, with seen value of true
+    # redirect to service (missing right now, so redirect to homepage)
+  end
 end

@@ -46,6 +46,10 @@ class SavedMoviesController < ApplicationController
     redirect_to saved_movie_path
   end
 
+  def saved_watch
+    redirect_to watch_confirmation_path(movie_id: SavedMovie.find(params[:id]).movie.id)
+  end
+
   def history_index
   end
 
