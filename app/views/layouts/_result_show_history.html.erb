@@ -1,0 +1,146 @@
+<!-- every page that renders this result_show partial needs to define the following locals: current_suggestion, movie_director, starring_actors -->
+<!-- example: current_suggestion = @current_suggestion (if @current_suggestion is passed on from controller) -->
+<% if number_of_buttons <= 2 %>
+  <% result_actions = "two-buttons" %>
+<% elsif number_of_buttons == 3 %>
+  <% result_actions = "three-buttons" %>
+<% else %>
+  <% result_actions = "four-buttons" %>
+<% end %>
+
+<div class="result-container">
+
+  <div class="result-left">
+    <div class="result-cards">
+      <% if multiple_cards == true %>
+        <div class="first-result">
+          <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}", class:"first-result-img" %>
+        </div>
+        <div class="second-result">
+          <!-- TODO: image path below must be updated with the second suggestion -->
+          <% if !second_suggestion.first.movie.photo_url.nil? %>
+            <%= image_tag "https://image.tmdb.org/t/p/w300/#{second_suggestion.first.movie.photo_url}", class:"second-result-img" %>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="single-result">
+          <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}", class:"single-result-img" %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Creates dynamic left/right padding based on number of buttons to display -->
+    <div class="result-actions <%= result_actions %>">
+      <div class="action-button">
+        <%= link_to (image_tag first_button_image, size: 48), first_button_path, class:first_button_class %>
+        <div class="action-label">
+          <p><%= first_button_label %></p>
+        </div>
+      </div>
+      <div class="action-button">
+        <%= link_to (image_tag second_button_image, size: 48), second_button_path, method: :patch, class:second_button_class %>
+        <div class="action-label">
+          <p><%= second_button_label %></p>
+        </div>
+      </div>
+      <!-- Displays 3 buttons only if number_of_buttons is specified as such by the show -->
+      <% if number_of_buttons >= 3 %>
+        <div class="action-button">
+          <%= link_to (image_tag third_button_image, size: 48), third_button_path, class:third_button_class %>
+          <div class="action-label">
+            <p><%= third_button_label %></p>
+          </div>
+        </div>
+      <% end %>
+      <!-- Displays 4 buttons only if number_of_buttons is specified as such by the show -->
+      <% if number_of_buttons == 4 %>
+        <div class="action-button">
+          <%= link_to (image_tag fourth_button_image, size: 48), fourth_button_path, class:fourth_button_class %>
+          <div class="action-label">
+            <p><%= fourth_button_label %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="result-right">
+    <div class="result-right-top">
+    </div>
+    <div class="result-right-main">
+      <div class="film-header">
+        <h1>
+          <%= current_suggestion.first.movie.title %>
+        </h1>
+        <p>
+          <%= current_suggestion.first.movie.overview %>
+        </p>
+      </div>
+      <div class="film-details">
+        <div class="film-details-item">
+          <h2>
+            Director
+          </h2>
+          <p>
+            <%= movie_director.name %>
+          </p>
+        </div>
+        <div class="film-details-item">
+          <h2>
+            Genre
+          </h2>
+          <p>
+            <!-- TODO: Genre goes here -->
+            Placeholder
+          </p>
+        </div>
+        <div class="film-details-item">
+          <h2>
+            Released
+          </h2>
+          <p>
+            <%= current_suggestion.first.movie.release_date.split("-").first %>
+          </p>
+        </div>
+        <div class="film-details-item">
+          <h2>
+            Runtime
+          </h2>
+          <p>
+            <%= current_suggestion.first.movie.runtime %> min
+          </p>
+        </div>
+      </div>
+      <h2>Cast</h2>
+      <div class="film-cast">
+        <% starring_actors.take(15).each do |actor| %>
+          <div class="cast-member">
+            <div class="cast-centered">
+              <%= image_tag("icons/placeholder_actor.svg", size: 48, class:"cast-icon") %>
+              <p>
+                <% actor_name = Actor.find(actor.actor_id).name %>
+                <!-- If actor is known by just one name, print the name as-is -->
+                <% if actor_name.index(" ").nil? %>
+                  <%= actor_name %>
+                <!-- if the user has more than two names, fit as much as possible (10 chars) on the first line before the line break -->
+                <% elsif actor_name.count(" ") >= 2 && actor_name.split(" ")[0].length + actor_name.split(" ")[1].length <= 10 %>
+                  <%= actor_name.split(" ")[0] + " " + actor_name.split(" ")[1] %>
+                  <br>
+                  <%= actor_name.slice(actor_name.split(" ")[0].length + actor_name.split(" ")[1].length + 2..actor_name.length) %>
+                <!-- in all other circumstances, print the first name, then a line break, then last name -->
+                <% else %>
+                  <%= actor_name.split(" ").first %>
+                  <br>
+                  <%= actor_name.slice(actor_name.index(" ") + 1..actor_name.length) %>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="result-right-bottom">
+    </div>
+  </div> <!-- close result-right -->
+
+</div>

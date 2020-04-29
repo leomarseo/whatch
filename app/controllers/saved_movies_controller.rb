@@ -51,12 +51,32 @@ class SavedMoviesController < ApplicationController
   end
 
   def history_index
+    @seen_movies = current_user.saved_movies.where(seen: true)
   end
 
   def history_show
     # needs to set a route too
+    @current_movie = [SavedMovie.find(params[:id])] #needs to be an array
+    # @current_movie = Movie.find(params[:id]) #not an object
+    @current_rating = @current_movie.first.user_rating
+
+    @rating = rating_icon
+  end
+
+  def rating_icon
+    if @current_rating == 1
+      return "icons/liked.svg"
+    elsif @current_rating == 0
+      return "icons/disliked.svg"
+    else
+      return "icons/placeholder_actor.svg"
+    end
+
+  end
+
+  def history_update
+    @saved_movie = SavedMovie.find(params[:id])
+    @saved_movie.user_rating == 1 ? @saved_movie.update(user_rating: 0) : @saved_movie.update(user_rating: 1)
+    redirect_to history_show_path(@saved_movie)
   end
 end
-
-
-

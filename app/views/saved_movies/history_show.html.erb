@@ -1,22 +1,23 @@
-<!-- this view opens when the user clicks on a movie poster -->
-<!-- in the history_index view -->
-<%= render layout:"layouts/result_show", locals: {
-  current_suggestion: [@current_movie],
-  second_suggestion: [@second_movie],
-  movie_director: @current_movie.movie.director,
-  starring_actors: @current_movie.movie.starring_actors,
+<!-- render partial with the result show -->
+<!-- define locals used in partial -->
+<%= render layout:"layouts/result_show_history", locals: {
+  current_suggestion: @current_movie,
+  movie_director: @current_movie[0].movie.director,
+  starring_actors: @current_movie[0].movie.starring_actors,
+
+  # NOTE: if the number_of_buttons you specify is 2 or 3, you can delete the lines for buttons you don't need
+  # e.g., if you need only two buttons, you can delete all lines that start with "third_button" and "fourth_button"
   number_of_buttons: 2,
-  first_button_path: '#',
+  multiple_cards: false,
+
+  first_button_path: remove_saved_movie_path(id: @current_movie.first.id), remote:true,
   first_button_image: "icons/pass_action.svg",
   first_button_class: "pass-action",
   first_button_label: "remove",
-  second_button_path: '#',
-  second_button_image: "icons/next_action.svg",
+
+  second_button_path: history_update_path(id: @current_movie.first.id), method: :patch, #remote: true,
+  second_button_image: @rating,
   second_button_class: "next-action",
   second_button_label: "next",
-  third_button_path: '#',
-  third_button_image: "icons/watch_action.svg",
-  third_button_class: "watch_action",
-  third_button_label: "watch"
   } do %>
 <% end %>

@@ -1,6 +1,5 @@
 <div class="row movie-poster-container">
-  <% current_user.saved_movies.where(seen: true).each do |saved_movie| %>
-  <% @current_movie = saved_movie %>
+  <% @seen_movies.each do |saved_movie| %>
     <div class="col-3">
         <div class="thumbs-up-badge">
           <% if saved_movie.user_rating == 1 %>
@@ -11,16 +10,15 @@
         </div>
       <div class="movie-poster-small">
         <% if saved_movie.movie.photo_url == nil%>
-        <%= link_to history_show_path(@current_movie.movie.id) do %>
+        <%= link_to history_show_path(saved_movie.id) do %>
         <div class="movie-poster-placeholder">
         <%= tag.h3 "#{saved_movie.movie.title}"  %>
         <% end %>
         </div>
         <% else %>
-        <%= link_to history_show_path(@current_movie.movie.id) do %>
+        <%= link_to history_show_path(saved_movie.id) do %>
         <%= image_tag ("https://image.tmdb.org/t/p/w200/#{saved_movie.movie.photo_url}"), class: "img-responsive movie-poster-image"%>
         <% end %>
-        <% #raise %>
         <% end %>
       </div>
     </div>
