@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   # routes related to 'History' button in navbar
   get '/history', to: 'saved_movies#history_index' #history index
-  get '/history/movie/:id', to: 'saved_movies#history_show' # history show page
+  get '/history/movie/:id', to: 'saved_movies#history_show', as: 'history_show'  # history show page
   patch '/history/movie/:id', to: 'saved_movies#history_update' # change rating button
   delete '/history/movie/:id', to: 'saved_movies#history_destroy' # remove button
 

@@ -79,6 +79,8 @@ class DownloadMovieJob < ApplicationJob
                 tmdb_id: crew_member['id'],
                 photo_url: crew_member['profile_path']
                 )
+
+              DownloadSingleDirectorJob.perform_now(crew_member['id'])
             end
 
             # assigns newly created director to previously created movie, replacing placeholder
@@ -100,6 +102,8 @@ class DownloadMovieJob < ApplicationJob
                 tmdb_id: cast_member['id'],
                 photo_url: cast_member['profile_path']
               )
+
+              DownloadSingleActorJob.perform_now(cast_member['id'])
             end
 
             # creates association between actors and movies for each actor present in API response to movie credits
