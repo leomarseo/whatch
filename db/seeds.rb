@@ -125,6 +125,15 @@ SavedMovie.create(movie_id: 5, user_id: 2, seen: true)
 JointAchievement.create(user_id: 2, achievement_id: 1, earned: true )
 JointAchievement.create(user_id: 2, achievement_id: 2, earned: true )
 JointAchievement.create(user_id: 2, achievement_id: 3, earned: true )
+JointAchievement.create(user_id: 2, achievement_id: 9, earned: true )
+JointAchievement.create(user_id: 2, achievement_id: 12, earned: true )
+JointAchievement.create(user_id: 2, achievement_id: 16, earned: true )
+JointAchievement.create(user_id: 2, achievement_id: 17, earned: true )
+JointAchievement.create(user_id: 2, achievement_id: 18, earned: true )
+JointAchievement.create(user_id: 2, achievement_id: 22, earned: true )
+JointAchievement.create(user_id: 2, achievement_id: 23, earned: true )
+
+Movie.create(title: "Il mio film", trailer_url: "https://www.youtube.com/watch?v=y_lYoENIffI", director_id: 1)
 
 
 
