@@ -1,7 +1,7 @@
 class SuggestionsController < ApplicationController
 
   # calls method to set suggestion.skip to true, if user clicks on the pass, later, or seen button in show
-  before_action :set_suggestion_skip, only: [ :pass_suggestion, :move_to_later, :already_seen ]
+  before_action :set_suggestion_skip, only: [ :pass_suggestion ]
 
   def show
     # the show accepts a parameter from the filters page
@@ -29,14 +29,29 @@ class SuggestionsController < ApplicationController
       @tmdb_suggestion.each do |suggestion|
         suggestion.update(skip: false)
       end
+      @second_suggestion << @tmdb_suggestion.second
     end
   end
 
   # controller methods for pass, later, seen buttons in show
   # TODO: each method must be updated with the necessary function(s) for each button action
-  def pass_suggestion; end
-  def move_to_later; end
-  def already_seen; end
+  def pass_suggestion
+    redirect_to results_path
+  end
+
+  def move_to_later
+    suggestion = Suggestion.find(params[:suggestion_id])
+    SavedMovie.create(user: current_user, movie: suggestion.movie)
+    suggestion.destroy
+    redirect_to results_path
+  end
+
+  def already_seen
+    suggestion = Suggestion.find(params[:suggestion_id])
+    SavedMovie.create(user: current_user, movie: suggestion.movie, seen: true)
+    suggestion.destroy
+    redirect_to results_path
+  end
 
   def confirmation
     @current_suggestion = []
@@ -61,6 +76,9 @@ class SuggestionsController < ApplicationController
   def set_suggestion_skip
     @suggestion = Suggestion.find(params[:suggestion_id])
     @suggestion.update(skip: true)
+  end
+
+  def route_back_to_page
     redirect_to results_path
   end
 
