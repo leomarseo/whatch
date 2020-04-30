@@ -14,6 +14,6 @@ document.addEventListener('turbolinks:load', () => {
   // myCustomJS();
 });
 
-// searchFilters();
-// autocompleteWrapper();
+searchFilters();
+autocompleteWrapper();
 achievements();
