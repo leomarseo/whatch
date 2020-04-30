@@ -108,9 +108,8 @@ const searchFilters = () => {
   }
 
   const resetButtons = (event) => {
-    event.target.parentNode.children[0].value = "";
-    event.target.parentNode.children[1].style.display = "none";
-    event.target.parentNode.children[2].style.display = "none";
+    event.target.parentNode.parentNode.children[0].value = "";
+    event.target.parentNode.style.display = "none";
   };
 
   // CREATES CHILD TO BE APPENDED TO THE SELECTION BOX CONTAINER
