@@ -4,6 +4,9 @@ const searchFilters = () => {
   // Edit this to change icon class
   const removeIconClass = 'filter-remove';
 
+  const positiveTypeIconClass = 'positive';
+  const negativeTypeIconClass = 'negative';
+
   // used to identify objects within this page
   let counter = 0;
 
@@ -100,9 +103,11 @@ const searchFilters = () => {
     counter = counter + 1;
     let container = document.getElementById("all-selections");
     container.textContent = '';
-    Object.values(selection).forEach((array_of_values) => {
-      Object.values(array_of_values).forEach((value) => {
-        container.appendChild(createChildSelection(value));
+    Object.entries(selection).forEach((array_of_values) => {
+      let type = array_of_values.slice(0,1);
+      let values = array_of_values.filter(x => !type.includes(x));;
+      Object.values(values[0]).forEach((value) => {
+        container.appendChild(createChildSelection(value, type));
       });
     });
   }
@@ -113,17 +118,29 @@ const searchFilters = () => {
   };
 
   // CREATES CHILD TO BE APPENDED TO THE SELECTION BOX CONTAINER
-  const createChildSelection = (value) => {
+  const createChildSelection = (value, type) => {
     let child = document.createElement('div');
     child.setAttribute('class', 'selection');
     child.setAttribute('data-value', value[1]);
     child.setAttribute('data-id', value[0]);
     child.style.display = "flex";
+
     let childValue = document.createElement('p');
     childValue.textContent = value[1];
+
     let removeIcon = document.createElement('button');
     removeIcon.setAttribute('class', removeIconClass);
     addRemoveEventListener(removeIcon);
+
+    let typeIcon = document.createElement('div');
+
+    if (type[0].slice(0,8) === 'positive') {
+      typeIcon.setAttribute('class', positiveTypeIconClass);
+    } else {
+      typeIcon.setAttribute('class', negativeTypeIconClass);
+    }
+
+    child.appendChild(typeIcon);
     child.appendChild(childValue);
     child.appendChild(removeIcon);
     return child;
