@@ -142,7 +142,7 @@
             <p>
               <!-- Iterate over genre -->
               <% if current_suggestion.first.movie.genres.count == 1 %>
-                current_suggestion.first.movie.genres.first.name
+                <%= current_suggestion.first.movie.genres.first.name %>
               <% elsif current_suggestion.first.movie.genres.count > 1 %>
                 <% genre_list = "" %>
                 <% current_suggestion.first.movie.genres.each do |genre| %>
