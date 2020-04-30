@@ -19,16 +19,19 @@
     first_button_image: "icons/pass_action.svg",
     first_button_class: "pass-action",
     first_button_label: "remove",
+    first_button_method: :get,
 
     second_button_path: pass_saved_movie_path(id: @current_saved_movie.first.id), remote: true,
     second_button_image: "icons/next_action.svg",
     second_button_class: "next-action",
     second_button_label: "next",
+    second_button_method: :get,
 
     third_button_path: watch_saved_movie_path(id: @current_saved_movie.first.id), remote: true,
     third_button_image: "icons/watch_action.svg",
     third_button_class: "watch_action",
-    third_button_label: "watch"
+    third_button_label: "watch",
+    third_button_method: :get,
     } do %>
   <% end %>
 
@@ -47,11 +50,13 @@
     first_button_image: "icons/pass_action.svg",
     first_button_class: "pass-action",
     first_button_label: "remove",
+    first_button_method: :get,
 
     second_button_path: watch_saved_movie_path(id: @current_saved_movie.first.id), remote: true,
     second_button_image: "icons/watch_action.svg",
     second_button_class: "watch_action",
-    second_button_label: "watch"
+    second_button_label: "watch",
+    second_button_method: :get,
     } do %>
   <% end %>
 
