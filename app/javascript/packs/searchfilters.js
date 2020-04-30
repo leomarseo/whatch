@@ -2,7 +2,7 @@ const searchFilters = () => {
   console.log('loaded searchFilters');
 
   // Edit this to change icon class
-  const removeIconClass = 'fas fa-times';
+  const removeIconClass = 'filter-remove';
 
   // used to identify objects within this page
   let counter = 0;

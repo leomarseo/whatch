@@ -38,6 +38,16 @@
   }
 }
 
+.filter-remove {
+  background: url("/remove_action.svg") !important;
+  background-size: cover;
+  border: none !important;
+  width: 14px;
+  height: 14px;
+  opacity: 0.33;
+  padding: 0;
+}
+
 .achievement-buttons {
   ul {
     padding-left: 18px;
