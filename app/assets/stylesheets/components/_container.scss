@@ -1,4 +1,4 @@
-.mainach-container {
+.main-achievements-container {
   width: 70%;
   margin: 100px auto;
   h1 {
@@ -39,24 +39,5 @@
   height: 880px;
   border-radius: 16px;
   overflow-x: auto;
-}
-
-.buttons {
-  margin-bottom: 64px;
-  li {
-    display: inline;
-    padding: 8px 16px;
-    color: white;
-    background: $light-gray;
-  }
-  a {
-    border-radius: 8px;
-    color: white;
-
-    &:hover {
-      color:white;
-      text-decoration: none;
-    }
-  }
 }
 
