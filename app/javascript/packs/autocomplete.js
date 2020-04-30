@@ -29,7 +29,7 @@ const autocompleteWrapper = function() {
   const renderItem = function (item, search) {
       let image;
       if (item.photo === 'placeholder') {
-        image = '<img src="avatar.png" style="width: 40px;">';
+        image = '<img src="avatar.svg" style="width: 40px;">';
       } else {
         image = `<img src="https://image.tmdb.org/t/p/w200${item.photo}" style="width: 40px; height: 60px;">`;
       };
@@ -39,7 +39,7 @@ const autocompleteWrapper = function() {
       search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
       var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
 
-      return `<div id="${item.id}" class="autocomplete-suggestion" data-val="` + item.name + '">' + image + item.name.replace(re, "<b>$1</b>") + `</div>`;
+      return `<div id="${item.id}" class="autocomplete-suggestion" data-val="` + item.name + '">' + image + " " + item.name.replace(re, "<b>$1</b>") + `</div>`;
   };
 
   const autocompleteSearch = (selectedButton) => {

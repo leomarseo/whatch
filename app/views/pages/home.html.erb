@@ -9,28 +9,29 @@
     </div>
 
     <div class="filter-search-bar">
-      <div id="selection-wrapper">
-        <div id="all-selections">
-          <div class="selection"></div>
-        </div>
-      </div>
 
       <div id="actor-input" style="display: none;" data-names="<%= @actors_names.to_json %>" data-photos="<%= @actors_photos.to_json %>">
         <input id="actor-input-field" type="text" placeholder="search actors" style="width: 100%;">
-        <button id="actor-add-button" style="display: none;">search movies with this actor</button>
-        <button id="actor-remove-button" style="display: none;">search movies without this actor</button>
+        <div class="filter-actions">
+          <button id="actor-add-button" class="include-action filter-option" style="display: none;">include this actor</button>
+          <button id="actor-remove-button" class="exclude-action filter-option" style="display: none;">exclude this actor</button>
+        </div>
       </div>
 
       <div id="director-input" style="display: none;" data-names="<%= @directors_names.to_json %>" data-photos="<%= @directors_photos.to_json %>">
         <input id="director-input-field" type="text" placeholder="search directors" style="width: 100%;">
-        <button id="director-add-button" style="display: none;">search movies with this director</button>
-        <button id="director-remove-button" style="display: none;">search movies without this director</button>
+        <div class="filter-actions">
+          <button id="director-add-button" class="include-action filter-option" style="display: none;">include this director</button>
+          <button id="director-remove-button" class="exclude-action filter-option" style="display: none;">include this director</button>
+        </div>
       </div>
 
       <div id="genre-input" style="display: none;" data-names="<%= @genres_names.to_json %>" data-photos="<%= @genres_photos.to_json %>">
         <input id="genre-input-field" type="text" placeholder="search genres" style="width: 100%;">
-        <button id="genre-add-button" style="display: none;">search movies with this genre</button>
-        <button id="genre-remove-button" style="display: none;">search movies without this genre</button>
+        <div class="filter-actions">
+          <button id="genre-add-button" class="include-action filter-option" style="display: none;">include this genre</button>
+          <button id="genre-remove-button" class="exclude-action filter-option" style="display: none;">exclude this genre</button>
+        </div>
       </div>
     </div>
 
@@ -42,8 +43,13 @@
 
   <div class="filter-right">
     <h2>Active Filters</h2>
-    <div class="active-filters">
 
+    <div class="active-filters">
+      <div id="selection-wrapper">
+        <div id="all-selections">
+          <div class="selection"></div>
+        </div>
+      </div>
     </div>
     <div class="find-movies">
       <button id="watch-btn" class="button-full">Find movies</button>
@@ -53,33 +59,3 @@
 
 </div>
 
-<!--
-<button id="actor-btn" data-value="actor">Actors</button>
-<button id="director-btn" data-value="director">Directors</button>
-<button id="genre-btn" data-value="genre">Genres</button>
-<button id="watch-btn">Whatch Now!!</button>
-
-<div id="selection-wrapper">
-  <div id="all-selections">
-    <div class="selection"></div>
-  </div>
-</div>
-
-<div id="actor-input" style="display: none;" data-names="<%= @actors_names.to_json %>" data-photos="<%= @actors_photos.to_json %>">
-  <input id="actor-input-field" type="text" placeholder="search actors" style="width: 100%;">
-  <button id="actor-add-button" style="display: none;">search movies with this actor</button>
-  <button id="actor-remove-button" style="display: none;">search movies without this actor</button>
-</div>
-
-<div id="director-input" style="display: none;" data-names="<%= @directors_names.to_json %>" data-photos="<%= @directors_photos.to_json %>">
-  <input id="director-input-field" type="text" placeholder="search directors" style="width: 100%;">
-  <button id="director-add-button" style="display: none;">search movies with this director</button>
-  <button id="director-remove-button" style="display: none;">search movies without this director</button>
-</div>
-
-<div id="genre-input" style="display: none;" data-names="<%= @genres_names.to_json %>" data-photos="<%= @genres_photos.to_json %>">
-  <input id="genre-input-field" type="text" placeholder="search genres" style="width: 100%;">
-  <button id="genre-add-button" style="display: none;">search movies with this genre</button>
-  <button id="genre-remove-button" style="display: none;">search movies without this genre</button>
-</div>
--->

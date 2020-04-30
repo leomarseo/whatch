@@ -11,6 +11,78 @@
   min-width: 640px;
 }
 
+
+// CSS for actors
+
+#actor-input-field {
+  margin-top: 16px;
+  background: transparent;
+  color: white;
+  border: none;
+  border-bottom-color: rgba(255, 255, 255, 0.33);
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  width: 90% !important;
+}
+
+
+// CSS for directors
+
+#director-input-field {
+  margin-top: 16px;
+  background: transparent;
+  color: white;
+  border: none;
+  border-bottom-color: rgba(255, 255, 255, 0.33);
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  width: 90% !important;
+}
+
+
+// CSS for genres
+
+#genre-input-field {
+  margin-top: 16px;
+  background: transparent;
+  color: white;
+  border: none;
+  border-bottom-color: rgba(255, 255, 255, 0.33);
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  width: 90% !important;
+}
+
+.autocomplete-suggestions {
+  width: auto;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: white !important;
+  transition: 0.3s;
+  .autocomplete-suggestion {
+    color: white;
+    margin: 12px auto !important;
+  }
+  .selected {
+    background: rgba(0, 0, 0, 0.33) !important;
+    transition: 0.3s;
+  }
+}
+
+.filter-actions {
+  display: flex;
+}
+
+.include-action {
+  margin-top: 16px;
+}
+
+.exclude-action {
+  margin-top: 16px;
+}
+
+
 .filter-right {
   text-align: center;
   display: flex;
