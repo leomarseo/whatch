@@ -1,7 +1,14 @@
 <% @multiple_cards = false if @second_saved_movie == [] %>
 
 <% if @render_static_page %>
-  <p>you have no saved movies</p>
+<div class="no-saved-movies">
+  <h1>you have no saved movies yet</h1>
+    <div class="no-saved-movies-icon">
+      <%= link_to root_path do %>
+      <%= image_tag ("/assets/filter_icons/search.png") %>
+      <% end %>
+    </div>
+  </div>
 <% elsif @multiple_movies %>
 
   <%= render layout:"layouts/result_show", locals: {
