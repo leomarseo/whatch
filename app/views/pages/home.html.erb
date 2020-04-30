@@ -3,34 +3,34 @@
 
   <div class="filter-left">
     <div class="filter-selection">
-      <button id="actor-btn" class="filter-option" data-value="actor">Actors</button>
-      <button id="director-btn" class="filter-option" data-value="director">Directors</button>
-      <button id="genre-btn" class="filter-option" data-value="genre">Genres</button>
+      <!-- filter-option is the button css, filter-toggle creates custom margin on right -->
+      <button id="actor-btn" class="filter-option filter-toggle" data-value="actor">Actors</button>
+      <button id="director-btn" class="filter-option filter-toggle" data-value="director">Directors</button>
+      <button id="genre-btn" class="filter-option filter-toggle" data-value="genre">Genres</button>
     </div>
 
-    <div class="filter-search-bar">
-
-      <div id="actor-input" style="display: none;" data-names="<%= @actors_names.to_json %>" data-photos="<%= @actors_photos.to_json %>">
+    <div class="filter-search">
+      <div id="actor-input" class="filter-search-field" style="display: none;" data-names="<%= @actors_names.to_json %>" data-photos="<%= @actors_photos.to_json %>">
         <input id="actor-input-field" type="text" placeholder="search actors" style="width: 100%;">
         <div class="filter-actions">
-          <button id="actor-add-button" class="include-action filter-option" style="display: none;">include this actor</button>
-          <button id="actor-remove-button" class="exclude-action filter-option" style="display: none;">exclude this actor</button>
+          <button id="actor-add-button" class="move-to-active active-include" style="display: none;"></button>
+          <button id="actor-remove-button" class="move-to-active active-exclude" style="display: none;"></button>
         </div>
       </div>
 
-      <div id="director-input" style="display: none;" data-names="<%= @directors_names.to_json %>" data-photos="<%= @directors_photos.to_json %>">
+      <div id="director-input" class="filter-search-field" style="display: none;" data-names="<%= @directors_names.to_json %>" data-photos="<%= @directors_photos.to_json %>">
         <input id="director-input-field" type="text" placeholder="search directors" style="width: 100%;">
         <div class="filter-actions">
-          <button id="director-add-button" class="include-action filter-option" style="display: none;">include this director</button>
-          <button id="director-remove-button" class="exclude-action filter-option" style="display: none;">include this director</button>
+          <button id="director-add-button" class="move-to-active active-include" style="display: none;"></button>
+          <button id="director-remove-button" class="move-to-active active-exclude" style="display: none;"></button>
         </div>
       </div>
 
-      <div id="genre-input" style="display: none;" data-names="<%= @genres_names.to_json %>" data-photos="<%= @genres_photos.to_json %>">
+      <div id="genre-input" class="filter-search-field" style="display: none;" data-names="<%= @genres_names.to_json %>" data-photos="<%= @genres_photos.to_json %>">
         <input id="genre-input-field" type="text" placeholder="search genres" style="width: 100%;">
         <div class="filter-actions">
-          <button id="genre-add-button" class="include-action filter-option" style="display: none;">include this genre</button>
-          <button id="genre-remove-button" class="exclude-action filter-option" style="display: none;">exclude this genre</button>
+          <button id="genre-add-button" class="move-to-active active-include" style="display: none;"></button>
+          <button id="genre-remove-button" class="move-to-active active-exclude" style="display: none;"></button>
         </div>
       </div>
     </div>

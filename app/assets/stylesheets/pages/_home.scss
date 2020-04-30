@@ -23,6 +23,7 @@
   border-bottom-style: solid;
   border-bottom-width: 2px;
   width: 90% !important;
+  outline:none;
 }
 
 
@@ -37,6 +38,7 @@
   border-bottom-style: solid;
   border-bottom-width: 2px;
   width: 90% !important;
+  outline:none;
 }
 
 
@@ -51,6 +53,7 @@
   border-bottom-style: solid;
   border-bottom-width: 2px;
   width: 90% !important;
+  outline:none;
 }
 
 .autocomplete-suggestions {
@@ -59,27 +62,53 @@
   border: none !important;
   box-shadow: none !important;
   color: white !important;
-  transition: 0.3s;
   .autocomplete-suggestion {
     color: white;
     margin: 12px auto !important;
   }
   .selected {
-    background: rgba(0, 0, 0, 0.33) !important;
-    transition: 0.3s;
+    background: none !important;
+    cursor: pointer;
   }
+}
+
+.filter-search-field {
+  position: relative;
+}
+
+.filter-toggle {
+  margin-right: 8px;
 }
 
 .filter-actions {
   display: flex;
 }
 
-.include-action {
+.move-to-active {
   margin-top: 16px;
+  margin-right: 8px;
+  position: absolute !important;
+  top: -3px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-size: cover !important;
 }
 
-.exclude-action {
-  margin-top: 16px;
+.active-include {
+  right: 86px;
+  background: url("/confirm_action_colored.svg") !important;
+  &:hover {
+    background: url("/confirm_action_hover.svg") !important
+  }
+}
+
+.active-exclude {
+  right: 56px;
+  background: url("/pass_action_colored.svg") !important;
+  &:hover {
+    background: url("/pass_action_hover.svg") !important
+  }
 }
 
 
@@ -96,6 +125,21 @@
 
 .active-filters {
   height: 100%;
+}
+
+.selection {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 48px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  p {
+    margin: 0 !important;
+    padding: 8px 16px;
+  }
+  .filter-remove {
+    margin-right: 12px;
+  }
 }
 
 .find-movies > .button-full {
