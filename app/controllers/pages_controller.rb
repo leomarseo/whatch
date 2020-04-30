@@ -41,6 +41,8 @@ class PagesController < ApplicationController
 
   def confirmation
     @movie = Movie.find(params[:movie_id])
+    current_suggestion = Suggestion.find_by(movie: @movie)
+    @current_suggestion = [current_suggestion]
   end
 
   def after_confirmation

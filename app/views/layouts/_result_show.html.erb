@@ -1,6 +1,7 @@
 <!-- every page that renders this result_show partial needs to include the locals on the bottom of this page -->
 <!-- example: current_suggestion = @current_suggestion (if @current_suggestion is passed on from controller) -->
 <!-- SCROLL DOWN FOR DETAILS -->
+<% require "net/http" %>
 
 <% if number_of_buttons <= 2 %>
   <% result_actions = "two-buttons" %>
@@ -42,13 +43,13 @@
     <% if number_of_buttons > 0 %>
       <div class="result-actions <%= result_actions %>">
         <div class="action-button">
-          <%= link_to (image_tag first_button_image, size: 48), first_button_path, class:first_button_class %>
+          <%= link_to (image_tag first_button_image, size: 48), first_button_path, method: first_button_method, class:first_button_class %>
           <div class="action-label">
             <p><%= first_button_label %></p>
           </div>
         </div>
         <div class="action-button">
-          <%= link_to (image_tag second_button_image, size: 48), second_button_path, class:second_button_class %>
+          <%= link_to (image_tag second_button_image, size: 48), second_button_path, method: second_button_method, class:second_button_class %>
           <div class="action-label">
             <p><%= second_button_label %></p>
           </div>
@@ -56,7 +57,7 @@
         <!-- Displays 3 buttons only if number_of_buttons is specified as such by the show -->
         <% if number_of_buttons >= 3 %>
           <div class="action-button">
-            <%= link_to (image_tag third_button_image, size: 48), third_button_path, class:third_button_class %>
+            <%= link_to (image_tag third_button_image, size: 48), third_button_path, method: third_button_method, class:third_button_class %>
             <div class="action-label">
               <p><%= third_button_label %></p>
             </div>
@@ -65,7 +66,7 @@
         <!-- Displays 4 buttons only if number_of_buttons is specified as such by the show -->
         <% if number_of_buttons == 4 %>
           <div class="action-button">
-            <%= link_to (image_tag fourth_button_image, size: 48), fourth_button_path, class:fourth_button_class %>
+            <%= link_to (image_tag fourth_button_image, size: 48), fourth_button_path, method: fourth_button_method, class:fourth_button_class %>
             <div class="action-label">
               <p><%= fourth_button_label %></p>
             </div>
@@ -130,8 +131,17 @@
               Genre
             </h2>
             <p>
-              <!-- TODO: Genre goes here -->
-              Placeholder
+              <!-- Iterate over genre -->
+              <% if current_suggestion.first.movie.genres.count == 1 %>
+                current_suggestion.first.movie.genres.first.name
+              <% elsif current_suggestion.first.movie.genres.count > 1 %>
+                <% genre_list = "" %>
+                <% current_suggestion.first.movie.genres.each do |genre| %>
+                  <% genre_list += "#{genre.name}, " %>
+                <% end %>
+                <% genre_list = genre_list[0..-3] %>
+                <%= genre_list %>
+              <% end %>
             </p>
           </div>
           <div class="film-details-item">
@@ -156,7 +166,11 @@
           <% starring_actors.take(15).each do |actor| %>
             <div class="cast-member">
               <div class="cast-centered">
-                <%= image_tag("icons/placeholder_actor.svg", size: 48, class:"cast-icon") %>
+                <% if actor.photo_url != nil %>
+                  <%= image_tag("https://image.tmdb.org/t/p/w500#{actor.photo_url}", size: 48, class:"cast-icon") %>
+                <% else %>
+                  <%= image_tag("icons/placeholder_actor.svg", size: 48, class:"cast-icon") %>
+                <% end %>
                 <p>
                   <% actor_name = Actor.find(actor.actor_id).name %>
                   <!-- If actor is known by just one name, print the name as-is -->
@@ -193,6 +207,8 @@
 <!--       if your number_of_buttons is 3, you can remove all lines starting with 'third_button' -->
 
 <!-- IMPORTANT: if YOUR_INPUT_HERE is surrounded by quotes, you must include them in your local -->
+<!--            input for the button_method must be a symbol (e.g., :get) -->
+<!--            even if your link method is 'get', you MUST specify :get for the partial to work -->
 
 <!--
 
@@ -201,8 +217,10 @@
   movie_director: @current_suggestion.first.movie.director,
   starring_actors: @current_suggestion.first.movie.starring_actors,
 
+
   # NOTE: if the number_of_buttons you specify is 2 or 3, you can delete the lines for buttons you don't need
   # e.g., if you need only two buttons, you can delete all lines that start with "third_button" and "fourth_button"
+
   number_of_buttons: YOUR_INPUT_HERE,
   multiple_cards: YOUR_INPUT_HERE,
 
@@ -210,6 +228,7 @@
   first_button_image: "YOUR_INPUT_HERE",
   first_button_class: "YOUR_INPUT_HERE",
   first_button_label: "YOUR_INPUT_HERE",
+  first_button_method: YOUR_INPUT HERE
 
   second_button_path: YOUR_INPUT_HERE,
   second_button_image: "YOUR_INPUT_HERE",

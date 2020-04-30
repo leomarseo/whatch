@@ -1,1 +1,32 @@
 // Specific CSS for your home-page
+
+.filter-container {
+  margin: 56px 15vw auto 15vw;
+  display: flex;
+  justify-content: space-between;
+  height: 560px;
+}
+
+.filter-left {
+  min-width: 640px;
+}
+
+.filter-right {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  background-color: rgba(0, 0, 0, 0.33);
+  border-radius: 16px;
+  height: 100%;
+  padding: 32px;
+}
+
+.active-filters {
+  height: 100%;
+}
+
+.find-movies > .button-full {
+  border: none;
+  width: 100%;
+}

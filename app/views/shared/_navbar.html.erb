@@ -13,7 +13,7 @@
     <ul class="nav nav-pills">
       <% if user_signed_in? %>
         <li class="nav-item whatch-nav-item">
-          <% if current_page?("/") %>
+          <% if current_page?("/") || current_page?("/results") || current_page?("/pages") %>
           <%= link_to "Watch Now", "/", class: "nav-link whatch-nav-item-active" %>
           <% else %>
           <%= link_to "Watch Now", "/", class: "nav-link" %>
