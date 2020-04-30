@@ -47,9 +47,15 @@ class PagesController < ApplicationController
   end
 
   def after_confirmation
-    # need to code the actions to be performed after user presses the confirmation button
-    # if movie is found in saved_movies, update seen value to true
-    # else create a saved_movie instance with current_user and movie, with seen value of true
-    # redirect to service (missing right now, so redirect to homepage)
+    @movie = Movie.find(params[:movie_id])
+    saved_movie = current_user.saved_movies.find_by(movie_id: @movie.id)
+    suggestion = current_user.tmdb_suggestions.last.suggestions.find_by(movie_id: @movie.id)
+    if saved_movie
+      saved_movie.update(seen: true)
+    elsif suggestion
+      SavedMovie.create(movie: @movie, user: current_user, seen: true)
+    end
+
+    redirect_to root_path # should instead redirect to streaming service
   end
 end

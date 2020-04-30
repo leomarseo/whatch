@@ -95,7 +95,7 @@
             <p>Sit back, relax, and enjoy <%= @current_suggestion.first.movie.title %>!</p>
             <p>When you're done with the movie, you can go to the History tab to give it a thumbs up or thumbs down.</p>
             <br>
-            <%= link_to "Watch on [streaming service]", "https://www.netflix.com", class:"button-full" %>
+            <%= link_to "Watch on [streaming service]", after_confirmation_path(movie_id: @current_suggestion.first.movie_id), class:"button-full" %>
           </div>
         </div>
         <div class="confirmation-admit-one">
