@@ -130,8 +130,17 @@
               Genre
             </h2>
             <p>
-              <!-- TODO: Genre goes here -->
-              Placeholder
+              <!-- Iterate over genre -->
+              <% if current_suggestion.first.movie.genres.count == 1 %>
+                current_suggestion.first.movie.genres.first.name
+              <% elsif current_suggestion.first.movie.genres.count > 1 %>
+                <% genre_list = "" %>
+                <% current_suggestion.first.movie.genres.each do |genre| %>
+                  <% genre_list += "#{genre.name}, " %>
+                <% end %>
+                <% genre_list = genre_list[0..-3] %>
+                <%= genre_list %>
+              <% end %>
             </p>
           </div>
           <div class="film-details-item">
@@ -156,7 +165,7 @@
           <% starring_actors.take(15).each do |actor| %>
             <div class="cast-member">
               <div class="cast-centered">
-                <%= image_tag("icons/placeholder_actor.svg", size: 48, class:"cast-icon") %>
+                <%= image_tag("https://image.tmdb.org/t/p/w48#{actor.photo_url}", size: 48, class:"cast-icon") %>
                 <p>
                   <% actor_name = Actor.find(actor.actor_id).name %>
                   <!-- If actor is known by just one name, print the name as-is -->
@@ -193,6 +202,8 @@
 <!--       if your number_of_buttons is 3, you can remove all lines starting with 'third_button' -->
 
 <!-- IMPORTANT: if YOUR_INPUT_HERE is surrounded by quotes, you must include them in your local -->
+<!--            input for the button_method must be a symbol (e.g., :get) -->
+<!--            even if your link method is 'get', you MUST specify :get for the partial to work -->
 
 <!--
 
@@ -201,8 +212,10 @@
   movie_director: @current_suggestion.first.movie.director,
   starring_actors: @current_suggestion.first.movie.starring_actors,
 
+
   # NOTE: if the number_of_buttons you specify is 2 or 3, you can delete the lines for buttons you don't need
   # e.g., if you need only two buttons, you can delete all lines that start with "third_button" and "fourth_button"
+
   number_of_buttons: YOUR_INPUT_HERE,
   multiple_cards: YOUR_INPUT_HERE,
 
@@ -210,6 +223,7 @@
   first_button_image: "YOUR_INPUT_HERE",
   first_button_class: "YOUR_INPUT_HERE",
   first_button_label: "YOUR_INPUT_HERE",
+  first_button_method: YOUR_INPUT HERE
 
   second_button_path: YOUR_INPUT_HERE,
   second_button_image: "YOUR_INPUT_HERE",
