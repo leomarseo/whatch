@@ -16,6 +16,4 @@ document.addEventListener('turbolinks:load', () => {
 
 searchFilters();
 autocompleteWrapper();
-
 achievements();
-
