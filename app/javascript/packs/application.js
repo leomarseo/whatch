@@ -1,3 +1,6 @@
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
+
 require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
