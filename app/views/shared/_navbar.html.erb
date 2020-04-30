@@ -47,16 +47,16 @@
         </li>
         <li class=" whatch-nav-item dropdown">
           <% if current_url.include?("/profile") ||  current_url.include?("/users/edit")%>
-          <%= link_to "Profile", "/profile", class: "whatch-nav-link whatch-nav-item-active dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%= link_to "Profile", "/profile", class: "whatch-nav-item-active dropdown-toggle  whatch-nav-link", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Profile", "/profile", class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            <%= link_to "View Profile", "/profile", class: "dropdown-item whatch-dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item whatch-dropdown-item" %>
           </div>
           <% else %>
           <%= link_to "Profile", "/profile", class: "whatch-nav-link dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Profile", "/profile", class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            <%= link_to "View Profile", "/profile", class: "dropdown-item whatch-dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item whatch-dropdown-item" %>
           <% end %>
       <% else %>
         <li class="nav-item whatch-nav-item">
