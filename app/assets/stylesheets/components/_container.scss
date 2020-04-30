@@ -7,13 +7,9 @@
 }
 
 .achievements-container {
-  // width: 70%;
-  // margin: 100px auto;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   flex-wrap: wrap;
-  align-content: flex-start;
 }
 
 .form-container {
@@ -36,7 +32,7 @@
 
 .scroll {
   background: rgba(0, 0, 0, 0);
-  height: 880px;
+  height: 720px;
   border-radius: 16px;
   overflow-x: auto;
 }
