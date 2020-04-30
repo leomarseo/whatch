@@ -31,18 +31,26 @@
   color: white;
   border: none;
   padding: 8px 24px;
+  border: 2px solid rgba(0, 0, 0, 0); //This border prevents the div to become bigger when you click
+  transition: 0.3s;
+  &:focus {
+    outline: none; //On Chrome when you select one this button, appears an orange ugly border. This line of code delete it
+  }
 }
 
 .achievement-buttons {
-  margin-bottom: 64px;
-
   ul {
     padding-left: 0;
+    margin-bottom: 64px;
   }
 
   li {
     display: inline;
+    border-radius: 48px;
   }
 }
 
+.border-selection {
+  border: 2px solid $cyan;
+}
 

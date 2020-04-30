@@ -1,7 +1,5 @@
 <div class="main-achievements-container">
 
-  <h1>Achievements</h1>
-
 
   <div class="achievement-buttons">
     <ul>
@@ -38,7 +36,7 @@
       </div>
     </div>
 
-    <div class="scroll" id="2">
+    <div class="scroll hidden" id="2">
       <div class="achievements-container">
         <% @achievements.where(difficulty: "collection").each do |achievement| %>
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
@@ -58,7 +56,7 @@
       </div>
     </div>
 
-    <div class="scroll" id="3">
+    <div class="scroll hidden" id="3">
       <div class="achievements-container">
         <% @achievements.where(difficulty: "genre").each do |achievement| %>
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
@@ -78,7 +76,7 @@
       </div>
     </div>
 
-    <div class="scroll" id="4">
+    <div class="scroll hidden" id="4">
       <div class="achievements-container">
         <% @achievements.where(difficulty: "hours and queries").each do |achievement| %>
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
@@ -98,7 +96,7 @@
       </div>
     </div>
 
-    <div class="scroll" id="5">
+    <div class="scroll hidden" id="5">
       <div class="achievements-container">
         <% @achievements.where(difficulty: "other").each do |achievement| %>
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
@@ -118,7 +116,7 @@
       </div>
     </div>
 
-    <div class="scroll" id="6">
+    <div class="scroll hidden" id="6">
       <div class="achievements-container">
         <% @achievements.where(difficulty: "special").each do |achievement| %>
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
@@ -138,7 +136,7 @@
       </div>
     </div>
 
-    <div class="scroll" id="7">
+    <div class="scroll hidden" id="7">
       <div class="achievements-container">
         <% @achievements.each do |achievement| %>
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
@@ -162,3 +160,10 @@
 
 
 </div>
+
+
+<!-- <script>
+  window.onload = function() {
+    var input = document.getElementById("button-1").focus();
+  }
+</script> -->
