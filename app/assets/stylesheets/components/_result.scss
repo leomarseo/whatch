@@ -46,8 +46,8 @@
 
 .single-result {
   img {
-    width: 312px;
-    height: 468px;
+    width: 240px;
+    height: 360px;
     position: absolute;
     z-index: 1;
     top: 8px;
@@ -56,7 +56,7 @@
     border-color: white;
     border-width: 2px;
   }
-  &.large {
+  &.poster-large {
     img {
       width: 288px;
       height: 432px;
