@@ -6,6 +6,7 @@ class AchievementsController < ApplicationController
   def index
     @achievements = Achievement.all
     @joint_achievements = current_user.joint_achievements
+    @types = ["number", "collection", "genre", "hours and queries", "other", "special"]
   end
 
   #VISUALISATIONS

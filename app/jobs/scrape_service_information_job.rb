@@ -6,7 +6,7 @@ class ScrapeServiceInformationJob < ApplicationJob
 
   def perform(amount, starting)
     Movie.order(id: :asc).limit(amount).offset(starting).each do |movie|
-      url = "https://www.themoviedb.org/movie/#{movie.tmdb_id}?language=it-IT"
+      url = "https://www.themoviedb.org/movie/#{movie.tmdb_id}/watch?language=it-IT"
       html_file = open(url).read
       html_doc = Nokogiri::HTML(html_file)
 

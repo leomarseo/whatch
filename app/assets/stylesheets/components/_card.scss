@@ -8,40 +8,22 @@
   margin:20px;
   background: rgba(0, 0, 0, 0.33);
   color: white;
+
+  border-radius: 16px;
+  text-align: center;
+  h3 {
+    margin: 32px 16px;
+    font-weight: 500;
+  }
+  p {
+    margin: 32px 16px;
+  }
+}
+
+.not-earned {
   opacity: 60%;
-  border-radius: 16px;
-  text-align: center;
-  h3 {
-    margin: 32px 16px;
-    font-weight: 500;
-  }
-  p {
-    margin: 32px 16px;
-  }
-
 }
 
-.achievement-card-earned {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 264px;
-  height: 312px;
-  margin:20px;
-  background: rgba(0, 0, 0, 0.33);
-  color: white;
-  border-radius: 16px;
-  text-align: center;
-  h3 {
-    margin: 32px 16px;
-    font-size: 20px;
-    font-weight: 500;
-  }
-  p {
-    margin: 32px 16px;
-  }
-}
 
 .profile-card {
   margin: 32px 0;

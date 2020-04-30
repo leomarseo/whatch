@@ -15,23 +15,23 @@ class PagesController < ApplicationController
       end
     end
 
-    directors = Director.pluck(:name, :photo_url)
+    directors = Director.order(popularity: :desc).pluck(:name, :photo_url)
     @directors_names = []
     @directors_photos = []
     directors.each do |director|
       @directors_names << director.first
       if director.last.nil?
-        @directors_photos << 'director_placeholder'
+        @directors_photos << 'placeholder'
       else
         @directors_photos << director.last
       end
     end
 
-    genres = Genre.pluck(:name, :tmdb_id)
+    genres = Genre.order(name: :asc).pluck(:name)
     @genres_names = []
     @genres_photos = []
     genres.each do |genre|
-      @genres_names << genre.first
+      @genres_names << genre
       @genres_photos << 'genre_placeholder'
     end
   end

@@ -1,10 +1,19 @@
-.achievements-container {
+.mainach-container {
   width: 70%;
   margin: 100px auto;
+  h1 {
+    margin-bottom: 64px;
+  }
+}
+
+.achievements-container {
+  // width: 70%;
+  // margin: 100px auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
+  align-content: flex-start;
 }
 
 .form-container {
@@ -23,5 +32,31 @@
 
 .delete-account-container {
   margin: 32px 0;
+}
+
+.scroll {
+  background: rgba(0, 0, 0, 0);
+  height: 880px;
+  border-radius: 16px;
+  overflow-x: auto;
+}
+
+.buttons {
+  margin-bottom: 64px;
+  li {
+    display: inline;
+    padding: 8px 16px;
+    color: white;
+    background: $light-gray;
+  }
+  a {
+    border-radius: 8px;
+    color: white;
+
+    &:hover {
+      color:white;
+      text-decoration: none;
+    }
+  }
 }
 
