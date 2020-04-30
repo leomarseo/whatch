@@ -15,7 +15,7 @@ class DownloadSingleMovieJob < ApplicationJob
       movie_details = JSON.parse(url_details)
 
       # creates movie by extracting information from API response
-      Movie.create(
+      movie = Movie.create(
         tmdb_id: id,
         title: movie_details['title'],
         original_title: movie_details['original_title'],
@@ -36,6 +36,25 @@ class DownloadSingleMovieJob < ApplicationJob
           genre: Genre.find_by(tmdb_id: genre['id']),
           movie: Movie.find_by(tmdb_id: id)
           )
+      end
+
+
+      begin
+        url_videos = open("https://api.themoviedb.org/3/movie/#{id}/videos?api_key=81c398dbb6b994e4f815e69325c4893c&language=en-US").read
+      rescue OpenURI::HTTPError
+        return
+      else
+
+        video_details = JSON.parse(url_videos)
+
+        unless video_details['results'] == []
+          site = video_details['results'].first['site']
+          if site == 'YouTube'
+            youtube_url = "https://www.youtube.com/watch?v=#{video_details['results'].first['key']}"
+            movie.update(trailer_url: youtube_url)
+          end
+        end
+
       end
 
       begin
@@ -61,7 +80,7 @@ class DownloadSingleMovieJob < ApplicationJob
           end
 
           # assigns newly created director to previously created movie, replacing placeholder
-          Movie.find_by(tmdb_id: id).update(director: Director.find_by(tmdb_id: crew_member['id']))
+          movie.update(director: Director.find_by(tmdb_id: crew_member['id']))
         end
         # /DIRECTORS GENERATOR #################################################################################
 
