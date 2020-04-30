@@ -41,8 +41,9 @@ class PagesController < ApplicationController
 
   def confirmation
     @movie = Movie.find(params[:movie_id])
-    current_suggestion = Suggestion.find_by(movie: @movie)
-    @current_suggestion = [current_suggestion]
+    saved_movie = current_user.saved_movies.find_by(movie_id: @movie.id)
+    suggestion = current_user.tmdb_suggestions.last.suggestions.find_by(movie_id: @movie.id)
+    saved_movie ? @current_suggestion = [saved_movie] : @current_suggestion = [suggestion]
   end
 
   def after_confirmation

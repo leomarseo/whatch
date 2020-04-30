@@ -1,38 +1,46 @@
 <!-- render partial with the result show -->
 <!-- define locals used in partial -->
-<%= render layout:"layouts/result_show", locals: {
-  current_suggestion: @current_suggestion,
-  second_suggestion: @second_suggestion,
-  movie_director: @current_suggestion.first.movie.director,
-  starring_actors: @current_suggestion.first.movie.starring_actors,
+<% if @current_suggestion == [nil] || @current_suggestion == [] %>
+  <p>You finished your suggestions</p>
+<% else %>
 
-  # NOTE: if the number_of_buttons you specify is 2 or 3, you can delete the lines for buttons you don't need
-  # e.g., if you need only two buttons, you can delete all lines that start with "third_button" and "fourth_button"
-  number_of_buttons: 4,
-  multiple_cards: true,
+  <% @second_suggestion == [] ? multiple_cards = false : multiple_cards = true %>
 
-  first_button_path: pass_suggestion_path(suggestion_id: @current_suggestion.first.id),
-  first_button_image: "icons/pass_action.svg",
-  first_button_class: "pass-action",
-  first_button_label: "pass",
-  first_button_method: :get,
+  <%= render layout:"layouts/result_show", locals: {
+    current_suggestion: @current_suggestion,
+    second_suggestion: @second_suggestion,
+    movie_director: @current_suggestion.first.movie.director,
+    starring_actors: @current_suggestion.first.movie.starring_actors,
 
-  second_button_path: already_seen_path(suggestion_id: @current_suggestion.first.id),
-  second_button_image: "icons/seen_action.svg",
-  second_button_class: "seen-action",
-  second_button_label: "seen",
-  second_button_method: :get,
+    # NOTE: if the number_of_buttons you specify is 2 or 3, you can delete the lines for buttons you don't need
+    # e.g., if you need only two buttons, you can delete all lines that start with "third_button" and "fourth_button"
+    number_of_buttons: 4,
+    multiple_cards: multiple_cards,
 
-  third_button_path: move_to_later_path(suggestion_id: @current_suggestion.first.id),
-  third_button_image: "icons/save_action.svg",
-  third_button_class: "save-action",
-  third_button_label: "save",
-  third_button_method: :get,
+    first_button_path: pass_suggestion_path(suggestion_id: @current_suggestion.first.id),
+    first_button_image: "icons/pass_action.svg",
+    first_button_class: "pass-action",
+    first_button_label: "pass",
+    first_button_method: :get,
 
-  fourth_button_path: confirmation_path(movie_id: @current_suggestion.first.movie_id),
-  fourth_button_image: "icons/watch_action.svg",
-  fourth_button_class: "watch_action",
-  fourth_button_label: "watch",
-  fourth_button_method: :get,
-  } do %>
+    second_button_path: already_seen_path(suggestion_id: @current_suggestion.first.id),
+    second_button_image: "icons/seen_action.svg",
+    second_button_class: "seen-action",
+    second_button_label: "seen",
+    second_button_method: :get,
+
+    third_button_path: move_to_later_path(suggestion_id: @current_suggestion.first.id),
+    third_button_image: "icons/save_action.svg",
+    third_button_class: "save-action",
+    third_button_label: "save",
+    third_button_method: :get,
+
+    fourth_button_path: confirmation_path(movie_id: @current_suggestion.first.movie_id),
+    fourth_button_image: "icons/watch_action.svg",
+    fourth_button_class: "watch_action",
+    fourth_button_label: "watch",
+    fourth_button_method: :get,
+    } do %>
+  <% end %>
+
 <% end %>
