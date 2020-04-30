@@ -133,7 +133,7 @@ JointAchievement.create(user_id: 2, achievement_id: 18, earned: true )
 JointAchievement.create(user_id: 2, achievement_id: 22, earned: true )
 JointAchievement.create(user_id: 2, achievement_id: 23, earned: true )
 
-Movie.create(title: "Il mio film", trailer_url: "https://www.youtube.com/watch?v=y_lYoENIffI", director_id: 1)
+
 
 
 
