@@ -33,3 +33,14 @@
   background-color: rgba(0, 0, 0, .5);
   border-radius: 8px !important;
 }
+
+.whatch-nav-item :hover {
+  background-color: rgba(0, 0, 0, .2);
+  border-radius: 8px !important;
+
+}
+
+.whatch-nav-item {
+  transition: 0.3s;
+}
+

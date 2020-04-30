@@ -1,5 +1,5 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-whatch">
-  <%= link_to "#", class: "navbar-brand" do %>
+  <%= link_to "/", class: "navbar-brand" do %>
     <%= image_tag "logo_white.svg" %>
   <% end %>
 
@@ -8,7 +8,8 @@
   </button>
 
 
-<!-- to do: add the proper links in place of "#" -->
+  <!-- this stores the current relative url for highlighting the navbar buttons accordingly -->
+  <% current_url = request.fullpath %>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="nav nav-pills">
       <% if user_signed_in? %>
@@ -20,7 +21,10 @@
           <% end %>
         </li>
         <li class="nav-item whatch-nav-item">
-          <% if current_page?("/history") %>
+          <!-- the method below is currently working for highlighting the current view on the navbar buttons -->
+          <% if current_url.include?("/history")%>
+          <%= link_to "History", "/history", class: "nav-link whatch-nav-item-active" %>
+          <% elsif  current_url.include?("/history/movie/#{Integer}")%>
           <%= link_to "History", "/history", class: "nav-link whatch-nav-item-active" %>
           <% else %>
           <%= link_to "History", "/history", class: "nav-link" %>
@@ -42,7 +46,7 @@
           <% end %>
         </li>
         <li class="nav-item  whatch-nav-item">
-          <% if current_page?("/profile") %>
+          <% if current_url.include?("/profile") ||  current_url.include?("/users/edit")%>
           <%= link_to "Profile", "/profile", class: "nav-link whatch-nav-item-active" %>
           <% else %>
           <%= link_to "Profile", "/profile", class: "nav-link" %>
