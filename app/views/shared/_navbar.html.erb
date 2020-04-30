@@ -15,45 +15,52 @@
       <% if user_signed_in? %>
         <li class="nav-item whatch-nav-item">
           <% if current_page?("/") || current_page?("/results") || current_page?("/pages") %>
-          <%= link_to "Watch Now", "/", class: "nav-link whatch-nav-item-active" %>
+          <%= link_to "Watch Now", "/", class: "whatch-nav-link whatch-nav-item-active" %>
           <% else %>
-          <%= link_to "Watch Now", "/", class: "nav-link" %>
+          <%= link_to "Watch Now", "/", class: "whatch-nav-link" %>
           <% end %>
         </li>
         <li class="nav-item whatch-nav-item">
-          <!-- the method below is currently working for highlighting the current view on the navbar buttons -->
+          <!-- the method below is currently working for highlighting the current view on the history navbar buttons -->
           <% if current_url.include?("/history")%>
-          <%= link_to "History", "/history", class: "nav-link whatch-nav-item-active" %>
+          <%= link_to "History", "/history", class: "whatch-nav-link whatch-nav-item-active" %>
           <% elsif  current_url.include?("/history/movie/#{Integer}")%>
-          <%= link_to "History", "/history", class: "nav-link whatch-nav-item-active" %>
+          <%= link_to "History", "/history", class: "whatch-nav-link whatch-nav-item-active" %>
           <% else %>
-          <%= link_to "History", "/history", class: "nav-link" %>
+          <%= link_to "History", "/history", class: "whatch-nav-link" %>
           <% end %>
         </li>
         <li class="nav-item whatch-nav-item">
           <% if current_page?("/achievements") %>
-          <%= link_to "Achievements", "/achievements", class: "nav-link whatch-nav-item-active" %>
+          <%= link_to "Achievements", "/achievements", class: "whatch-nav-link whatch-nav-item-active" %>
           <% else %>
-          <%= link_to "Achievements", "/achievements", class: "nav-link" %>
+          <%= link_to "Achievements", "/achievements", class: "whatch-nav-link" %>
           <% end %>
         </li>
         <!-- IMPORTANT: remember to insert the proper path below -->
         <li class="nav-item whatch-nav-item">
           <% if current_page?("/saved") %>
-          <%= link_to "Saved", saved_movie_path, class: "nav-link whatch-nav-item-active" %>
+          <%= link_to "Saved", saved_movie_path, class: "whatch-nav-link whatch-nav-item-active" %>
           <% else %>
-          <%= link_to "Saved", saved_movie_path, class: "nav-link" %>
+          <%= link_to "Saved", saved_movie_path, class: "whatch-nav-link" %>
           <% end %>
         </li>
-        <li class="nav-item  whatch-nav-item">
+        <li class=" whatch-nav-item dropdown">
           <% if current_url.include?("/profile") ||  current_url.include?("/users/edit")%>
-          <%= link_to "Profile", "/profile", class: "nav-link whatch-nav-item-active" %>
+          <%= link_to "Profile", "/profile", class: "whatch-nav-link whatch-nav-item-active dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "Profile", "/profile", class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
           <% else %>
-          <%= link_to "Profile", "/profile", class: "nav-link" %>
+          <%= link_to "Profile", "/profile", class: "whatch-nav-link dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "Profile", "/profile", class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           <% end %>
       <% else %>
         <li class="nav-item whatch-nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link whatch-nav-item" %>
+          <%= link_to "Login", new_user_session_path, class: "whatch-nav-link whatch-nav-item" %>
         </li>
       <% end %>
     </ul>

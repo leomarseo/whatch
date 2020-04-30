@@ -27,10 +27,11 @@
   color: white;
   font-size: 14px;
   font-weight: bold;
+  text-decoration: none !important;
 }
 
 .whatch-nav-item-active {
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, .5) !important;
   border-radius: 8px !important;
 }
 
@@ -44,3 +45,50 @@
   transition: 0.3s;
 }
 
+// .nav-link {
+//   background-color: rgba(0, 0, 0, .5) !important;
+//   border-radius: 8px !important;
+// }
+
+.whatch-nav-link {
+  // background-color: rgba(0, 0, 0, .5) !important;
+  border-radius: 8px !important;
+  padding: 0.8em 1em;
+}
+
+// .nav-link :hover {
+//   // background-color: rgba(0, 0, 0, .5) !important;
+//   border-radius: 8px !important;
+// }
+
+.whatch-nav-link :hover {
+  border-radius: 8px !important;
+  text-decoration: none !important;
+}
+
+.whatch-nav-link a {
+  border-radius: 8px !important;
+  text-decoration: none !important;
+}
+
+
+.dropdown-menu {
+  background-color: rgba(0, 0, 0, .2) !important;
+  border-radius: 8px !important;
+  margin: 0.8em 0px 0px 0px;
+  text-align: center;
+  min-width: 6rem;
+
+
+}
+
+.whatch-dropdown-menu {
+  background-color: rgba(0, 0, 0, .5) !important;
+  border-radius: 8px !important;
+
+}
+.dropdown-item {
+  color: white !important;
+  background-color: transparent !important;
+  border-radius: 8px !important;
+}
