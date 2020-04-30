@@ -54,3 +54,12 @@
   border: 2px solid $cyan;
 }
 
+.play-button{
+  font-size: 36px;
+  color: rgba(255, 255, 255, 0.5);
+  z-index: 999;
+  position: absolute;
+  top: 18px;
+  right: 18px;
+}
+

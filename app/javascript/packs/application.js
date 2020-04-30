@@ -14,6 +14,8 @@ document.addEventListener('turbolinks:load', () => {
   // myCustomJS();
 });
 
-// searchFilters();
-// autocompleteWrapper();
-achievements();
+if (document.getElementById('selection-wrapper')) {
+  searchFilters();
+  autocompleteWrapper();
+}
+if (document.getElementById('all-achievements')) {achievements();}
