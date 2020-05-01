@@ -2,7 +2,7 @@
 
 class AchievementsController < ApplicationController
   before_action :set_variables
-  before_action :achievement_loop_visualisation, :achievement_loop_hours, :achievement_loop_documentary, :achievement_loop_number_queries, :achievement_loop_western, only: [:index]
+  before_action :achievement_loop_visualisation, only: [:index]
 
   def index
     @achievements = Achievement.all
