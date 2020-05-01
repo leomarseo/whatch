@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
   # home route
-  root to: 'pages#home'
+  root to: 'pages#landing'
 
   get '/profile', to: 'pages#profile'
 
@@ -45,6 +45,7 @@ Rails.application.routes.draw do
 
   # pass, later and seen buttons won't trigger a new route, they will trigger only different methods that will
   # be activated based on the JS button listener. These methods will be created in the suggestions controller
+  get '/pages/home', to: 'pages#home', as: 'home'
   get '/pages/:movie_id/confirmation', to: 'pages#confirmation', as: 'confirmation'
   get '/pages/after_confirmation', to: 'pages#after_confirmation', as: 'after_confirmation'
 end

@@ -14,10 +14,10 @@
     <ul class="nav nav-pills">
       <% if user_signed_in? %>
         <li class="nav-item whatch-nav-item">
-          <% if current_page?("/") || current_page?("/results") || current_page?("/pages") %>
-          <%= link_to "Watch Now", "/", class: "whatch-nav-link whatch-nav-item-active" %>
+          <% if current_page?("/pages/home") || current_page?("/results") || current_page?("/pages") %>
+          <%= link_to "Watch Now", "/pages/home", class: "whatch-nav-link whatch-nav-item-active" %>
           <% else %>
-          <%= link_to "Watch Now", "/", class: "whatch-nav-link" %>
+          <%= link_to "Watch Now", "/pages/home", class: "whatch-nav-link" %>
           <% end %>
         </li>
         <li class="nav-item whatch-nav-item">
