@@ -16,3 +16,15 @@
   transition: 0.3s;
 }
 
+.whatch-badge-icon-like {
+  background: url("/assets/icons/liked_hover.svg");
+  background-repeat: no-repeat;
+}
+
+.whatch-badge-icon-dislike {
+  background: url("/assets/icons/disliked_hover.svg");
+  background-repeat: no-repeat;
+}
+.whatch-badge-icon-empty {
+  border-color: transparent;
+}
