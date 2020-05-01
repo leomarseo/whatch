@@ -1,6 +1,6 @@
 <div class="row movie-poster-container">
   <% @seen_movies.each do |saved_movie| %>
-    <div class="col-3">
+    <div class="col-3 movie-card-opacity-animation">
         <div class="thumbs-up-badge">
           <% if saved_movie.user_rating == 1 %>
           <%= tag.div class: %w( img-responsive badge-icon whatch-badge-icon-like ) %>

@@ -61,21 +61,31 @@ class SavedMoviesController < ApplicationController
     @current_rating = @current_movie.first.user_rating
 
     @rating = rating_icon
+    # @rating_dislike = rating_icon_dislike
   end
 
   def rating_icon
     if @current_rating == 1
-      return "icons/liked.svg"
-    elsif @current_rating == 0
       return "icons/disliked.svg"
     else
-      return "icons/placeholder_actor.svg"
+      return "icons/liked.svg"
     end
 
   end
 
+  # def rating_icon_dislike
+  #   if @current_rating == 0
+  #     return "icons/disliked_hover.svg"
+  #   else
+  #     return "icons/disliked.svg"
+  #   end
+
+  # end
+
   def history_update
     @saved_movie = SavedMovie.find(params[:id])
+
+    # legacy: makes a button behave like a switch to change the rating of a given movie
     @saved_movie.user_rating == 1 ? @saved_movie.update(user_rating: 0) : @saved_movie.update(user_rating: 1)
     redirect_to history_show_path(@saved_movie)
   end
