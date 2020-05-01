@@ -33,9 +33,10 @@
   img {
     width: 240px;
     height: 360px;
+    opacity: 0.5;
     position: absolute;
     z-index: 0;
-    top: 10px;
+    top: 6px;
     left: 6px;
     transform:rotate(-2deg);
     border-style: solid;

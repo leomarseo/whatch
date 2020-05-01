@@ -1,0 +1,36 @@
+.landing-container {
+  padding-top: 128px;
+  height: 100vh;
+  position: relative;
+}
+
+.landing-left {
+
+}
+
+.landing-posters {
+  background: url(image_path('backgrounds/posters_layout.png'));
+  background-size: cover;
+  width: 75%;
+  height: 75vh;
+  background-position: right top;
+}
+
+.landing-right {
+  position: absolute;
+  top: 128px;
+  right: 72px;
+  width: 30vw;
+  h1 {
+    font-weight: 800;
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  p {
+    font-size: 14px;
+  }
+}
+
+.get-started-button {
+  text-align: left;
+}
