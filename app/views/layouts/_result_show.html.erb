@@ -18,7 +18,7 @@
         <div class="first-result">
           <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}" %>
           <% unless current_suggestion.first.movie.trailer_url.nil? %>
-            <span style="cursor: pointer;" id="trailer-button" class="play-button">&#9658;</span style="cursor: pointer;">
+            <span style="cursor: pointer;" id="trailer-button" class="play-button"><i class="far fa-play-circle"></i></span>
           <% end %>
         </div>
         <div class="second-result">
@@ -26,7 +26,7 @@
           <% if !second_suggestion.first.movie.photo_url.nil? %>
             <%= image_tag "https://image.tmdb.org/t/p/w300/#{second_suggestion.first.movie.photo_url}" %>
             <% unless current_suggestion.first.movie.trailer_url.nil? %>
-              <span style="cursor: pointer;" id="trailer-button" class="play-button">&#9658;</span style="cursor: pointer;">
+              <span style="cursor: pointer;" id="trailer-button" class="play-button"><i class="far fa-play-circle"></i></span>
             <% end %>
           <% end %>
         </div>
@@ -35,7 +35,7 @@
         <div class="single-result">
           <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}" %>
           <% unless current_suggestion.first.movie.trailer_url.nil? %>
-            <span style="cursor: pointer;" id="trailer-button" class="play-button">&#9658;</span style="cursor: pointer;">
+            <span style="cursor: pointer;" id="trailer-button" class="play-button"><i class="far fa-play-circle"></i></span>
           <% end %>
         </div>
       <!-- logic for handling one card WITHOUT buttons -->
@@ -43,7 +43,7 @@
         <div class="single-result poster-large">
           <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}" %>
           <% unless current_suggestion.first.movie.trailer_url.nil? %>
-            <span style="cursor: pointer;" id="trailer-button" class="play-button">&#9658;</span style="cursor: pointer;">
+            <span style="cursor: pointer;" id="trailer-button" class="play-button"><i class="far fa-play-circle"></i></span>
           <% end %>
         </div>
       <% end %>

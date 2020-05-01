@@ -4,8 +4,7 @@ const trailer = () => {
   console.log(button)
 
   button.addEventListener('click', (event) => {
-
-    console.log('dkfjngdkjn')
+    console.log(event);
     document.querySelector('.youtube-modal').style.display="block";
   });
 
