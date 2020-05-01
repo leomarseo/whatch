@@ -4,16 +4,15 @@
   padding-left: 50px;
   padding-right: 50px;
   padding-top: 50px;
+  h3 {
+    color: white;
+    padding-top: 64px;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: center;
+  }
 }
 
-.movie-poster-small h3 {
-  color: white;
-  padding-top: 64px;
-  padding-left: 8px;
-  padding-right: 8px;
-  text-align: center;
-
-}
 .movie-poster-placeholder {
   width: 200px;
   height: 300px;
@@ -65,6 +64,10 @@ position: absolute;
 
 .movie-poster-container {
 
+}
+
+.history-container {
+  padding: 36px 12vw;
 }
 
 .movie-poster-image {
