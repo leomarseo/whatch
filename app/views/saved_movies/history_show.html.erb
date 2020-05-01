@@ -1,6 +1,10 @@
 <!-- render partial with the result show -->
 <!-- define locals used in partial -->
 <%= render layout:"layouts/result_show", locals: {
+  queried_actors: [],
+  queried_directors: [],
+  queried_genres: [],
+
   current_suggestion: @current_movie,
   movie_director: @current_movie[0].movie.director,
   starring_actors: @current_movie[0].movie.starring_actors,

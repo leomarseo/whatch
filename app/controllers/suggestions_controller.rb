@@ -6,7 +6,7 @@ class SuggestionsController < ApplicationController
   def show
     # the show accepts a parameter from the filters page
     # the @tmdb_suggestion declaration is temporary, until we successfully receive sample tmdb_suggestions
-
+    @query = current_user.queries.last
     @current_suggestion = []
     @second_suggestion = []
     @tmdb_suggestion = current_user.tmdb_suggestions.last.suggestions

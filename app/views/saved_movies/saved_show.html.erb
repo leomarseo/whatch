@@ -12,6 +12,10 @@
 <% elsif @multiple_movies %>
 
   <%= render layout:"layouts/result_show", locals: {
+    queried_actors: [],
+    queried_directors: [],
+    queried_genres: [],
+
     current_suggestion: @current_saved_movie,
     second_suggestion: @second_saved_movie,
     movie_director: @current_saved_movie.first.movie.director,
@@ -44,6 +48,10 @@
 
 <% else %>
   <%= render layout:"layouts/result_show", locals: {
+    queried_actors: [],
+    queried_directors: [],
+    queried_genres: [],
+
     current_suggestion: @current_saved_movie,
     movie_director: @current_saved_movie.first.movie.director,
     starring_actors: @current_saved_movie.first.movie.starring_actors,
