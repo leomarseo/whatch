@@ -29,7 +29,7 @@ const autocompleteWrapper = function() {
   const renderItem = function (item, search) {
       let image;
       if (item.photo === 'placeholder') {
-        image = '<img src="avatar.svg" style="width: 40px;">';
+        image = '<img src="../avatar.svg" style="width: 40px;">';
       } else {
         image = `<img src="https://image.tmdb.org/t/p/w200${item.photo}" style="width: 40px; height: 60px;">`;
       };
