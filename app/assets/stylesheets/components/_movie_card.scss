@@ -39,6 +39,29 @@
 .thumbs-up-badge {
   position: relative;
 }
+.small-rating-badge > div {
+position: absolute;
+    z-index: 10;
+    top: -8px;
+      animation: roll-in-left 0.2s ease-out both;
+  }
+
+
+
+@keyframes roll-in-left {
+  0% {
+    // -webkit-transform: translateX(-250px) rotate(-540deg) scale(0.5);
+            // transform: translateX(-250px) rotate(-540deg) scale(0.5);
+    opacity: 0.5;
+    transform: scale(0.5);
+  }
+  100% {
+    // -webkit-transform: translateX(0) rotate(0deg) scale(1.5);
+            // transform: translateX(0) rotate(0deg) scale(1.5);
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
 
 .movie-poster-container {
   margin-right: 64px;
@@ -54,3 +77,24 @@
     object-position: center;
 }
 
+.movie-card-opacity-animation {
+          animation: slit-in-vertical 0.2s ease-out both;
+}
+
+
+@keyframes slit-in-vertical {
+  0% {
+    // -webkit-transform: translateZ(-800px) rotateY(90deg);
+            // transform: translateZ(-800px) rotateY(90deg);
+    opacity: 0;
+  }
+  54% {
+    // -webkit-transform: translateZ(-160px) rotateY(87deg);
+            // transform: translateZ(-160px) rotateY(87deg);
+  }
+  100% {
+    // -webkit-transform: translateZ(0) rotateY(0);
+            // transform: translateZ(0) rotateY(0);
+    opacity: 1;
+  }
+}
