@@ -32,5 +32,10 @@
 }
 
 .get-started-button {
-  text-align: left;
+  a {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+  }
 }
