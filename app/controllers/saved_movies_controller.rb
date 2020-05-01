@@ -26,10 +26,13 @@ class SavedMoviesController < ApplicationController
         end
       end
 
+      if @second_saved_movie == []
+        @second_saved_movie = [@saved_movies.second]
+      end
+
       # this loop resets the situation when we reached the last suggestions
       if @current_saved_movie == []
         @current_saved_movie << @saved_movies.first
-        @second_saved_movie << @saved_movies.second
         @saved_movies.each do |saved_movie|
           saved_movie.update(skip: false)
         end
