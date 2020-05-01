@@ -10,6 +10,7 @@ import { searchFilters } from './searchfilters.js';
 import { autocompleteWrapper } from './autocomplete.js';
 import { achievements } from './achievements.js';
 import "bootstrap";
+import { trailer } from './trailer.js';
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -20,5 +21,12 @@ document.addEventListener('turbolinks:load', () => {
 if (document.getElementById('selection-wrapper')) {
   searchFilters();
   autocompleteWrapper();
-}
-if (document.getElementById('all-achievements')) {achievements();}
+};
+
+if (document.getElementById('all-achievements')) {
+  achievements();
+};
+
+if (document.getElementById('trailer-button')) {
+  trailer();
+};

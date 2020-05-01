@@ -1,7 +1,6 @@
 
 const achievements = () => {
 
-  console.log("ciao");
   const button1 = document.getElementById('button-1');
   const button2 = document.getElementById('button-2');
   const button3 = document.getElementById('button-3');

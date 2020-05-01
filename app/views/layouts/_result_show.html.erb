@@ -18,7 +18,7 @@
         <div class="first-result">
           <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}" %>
           <% unless current_suggestion.first.movie.trailer_url.nil? %>
-            <a target="_blank" href=<%= current_suggestion.first.movie.trailer_url %>><i class="far fa-play-circle play-button"></i></a>
+            <span style="cursor: pointer;" id="trailer-button" class="play-button">&#9658;</span style="cursor: pointer;">
           <% end %>
         </div>
         <div class="second-result">
@@ -26,7 +26,7 @@
           <% if !second_suggestion.first.movie.photo_url.nil? %>
             <%= image_tag "https://image.tmdb.org/t/p/w300/#{second_suggestion.first.movie.photo_url}" %>
             <% unless current_suggestion.first.movie.trailer_url.nil? %>
-              <a target="_blank" href=<%= current_suggestion.first.movie.trailer_url %>><i class="far fa-play-circle play-button"></i></a>
+              <span style="cursor: pointer;" id="trailer-button" class="play-button">&#9658;</span style="cursor: pointer;">
             <% end %>
           <% end %>
         </div>
@@ -35,7 +35,7 @@
         <div class="single-result">
           <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}" %>
           <% unless current_suggestion.first.movie.trailer_url.nil? %>
-            <a target="_blank" href=<%= current_suggestion.first.movie.trailer_url %>><i class="far fa-play-circle play-button"></i></a>
+            <span style="cursor: pointer;" id="trailer-button" class="play-button">&#9658;</span style="cursor: pointer;">
           <% end %>
         </div>
       <!-- logic for handling one card WITHOUT buttons -->
@@ -43,7 +43,7 @@
         <div class="single-result poster-large">
           <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}" %>
           <% unless current_suggestion.first.movie.trailer_url.nil? %>
-            <a target="_blank" href=<%= current_suggestion.first.movie.trailer_url %>><i class="far fa-play-circle play-button"></i></a>
+            <span style="cursor: pointer;" id="trailer-button" class="play-button">&#9658;</span style="cursor: pointer;">
           <% end %>
         </div>
       <% end %>
@@ -206,8 +206,15 @@
     <div class="result-right-bottom">
     </div>
   </div> <!-- close result-right -->
-
 </div>
+
+
+<div class="youtube-modal"> <!-- CSS in /container.scss -->
+  <div class=" iframe-container">
+    <iframe src=<%= current_suggestion.first.movie.trailer_url.gsub("watch?v=", "embed/") %>></iframe>
+  </div>
+</div>
+
 
 
 <!-- include the following locals in your code if you use this partial -->
