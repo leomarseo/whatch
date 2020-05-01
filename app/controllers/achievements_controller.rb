@@ -26,7 +26,7 @@ class AchievementsController < ApplicationController
   def achievement_loop_number_queries
     @achievements = Achievement.where(category: "app")
     @achievements.each do |achievement|
-      if user.tmdb_suggestions.count > achievements.number && @joint_achievements.find_by(achievement_id: achievement.id).nil?
+      if current_user.tmdb_suggestions.count > achievement.number && @joint_achievements.find_by(achievement_id: achievement.id).nil?
         JointAchievement.create(user_id: current_user.id, achievement_id: achievement.id, earned: true)
       end
     end
@@ -134,7 +134,7 @@ class AchievementsController < ApplicationController
   def achievement_loop_nothing_watched
     @achievements = Achievement.where(category: "nothing_watched")
     @achievement.each do |achievement|
-      if user.tmdb_suggestions.count > 15 && @seen_movies.count == 0 && @joint_achievements.find_by(achivement_id: achievement.id).nil?
+      if current_user.tmdb_suggestions.count > 15 && @seen_movies.count == 0 && @joint_achievements.find_by(achivement_id: achievement.id).nil?
         JointAchievement.create(user_id: current_user.id, achievement_id: achievement.id, earned: true)
       end
     end

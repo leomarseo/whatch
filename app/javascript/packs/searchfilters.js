@@ -25,7 +25,9 @@ const searchFilters = () => {
     document.getElementById("genre-input").style.display = "none";
     document.getElementById("director-input").style.display = "none";
     document.getElementById("actor-input").style.display = "block";
-
+    actorSelectButton.classList.add('border-selection');
+    directorSelectButton.classList.remove('border-selection');
+    genreSelectButton.classList.remove('border-selection');
   });
 
   // DIRECTOR BUTTON WITH RELATED LISTENER
@@ -34,7 +36,9 @@ const searchFilters = () => {
     document.getElementById("actor-input").style.display = "none";
     document.getElementById("genre-input").style.display = "none";
     document.getElementById("director-input").style.display = "block";
-
+    directorSelectButton.classList.add('border-selection');
+    genreSelectButton.classList.remove('border-selection');
+    actorSelectButton.classList.remove('border-selection');
   });
 
   // GENRE BUTTON WITH RELATED LISTENER
@@ -43,7 +47,9 @@ const searchFilters = () => {
     document.getElementById("actor-input").style.display = "none";
     document.getElementById("director-input").style.display = "none";
     document.getElementById("genre-input").style.display = "block";
-
+    genreSelectButton.classList.add('border-selection');
+    directorSelectButton.classList.remove('border-selection');
+    actorSelectButton.classList.remove('border-selection');
   });
 
 
