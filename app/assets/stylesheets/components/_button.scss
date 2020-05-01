@@ -67,11 +67,27 @@
 }
 
 .play-button{
-  font-size: 36px;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 32px;
+  color: $light-gray;
   z-index: 999;
+  display: block;
+  padding: 8px;
+
   position: absolute;
-  top: 25px;
-  right: 12px;
+  top: 11%;
+  left: 87%;
+  transform: translate(-50%, -50%);
+
+  &:hover {
+    color: $cyan;
+  }
+}
+
+.x-button {
+  font-size: 32px;
+  top: -18px;
+  right: -13px;
+  color: white;
+  position: absolute;
 }
 

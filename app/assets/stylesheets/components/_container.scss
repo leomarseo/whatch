@@ -44,3 +44,31 @@
   display: none;
 }
 
+.youtube-modal {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  top: 0;
+}
+
+iframe {
+  height: 500px;
+  width: 1000px;
+  border-radius: 16px;
+}
+
+.iframe-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-x {
+  position: relative;
+}
+
