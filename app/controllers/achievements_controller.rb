@@ -2,6 +2,7 @@
 
 class AchievementsController < ApplicationController
   before_action :set_variables
+  before_action :achievement_loop_visualisation, :achievement_loop_hours, :achievement_loop_documentary, :achievement_loop_number_queries, :achievement_loop_western, only: [:index]
 
   def index
     @achievements = Achievement.all
@@ -36,7 +37,7 @@ class AchievementsController < ApplicationController
   def achievement_loop_hours
     @movies_total_runtime = 0
     @seen_movies.each do |seen_movie|
-      @movies_total_runtime += seen_movie.runtime
+      @movies_total_runtime += seen_movie.movie.runtime
     end
     @achievements = Achievement.where(category: "hours")
     @achievements.each do |achievement|
