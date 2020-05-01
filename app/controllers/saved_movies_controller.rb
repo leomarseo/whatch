@@ -66,9 +66,9 @@ class SavedMoviesController < ApplicationController
 
   def rating_icon
     if @current_rating == 1
-      return "icons/disliked.svg"
+      return "icons/disliked_hover.svg"
     else
-      return "icons/liked.svg"
+      return "icons/liked_hover.svg"
     end
 
   end
