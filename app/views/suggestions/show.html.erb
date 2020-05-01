@@ -4,9 +4,32 @@
   <p>You finished your suggestions</p>
 <% else %>
 
-  <% @second_suggestion == [] ? multiple_cards = false : multiple_cards = true %>
+  <% queried_actors = [] %>
+  <% queried_genres = [] %>
+  <% queried_directors = [] %>
+
+  <% if @query %>
+    <% @query.positive_actors_tmdb_ids.each do |actor_tmdb_id| %>
+      <% queried_actors << Actor.find_by(tmdb_id: actor_tmdb_id) %>
+    <% end %>
+
+    <% @query.positive_directors_tmdb_ids.each do |director_tmdb_id| %>
+      <% queried_directors << Director.find_by(tmdb_id: director_tmdb_id) %>
+    <% end %>
+
+    <% @query.positive_genres_tmdb_ids.each do |genre_tmdb_id| %>
+      <% queried_genres << Genre.find_by(tmdb_id: genre_tmdb_id) %>
+    <% end %>
+  <% end %>
+
+
+  <% multiple_cards = ((@second_suggestion == [] || @second_suggestion == [nil]) ? false : true) %>
 
   <%= render layout:"layouts/result_show", locals: {
+    queried_actors: queried_actors,
+    queried_directors: queried_directors,
+    queried_genres: queried_genres,
+
     current_suggestion: @current_suggestion,
     second_suggestion: @second_suggestion,
     movie_director: @current_suggestion.first.movie.director,

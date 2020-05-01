@@ -131,28 +131,40 @@
             <h2>
               Director
             </h2>
-            <p>
-              <%= movie_director.name %>
-            </p>
+
+            <% if queried_directors.include?(movie_director) %>
+              <p class="positive-query-text"><%= movie_director.name %></p>
+            <% else %>
+              <p><%= movie_director.name %></p>
+            <% end %>
+
           </div>
           <div class="film-details-item">
+
             <h2>
               Genre
             </h2>
-            <p>
               <!-- Iterate over genre -->
-              <% if current_suggestion.first.movie.genres.count == 1 %>
-                <%= current_suggestion.first.movie.genres.first.name %>
-              <% elsif current_suggestion.first.movie.genres.count > 1 %>
-                <% genre_list = "" %>
-                <% current_suggestion.first.movie.genres.each do |genre| %>
-                  <% genre_list += "#{genre.name}, " %>
+              <div style="display: flex;">
+                <% counter = 0 %>
+                <% current_suggestion.first.movie.genres.uniq.each do |genre| %>
+                  <% counter += 1 %>
+
+                  <% unless counter == 1 %>
+                    <p>,&nbsp;</p>
+                  <% end %>
+
+                  <% if queried_genres.include?(genre) %>
+                    <p class="positive-query-text"><%= genre.name %></p>
+                  <% else %>
+                    <p><%= genre.name %></p>
+                  <% end %>
                 <% end %>
-                <% genre_list = genre_list[0..-3] %>
-                <%= genre_list %>
-              <% end %>
-            </p>
+
+              </div>
+
           </div>
+
           <div class="film-details-item">
             <h2>
               Released
@@ -170,18 +182,23 @@
             </p>
           </div>
         </div>
+
         <h2>Cast</h2>
         <div class="film-cast">
-          <% starring_actors.take(15).each do |actor| %>
+
+          <% starring_actors.take(15).each do |starring_actor| %>
+            <% cast_icon = (queried_actors.include?(starring_actor.actor) ? "cast-icon queried" : cast_icon = "cast-icon") %>
             <div class="cast-member">
               <div class="cast-centered">
-                <% if actor.photo_url != nil %>
-                  <%= image_tag("https://image.tmdb.org/t/p/w500#{actor.photo_url}", size: 48, class:"cast-icon") %>
+                <% if starring_actor.photo_url != nil %>
+                  <%= image_tag("https://image.tmdb.org/t/p/w500#{starring_actor.photo_url}", size: 48, class: cast_icon) %>
+                <% elsif starring_actor.actor.photo_url != nil %>
+                  <%= image_tag("https://image.tmdb.org/t/p/w500#{starring_actor.actor.photo_url}", size: 48, class: cast_icon) %>
                 <% else %>
-                  <%= image_tag("icons/placeholder_actor.svg", size: 48, class:"cast-icon") %>
+                  <%= image_tag("icons/placeholder_actor.svg", size: 48, class: cast_icon) %>
                 <% end %>
                 <p>
-                  <% actor_name = Actor.find(actor.actor_id).name %>
+                  <% actor_name = starring_actor.actor.name %>
                   <!-- If actor is known by just one name, print the name as-is -->
                   <% if actor_name.index(" ").nil? %>
                     <%= actor_name %>
@@ -200,7 +217,10 @@
               </div>
             </div>
           <% end %>
+
         </div>
+
+
       </div>
       <% end %>
     <div class="result-right-bottom">
