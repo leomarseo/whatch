@@ -240,7 +240,9 @@
 <div class="youtube-modal"> <!-- CSS in /container.scss -->
   <div class=" iframe-container">
     <div class="video-x"> <!-- in order to position the x -->
-      <iframe src=<%= current_suggestion.first.movie.trailer_url.gsub("watch?v=", "embed/") %>></iframe>
+      <% unless current_suggestion.first.movie.trailer_url.nil? %>
+        <iframe src=<%= current_suggestion.first.movie.trailer_url.gsub("watch?v=", "embed/") %>></iframe>
+      <% end %>
       <span style="cursor: pointer;" class="x-button"><i class="far fa-times-circle"></i></span>
     </div>
   </div>
