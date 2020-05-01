@@ -68,16 +68,26 @@
 
 .play-button{
   font-size: 32px;
-  color: rgba(0, 0, 0, 0.5);
+  color: $light-gray;
   z-index: 999;
-  position: absolute;
-  top: 25px;
-  right: 12px;
   display: block;
   padding: 8px;
-  pointer-events: all;
+
+  position: absolute;
+  top: 11%;
+  left: 87%;
+  transform: translate(-50%, -50%);
+
   &:hover {
-    color: $light-gray;
+    color: $cyan;
   }
+}
+
+.x-button {
+  font-size: 32px;
+  top: -18px;
+  right: -13px;
+  color: white;
+  position: absolute;
 }
 
