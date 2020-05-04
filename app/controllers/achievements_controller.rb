@@ -37,11 +37,13 @@ class AchievementsController < ApplicationController
   def achievement_loop_hours
     @movies_total_runtime = 0
     @seen_movies.each do |seen_movie|
-      @movies_total_runtime += seen_movie.movie.runtime
+      unless seen_movie.movie.runtime.nil?
+        @movies_total_runtime += seen_movie.movie.runtime
+      end
     end
     @achievements = Achievement.where(category: "hours")
     @achievements.each do |achievement|
-      if @movies_total_runtime >= achievement.number && @joint_achievements.find_by(achivement_id: achievement.id).nil?
+      if @movies_total_runtime >= achievement.number && @joint_achievements.find_by(achievement_id: achievement.id).nil?
         JointAchievement.create(user_id: current_user.id, achievement_id: achievement.id, earned: true)
       end
     end
