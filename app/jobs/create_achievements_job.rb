@@ -11,10 +11,10 @@ class CreateAchievementsJob < ApplicationJob
     Achievement.create(name: "Unstoppable", description: "You saw 1000 movies", category: "visualisations", number: 1000, macro_area: "number", icon: "achievements/unstoppable.svg")
 
     # COLLECTION
-    Achievement.create(name: "May the force be with you", description: "You saw all the Star Wars saga", category: "collection", number: 6, macro_area: "collection", icon: "achievements/may_the_force.svg")
-    Achievement.create(name: "200 points to Gryffindor", description: "You saw all the Harry Potter saga", category: "collection", number: 8, macro_area: "collection", icon: "achievements/harry_potter.svg")
-    Achievement.create(name: "You're back", description: "You saw all the Terminator", category: "collection", number: 6, macro_area: "collection", icon: "achievements/youre_back.svg")
-    Achievement.create(name: "Adrianaaaa!", description: "You saw all the Rocky collection", category: "collection", number: 6, macro_area: "collection", icon: "achievements/adriana.svg")
+    Achievement.create(name: "May the force be with you", description: "You saw all the Star Wars saga", category: "collection", number: 10, macro_area: "collection", icon: "achievements/may_the_force.svg")
+    Achievement.create(name: "200 points to Gryffindor", description: "You saw all the Harry Potter saga", category: "collection", number: 1241, macro_area: "collection", icon: "achievements/harry_potter.svg")
+    Achievement.create(name: "You're back", description: "You saw all the Terminator", category: "collection", number: 528, macro_area: "collection", icon: "achievements/youre_back.svg")
+    Achievement.create(name: "Adrianaaaa!", description: "You saw all the Rocky collection", category: "collection", number: 1575, macro_area: "collection", icon: "achievements/adriana.svg")
 
     #CATEGORY - DOCUMENTARY
     Achievement.create(name: "The professor", description: "You saw 10 documentary", category: "documentary", number: 10, macro_area: "genre", icon: "achievements/the_professor.svg")
