@@ -17,7 +17,7 @@
 
     <div class="scroll" id="1">
       <div class="achievements-container">
-        <% @achievements.where(difficulty: "number").each do |achievement| %>
+        <% @achievements.where(macro_area: "number").each do |achievement| %>
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
             <div class="achievement-card">
               <h3><%= achievement.name %></h3>
@@ -37,7 +37,7 @@
 
     <div class="scroll hidden" id="2">
       <div class="achievements-container">
-        <% @achievements.where(difficulty: "collection").each do |achievement| %>
+        <% @achievements.where(macro_area: "collection").each do |achievement| %>
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
             <div class="achievement-card">
               <h3><%= achievement.name %></h3>
@@ -57,7 +57,7 @@
 
     <div class="scroll hidden" id="3">
       <div class="achievements-container">
-        <% @achievements.where(difficulty: "genre").each do |achievement| %>
+        <% @achievements.where(macro_area: "genre").each do |achievement| %>
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
             <div class="achievement-card">
               <h3><%= achievement.name %></h3>
@@ -77,7 +77,7 @@
 
     <div class="scroll hidden" id="4">
       <div class="achievements-container">
-        <% @achievements.where(difficulty: "hours and queries").each do |achievement| %>
+        <% @achievements.where(macro_area: "hours and queries").each do |achievement| %>
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
             <div class="achievement-card">
               <h3><%= achievement.name %></h3>
@@ -97,7 +97,7 @@
 
     <div class="scroll hidden" id="5">
       <div class="achievements-container">
-        <% @achievements.where(difficulty: "other").each do |achievement| %>
+        <% @achievements.where(macro_area: "other").each do |achievement| %>
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
             <div class="achievement-card">
               <h3><%= achievement.name %></h3>
@@ -117,7 +117,7 @@
 
     <div class="scroll hidden" id="6">
       <div class="achievements-container">
-        <% @achievements.where(difficulty: "special").each do |achievement| %>
+        <% @achievements.where(macro_area: "special").each do |achievement| %>
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
             <div class="achievement-card">
               <h3><%= achievement.name %></h3>
