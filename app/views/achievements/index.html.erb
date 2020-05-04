@@ -21,13 +21,21 @@
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
             <div class="achievement-card">
               <h3><%= achievement.name %></h3>
-              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% unless achievement.icon.nil? %>
+                <%= image_tag achievement.icon, class:"badge-img" %>
+              <% else %>
+                <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% end %>
               <p><%= achievement.description %></p>
             </div>
           <% else %>
             <div class="achievement-card not-earned">
               <h3><%= achievement.name %></h3>
-              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% unless achievement.icon.nil? %>
+                <%= image_tag achievement.icon, class:"badge-img" %>
+              <% else %>
+                <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% end %>
               <p><%= achievement.description %></p>
             </div>
           <% end %>
@@ -41,13 +49,21 @@
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
             <div class="achievement-card">
               <h3><%= achievement.name %></h3>
-              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% unless achievement.icon.nil? %>
+                <%= image_tag achievement.icon, class:"badge-img" %>
+              <% else %>
+                <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% end %>
               <p><%= achievement.description %></p>
             </div>
           <% else %>
             <div class="achievement-card not-earned">
               <h3><%= achievement.name %></h3>
-              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% unless achievement.icon.nil? %>
+                <%= image_tag achievement.icon, class:"badge-img" %>
+              <% else %>
+                <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% end %>
               <p><%= achievement.description %></p>
             </div>
           <% end %>
@@ -61,13 +77,21 @@
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
             <div class="achievement-card">
               <h3><%= achievement.name %></h3>
-              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% unless achievement.icon.nil? %>
+                <%= image_tag achievement.icon, class:"badge-img" %>
+              <% else %>
+                <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% end %>
               <p><%= achievement.description %></p>
             </div>
           <% else %>
             <div class="achievement-card not-earned">
               <h3><%= achievement.name %></h3>
-              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% unless achievement.icon.nil? %>
+                <%= image_tag achievement.icon, class:"badge-img" %>
+              <% else %>
+                <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% end %>
               <p><%= achievement.description %></p>
             </div>
           <% end %>
@@ -81,13 +105,21 @@
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
             <div class="achievement-card">
               <h3><%= achievement.name %></h3>
-              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% unless achievement.icon.nil? %>
+                <%= image_tag achievement.icon, class:"badge-img" %>
+              <% else %>
+                <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% end %>
               <p><%= achievement.description %></p>
             </div>
           <% else %>
             <div class="achievement-card not-earned">
               <h3><%= achievement.name %></h3>
-              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% unless achievement.icon.nil? %>
+                <%= image_tag achievement.icon, class:"badge-img" %>
+              <% else %>
+                <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% end %>
               <p><%= achievement.description %></p>
             </div>
           <% end %>
@@ -101,13 +133,21 @@
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
             <div class="achievement-card">
               <h3><%= achievement.name %></h3>
-              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% unless achievement.icon.nil? %>
+                <%= image_tag achievement.icon, class:"badge-img" %>
+              <% else %>
+                <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% end %>
               <p><%= achievement.description %></p>
             </div>
           <% else %>
             <div class="achievement-card not-earned">
               <h3><%= achievement.name %></h3>
-              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% unless achievement.icon.nil? %>
+                <%= image_tag achievement.icon, class:"badge-img" %>
+              <% else %>
+                <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% end %>
               <p><%= achievement.description %></p>
             </div>
           <% end %>
@@ -121,13 +161,21 @@
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
             <div class="achievement-card">
               <h3><%= achievement.name %></h3>
-              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% unless achievement.icon.nil? %>
+                <%= image_tag achievement.icon, class:"badge-img" %>
+              <% else %>
+                <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% end %>
               <p><%= achievement.description %></p>
             </div>
           <% else %>
             <div class="achievement-card not-earned">
               <h3><%= achievement.name %></h3>
-              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% unless achievement.icon.nil? %>
+                <%= image_tag achievement.icon, class:"badge-img" %>
+              <% else %>
+                <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% end %>
               <p><%= achievement.description %></p>
             </div>
           <% end %>
@@ -141,13 +189,21 @@
           <% if @joint_achievements.find_by(achievement_id: achievement.id) %>
             <div class="achievement-card">
               <h3><%= achievement.name %></h3>
-              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% unless achievement.icon.nil? %>
+                <%= image_tag achievement.icon, class:"badge-img" %>
+              <% else %>
+                <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% end %>
               <p><%= achievement.description %></p>
             </div>
           <% else %>
             <div class="achievement-card not-earned">
               <h3><%= achievement.name %></h3>
-              <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% unless achievement.icon.nil? %>
+                <%= image_tag achievement.icon, class:"badge-img" %>
+              <% else %>
+                <%= image_tag "badge_icons/plain.png", class:"badge-img" %>
+              <% end %>
               <p><%= achievement.description %></p>
             </div>
           <% end %>
