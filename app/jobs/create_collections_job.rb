@@ -30,7 +30,8 @@ class CreateCollectionsJob < ApplicationJob
             movie.update(collection_id: collection.id)
           else
             DownloadSingleMovieJob.perform_now(part['id'])
-            Movie.find_by(tmdb_id: part['id']).update(collection_id: collection.id)
+            movie = Movie.find_by(tmdb_id: part['id'])
+            movie.update(collection_id: collection.id) if movie
           end
         end
 
