@@ -3,14 +3,13 @@ class GmMoviesJob < ApplicationJob
 
   def perform(*args)
 
-    # repeat this for all services we need
-    Service.create(company: 'some', country: 'some')
+    # # repeat this for all services we need
+    # Service.create(company: 'some', country: 'some')
 
-    # we need one of this per movie
-    AvailableService.create(service_id: 'reference the relevant service', movie_id: 'reference correct movie with OUR id, not tmdb', url: 'link to the movie')
+    # # we need one of this per movie
+    # AvailableService.create(service_id: 'reference the relevant service', movie_id: 'reference correct movie with OUR id, not tmdb', url: 'link to the movie')
   end
 end
-
 
 # *++**HARRY POTTER *****************************
 
@@ -97,4 +96,3 @@ end
 # 9) https://www.themoviedb.org/movie/181812-star-wars-the-rise-of-skywalker?language=en-US
 
 #   - Disney+: MANCA DA TMBD!!
-
