@@ -80,14 +80,20 @@
 
   &:hover {
     color: $cyan;
+    transition: 0
   }
 }
 
-.x-button {
+#x-button {
   font-size: 32px;
   top: -18px;
   right: -13px;
   color: white;
   position: absolute;
+}
+
+.fa-circle{
+  background: black;
+  border-radius:50%;
 }
 
