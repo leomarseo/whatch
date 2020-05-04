@@ -1,7 +1,15 @@
 <!-- render partial with the result show -->
 <!-- define locals used in partial -->
 <% if @current_suggestion == [nil] || @current_suggestion == [] %>
-  <p>You finished your suggestions</p>
+  <div class="no-saved-movies">
+  <h1>You have finished your suggestions!</h1>
+  <h2>try again?</h2>
+    <div class="no-saved-movies-icon">
+      <%= link_to home_path do %>
+      <%= image_tag ("logo_white.png") %>
+      <% end %>
+    </div>
+  </div>
 <% else %>
 
   <% queried_actors = [] %>
