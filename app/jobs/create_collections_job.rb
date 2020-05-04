@@ -5,12 +5,8 @@ class CreateCollectionsJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    counter = 0
     File.foreach("./db/tmdb_ids/collection_ids_04_19_2020.json").map do |line|
       parsed_line = JSON.parse(line)
-
-      counter += 1
-      break if counter > 3
 
       id = parsed_line["id"]
       next if !Collection.find_by(tmdb_id: id).nil?
