@@ -2,7 +2,7 @@
 
 class AchievementsController < ApplicationController
   before_action :set_variables
-  before_action :visualization, :query_number, :hours, :documentary, :western, :directors, :actors, :low_rating, :skip, only: [:index]
+  before_action :visualization, :query_number, :hours, :documentary, :western, :directors, :actors, :low_rating, :skip, :collections, only: [:index]
 
   def index
     @achievements = Achievement.all
@@ -168,8 +168,18 @@ class AchievementsController < ApplicationController
 
   # COLLECTIONS
 
-  def
+  def collections
+    seen_ids = @seen_movies.pluck(:movie_id)
+    seen = true
 
+    Achievement.where(category: 'collection').each do |achievement|
+      Collection.find_by(tmdb_id: achievement.number).movies.each do |movie|
+        seen = false if seen_ids.exclude?(movie.id)
+      end
+      if seen && @joint_achievements.find_by(achievement_id: achievement.id).nil?
+        JointAchievement.create(user_id: current_user.id, achievement_id: achievement.id, earned: true)
+      end
+    end
   end
 
   #ADULT
