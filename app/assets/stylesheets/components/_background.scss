@@ -7,5 +7,9 @@ body {
   background: linear-gradient(125.91deg, #021622 12.56%, #183A37 92.62%);
   background-repeat: no-repeat;
   background-attachment: fixed;
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 6rem;
+  margin: 0;
 }
 
