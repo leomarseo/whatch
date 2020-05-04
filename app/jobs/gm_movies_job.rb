@@ -1,15 +1,15 @@
-# class GmMoviesJob < ApplicationJob
-#   queue_as :default
+class GmMoviesJob < ApplicationJob
+  queue_as :default
 
-#   def perform(*args)
+  def perform(*args)
 
-#     # repeat this for all services we need
-#     Service.create(company: 'some', country: 'some')
+    # # repeat this for all services we need
+    # Service.create(company: 'some', country: 'some')
 
-#     # we need one of this per movie
-#     AvailableService.create(service_id: 'reference the relevant service', movie_id: 'reference correct movie with OUR id, not tmdb', url: 'link to the movie')
-#   end
-# end
+    # # we need one of this per movie
+    # AvailableService.create(service_id: 'reference the relevant service', movie_id: 'reference correct movie with OUR id, not tmdb', url: 'link to the movie')
+  end
+end
 
 
 # # HARRY POTTER
