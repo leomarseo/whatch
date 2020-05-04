@@ -96,6 +96,8 @@
   background: url(image_path('backgrounds/ticket_background_top.svg'));
   height: 48px;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left top;
 }
 
 .result-right-main {
@@ -147,6 +149,7 @@
   background: url(image_path('backgrounds/ticket_background_bottom.svg'));
   height: 48px;
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: left bottom;
 }
 

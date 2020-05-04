@@ -1,6 +1,7 @@
 .landing-container {
   padding-top: 128px;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: relative;
 }
 
@@ -11,8 +12,9 @@
 .landing-posters {
   background: url(image_path('backgrounds/posters_layout.png'));
   background-size: cover;
-  width: 75%;
-  height: 75vh;
+  background-repeat: no-repeat;
+  width: 77%;
+  height: 78vh;
   background-position: right top;
 }
 
@@ -39,3 +41,125 @@
     font-weight: bold;
   }
 }
+
+.landing-overview {
+  background-color: rgba(240, 240, 245, 1);
+  height: 100vh;
+  width: 100%;
+  h1 {
+    font-weight: 800;
+    font-size: 32px;
+    background: linear-gradient(
+      to right,
+      $dark-navy 0px,
+      #00A382 15em
+    );
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+  }
+  p {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: $dark-gray;
+  }
+}
+
+
+.landing-overview-top {
+  padding: 80px 15vw 0 15vw;
+}
+
+.landing-filter-buttons {
+  display: flex;
+  margin: 64px auto 48px auto;
+
+}
+
+.landing-filter-button {
+  padding: 8px 36px;
+  border-radius: 48px;
+  margin-right: 16px;
+  color: white;
+  &.first-filter {
+    background: linear-gradient(45deg, #021722, #012B2E);
+  }
+  &.second-filter {
+    background: linear-gradient(45deg, #013232, #01453D);
+  }
+  &.third-filter {
+    background: linear-gradient(45deg, #014A40, #005F4C);
+  }
+}
+
+.landing-overview-bottom {
+  width: 100vw;
+  overflow-x: scroll;
+  overflow-y: hidden;
+    &::-webkit-scrollbar {
+    display: none;
+    }
+}
+
+.landing-overview-bottom.is-visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
+
+.landing-filtered-movies {
+  display: flex;
+}
+
+.landing-filtered-movie {
+  margin: auto 18px;
+  border-radius: 16px;
+  min-width: 200px;
+  min-height: 300px;
+  &.first-movie {
+    background: url(image_path('movie_posters/contagion.jpg'));
+    background-size: cover;
+    opacity: 0.08;
+  }
+  &.second-movie {
+    background: url(image_path('movie_posters/bridesmaids.jpg'));
+    background-size: cover;
+  }
+  &.third-movie {
+    background: url(image_path('movie_posters/madmax.jpg'));
+    background-size: cover;
+    opacity: 0.08;
+  }
+  &.fourth-movie {
+    background: url(image_path('movie_posters/anchorman.jpg'));
+    background-size: cover;
+  }
+  &.fifth-movie {
+    background: url(image_path('movie_posters/monty_python.jpg'));
+    background-size: cover;
+  }
+  &.sixth-movie {
+    background: url(image_path('movie_posters/logan.jpg'));
+    background-size: cover;
+    opacity: 0.08;
+  }
+  &.seventh-movie {
+    background: url(image_path('movie_posters/tgwtdt.jpg'));
+    background-size: cover;
+    opacity: 0.08;
+  }
+  &.eighth-movie {
+    background: url(image_path('movie_posters/django.jpg'));
+    background-size: cover;
+    opacity: 0.08;
+  }
+  &.ninth-movie {
+    background: url(image_path('movie_posters/harrypotter.jpg'));
+    background-size: cover;
+    opacity: 0.08;
+  }
+}
+
