@@ -5,12 +5,13 @@
   right: 0;
   padding: 8px;
   background-color: black;
-  // opacity: 0.5;
   display: flex;
   justify-content: center;
 
   p {
-    margin-bottom: 0;
+    margin: 0;
+    font-size: 12px;
+    color: rgba( 255, 255, 255, 0.5);
   }
 
   img {
