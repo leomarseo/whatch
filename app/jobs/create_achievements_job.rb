@@ -28,12 +28,12 @@ class CreateAchievementsJob < ApplicationJob
     Achievement.create(name: "I really really can't stop laughing", description: "You saw 10 comedies", category: "comedy", number: 30, macro_area: "genre", icon: "achievements/i_really_really_cant_stop_laughing.svg")
 
     #CATEGORY - ADULT
-    Achievement.create(name: "Amateur", description: "You saw 3 adult movies", category: "adult", number: 3, macro_area: "special")
-    Achievement.create(name: "It's cheaper than dating", description: "You saw 10 adult movies", category: "adult", number: 10, macro_area: "special")
+    # Achievement.create(name: "Amateur", description: "You saw 3 adult movies", category: "adult", number: 3, macro_area: "special")
+    # Achievement.create(name: "It's cheaper than dating", description: "You saw 10 adult movies", category: "adult", number: 10, macro_area: "special")
 
     #STRANGE
     Achievement.create(name: "Fetishist", description: "You saw 10 movies with low rating", category: "low-rating", number: 10, macro_area: "special")
-    Achievement.create(name: "What's the matter with you", description: "You didn't watch anything", category: "nothing-watched", number: 15, macro_area: "special", icon: "achievements/calm_down.svg") #The user made the query but he actually didn't watch anything
+    # Achievement.create(name: "What's the matter with you", description: "You didn't watch anything", category: "nothing-watched", number: 15, macro_area: "special", icon: "achievements/calm_down.svg") #The user made the query but he actually didn't watch anything
     Achievement.create(name: "Calm down", description: "You skipped 100 movies", category: "skip", number: 100, macro_area: "special")
     Achievement.create(name: "It's not Tinder", description: "You skipped 500 movies", category: "skip", number: 500, macro_area: "special", icon: "achievements/its_not_tinder.svg")
 
