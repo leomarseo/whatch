@@ -70,12 +70,15 @@ class TmdbSuggestionsController < ApplicationController
     first_n_genre << query.negative_genres_tmdb_ids.first
     second_n_genre = []
     second_n_genre << query.negative_genres_tmdb_ids.second
+
+    created = false
     #####################################################################################
 
 
-    if all_suggestions.count >= 10
+    if all_suggestions.count >= 10 && !created
       create_tmdb_suggestion_object_and_suggestions(query, all_suggestions)
-    elsif query.positive_actors_tmdb_ids.count == 2
+      created = true
+    elsif query.positive_actors_tmdb_ids.count >= 2
       # if suggestions are not enough (i.e. < 10) we restart the process to collect more, but passing one less positive actor
 
 
@@ -116,17 +119,37 @@ class TmdbSuggestionsController < ApplicationController
       )
 
       all_suggestions.push(third_suggestions_filtered).flatten!.uniq!
+
+
+      # FOURTH API CALL, BOTH P-ACTORS + ALL OTHER FILTERS EXCEPT FOR GENRE
+      fourth_api_url = prepare_api_url(
+        query.positive_actors_tmdb_ids,
+        [],
+        [],
+        query.positive_directors_tmdb_ids
+      )
+
+      fourth_suggestions_filtered = filter_with_our_db(
+        retrieve_suggestions(fourth_api_url),
+        query.positive_actors_tmdb_ids,
+        query.negative_actors_tmdb_ids,
+        query.positive_directors_tmdb_ids,
+        query.negative_directors_tmdb_ids
+      )
+
+      all_suggestions.push(fourth_suggestions_filtered).flatten!.uniq!
     end
 
     # so far we checked if user had 2 positive actor filters, and if so we run the second and third to retrieve movies with
     # actor 1 + all genres filters OR actor 2 + all genres filters. This should be enough to achieve 10 movies, but still we'll have
     # backup calls just in case we still don't reach 10
 
-    if all_suggestions.count >= 10
+    if all_suggestions.count >= 10 && !created
       create_tmdb_suggestion_object_and_suggestions(query, all_suggestions)
-    elsif query.negative_genres_tmdb_ids.count == 2
+      created = true
+    elsif query.negative_genres_tmdb_ids.count >= 2
 
-      # FOURTH API CALL, P-ACTOR-1 + N-GENRE-1 + N-DIRECTOR
+      # FIFTH API CALL, P-ACTOR-1 + N-GENRE-1 + N-DIRECTOR
       fourth_api_url = prepare_api_url(
         first_p_actor,
         [],
@@ -144,7 +167,7 @@ class TmdbSuggestionsController < ApplicationController
 
       all_suggestions.push(fourth_suggestions_filtered).flatten!.uniq!
 
-      # FIFTH API CALL, P-ACTOR-1 + N-GENRE-2 + N-DIRECTOR
+      # SIXTH API CALL, P-ACTOR-1 + N-GENRE-2 + N-DIRECTOR
       fifth_api_url = prepare_api_url(
         first_p_actor,
         [],
@@ -164,7 +187,7 @@ class TmdbSuggestionsController < ApplicationController
 
     else
 
-      # FOURTH API CALL (executed only if 4 and 5 are not), P-ACTOR-1 + N-GENRE-1 + N-DIRECTOR
+      # FIFTH API CALL (executed only if 4 and 5 are not), P-ACTOR-1 + N-GENRE-1 + N-DIRECTOR
 
       fourth_api_url = prepare_api_url(
         first_p_actor,
@@ -185,8 +208,9 @@ class TmdbSuggestionsController < ApplicationController
     end
 
     # FINAL CHECK, IF IT'S STILL NOT 10 SUGGESTIONS, WE RUN THE MOST BASIC CALL: JUST P-ACTOR-1
-    if all_suggestions.count >= 10
+    if all_suggestions.count >= 10 && !created
       create_tmdb_suggestion_object_and_suggestions(query, all_suggestions)
+      created = true
     else
 
       sixth_api_url = prepare_api_url(
