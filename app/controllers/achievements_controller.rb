@@ -2,7 +2,7 @@
 
 class AchievementsController < ApplicationController
   before_action :set_variables
-  before_action :achievement_loop_visualisation, only: [:index]
+  before_action :achievement_loop_visualisation, :achievement_loop_number_queries, only: [:index]
 
   def index
     @achievements = Achievement.all
@@ -26,7 +26,7 @@ class AchievementsController < ApplicationController
   def achievement_loop_number_queries
     @achievements = Achievement.where(category: "app")
     @achievements.each do |achievement|
-      if current_user.tmdb_suggestions.count > achievement.number && @joint_achievements.find_by(achievement_id: achievement.id).nil?
+      if current_user.tmdb_suggestions.count >= achievement.number && @joint_achievements.find_by(achievement_id: achievement.id).nil?
         JointAchievement.create(user_id: current_user.id, achievement_id: achievement.id, earned: true)
       end
     end
