@@ -150,28 +150,10 @@ class TmdbSuggestionsController < ApplicationController
     elsif query.negative_genres_tmdb_ids.count >= 2
 
       # FIFTH API CALL, P-ACTOR-1 + N-GENRE-1 + N-DIRECTOR
-      fourth_api_url = prepare_api_url(
-        first_p_actor,
-        [],
-        first_n_genre,
-        []
-      )
-
-      fourth_suggestions_filtered = filter_with_our_db(
-        retrieve_suggestions(fourth_api_url),
-        query.positive_actors_tmdb_ids,
-        query.negative_actors_tmdb_ids,
-        [],
-        query.negative_directors_tmdb_ids
-      )
-
-      all_suggestions.push(fourth_suggestions_filtered).flatten!.uniq!
-
-      # SIXTH API CALL, P-ACTOR-1 + N-GENRE-2 + N-DIRECTOR
       fifth_api_url = prepare_api_url(
         first_p_actor,
         [],
-        second_n_genre,
+        first_n_genre,
         []
       )
 
@@ -185,26 +167,44 @@ class TmdbSuggestionsController < ApplicationController
 
       all_suggestions.push(fifth_suggestions_filtered).flatten!.uniq!
 
-    else
-
-      # FIFTH API CALL (executed only if 4 and 5 are not), P-ACTOR-1 + N-GENRE-1 + N-DIRECTOR
-
-      fourth_api_url = prepare_api_url(
+      # SIXTH API CALL, P-ACTOR-1 + N-GENRE-2 + N-DIRECTOR
+      sixth_api_url = prepare_api_url(
         first_p_actor,
         [],
-        first_n_genre,
+        second_n_genre,
         []
       )
 
-      fourth_suggestions_filtered = filter_with_our_db(
-        retrieve_suggestions(fourth_api_url),
+      sixth_suggestions_filtered = filter_with_our_db(
+        retrieve_suggestions(sixth_api_url),
         query.positive_actors_tmdb_ids,
         query.negative_actors_tmdb_ids,
         [],
         query.negative_directors_tmdb_ids
       )
 
-      all_suggestions.push(fourth_suggestions_filtered).flatten!.uniq!
+      all_suggestions.push(sixth_suggestions_filtered).flatten!.uniq!
+
+    else
+
+      # FIFTH API CALL (executed only if 4 and 5 are not), P-ACTOR-1 + N-GENRE-1 + N-DIRECTOR
+
+      fifth_api_url = prepare_api_url(
+        first_p_actor,
+        [],
+        first_n_genre,
+        []
+      )
+
+      fifth_suggestions_filtered = filter_with_our_db(
+        retrieve_suggestions(fifth_api_url),
+        query.positive_actors_tmdb_ids,
+        query.negative_actors_tmdb_ids,
+        [],
+        query.negative_directors_tmdb_ids
+      )
+
+      all_suggestions.push(fifth_suggestions_filtered).flatten!.uniq!
     end
 
     # FINAL CHECK, IF IT'S STILL NOT 10 SUGGESTIONS, WE RUN THE MOST BASIC CALL: JUST P-ACTOR-1
@@ -213,16 +213,23 @@ class TmdbSuggestionsController < ApplicationController
       created = true
     else
 
-      sixth_api_url = prepare_api_url(
+      final_api_url = prepare_api_url(
         first_p_actor,
         [],
         [],
         []
       )
 
-      sixth_suggestions_filtered = retrieve_suggestions(sixth_api_url)
+      final_suggestions_filtered = filter_with_our_db(
+        retrieve_suggestions(final_api_url),
+        [],
+        [],
+        [],
+        []
+      )
 
-      all_suggestions.push(sixth_suggestions_filtered).flatten!.uniq!
+
+      all_suggestions.push(final_suggestions_filtered).flatten!.uniq!
 
       create_tmdb_suggestion_object_and_suggestions(query, all_suggestions)
     end
@@ -393,14 +400,13 @@ class TmdbSuggestionsController < ApplicationController
   #7
   def filter_by_already_seen(suggestions)
     # loops through all suggestions to check if there's movies that were already seen by the current user
-    user = current_user ? current_user : User.first
+    user = (current_user ? current_user : User.first)
+    to_be_removed = user.saved_movies.pluck(:movie_id)
 
 
-    user.saved_movies.each do |saved_movie|
-      suggestions.delete(saved_movie.movie) if suggestions.include? saved_movie.movie
-    end
+    final_suggestions = suggestions.filter { |suggestion| to_be_removed.exclude?(suggestion.id) }
 
-    return suggestions
+    return final_suggestions
   end
 
 
