@@ -1,0 +1,21 @@
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: black;
+  opacity: 0.5;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  img {
+    color: white;
+    width: 80px;
+  }
+}
