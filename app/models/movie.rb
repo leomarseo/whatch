@@ -1,5 +1,7 @@
 class Movie < ApplicationRecord
-  belongs_to :director
+  belongs_to :director, optional: true
+  belongs_to :collection, optional: true
+
   has_many :awards
 
   has_many :saved_movies

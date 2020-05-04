@@ -26,7 +26,7 @@ class DownloadSingleMovieJob < ApplicationJob
         vote_average: movie_details['vote_average'],
         vote_count: movie_details['vote_count'],
         tagline: movie_details['tagline'],
-        belongs_to_collection: movie_details['belongs_to_collection'],
+        collection_id: movie_details['belongs_to_collection'],
         director: Director.first
       )
 

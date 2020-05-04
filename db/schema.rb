@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_112217) do
+ActiveRecord::Schema.define(version: 2020_05_04_123835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,13 @@ ActiveRecord::Schema.define(version: 2020_05_04_112217) do
     t.index ["movie_id"], name: "index_awards_on_movie_id"
   end
 
+  create_table "collections", force: :cascade do |t|
+    t.string "name"
+    t.text "overview"
+    t.string "photo_url"
+    t.integer "tmdb_id"
+  end
+
   create_table "directors", force: :cascade do |t|
     t.string "name"
     t.integer "tmdb_id"
@@ -128,10 +135,11 @@ ActiveRecord::Schema.define(version: 2020_05_04_112217) do
     t.float "vote_average"
     t.integer "vote_count"
     t.string "tagline"
-    t.integer "belongs_to_collection"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "trailer_url"
+    t.bigint "collection_id"
+    t.index ["collection_id"], name: "index_movies_on_collection_id"
     t.index ["director_id"], name: "index_movies_on_director_id"
   end
 
@@ -223,6 +231,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_112217) do
   add_foreign_key "joint_achievements", "users"
   add_foreign_key "joint_genres", "genres"
   add_foreign_key "joint_genres", "movies"
+  add_foreign_key "movies", "collections"
   add_foreign_key "movies", "directors"
   add_foreign_key "saved_movies", "movies"
   add_foreign_key "saved_movies", "users"
