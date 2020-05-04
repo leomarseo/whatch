@@ -44,7 +44,7 @@
 
 .landing-overview {
   background-color: rgba(240, 240, 245, 1);
-  height: 100vh;
+  height: 90vh;
   width: 100%;
   h1 {
     font-weight: 800;
@@ -80,10 +80,11 @@
 }
 
 .landing-filter-button {
-  padding: 8px 36px;
+  padding: 8px 24px;
   border-radius: 48px;
   margin-right: 16px;
   color: white;
+  font-size: 14px;
   &.first-filter {
     background: linear-gradient(45deg, #021722, #012B2E);
   }
@@ -95,19 +96,13 @@
   }
 }
 
-.landing-overview-bottom {
+.landing-overview-discovery {
   width: 100vw;
   overflow-x: scroll;
   overflow-y: hidden;
     &::-webkit-scrollbar {
     display: none;
     }
-}
-
-.landing-overview-bottom.is-visible {
-  opacity: 1;
-  transform: none;
-  visibility: visible;
 }
 
 .landing-filtered-movies {
@@ -163,3 +158,6 @@
   }
 }
 
+.landing-overview-swiping {
+
+}
