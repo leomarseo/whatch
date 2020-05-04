@@ -32,13 +32,15 @@
         <div class="single-result">
           <div class="movie-poster-container">
             <div class="small-rating-badge">
-          <% if current_suggestion.first.user_rating == 1 %>
-          <%= tag.div class: %w( img-responsive badge-icon whatch-badge-icon-like ) %>
-          <% elsif current_suggestion.first.user_rating == 0 %>
-          <%= tag.div class: %w( img-responsive badge-icon whatch-badge-icon-dislike ) %>
-          <% else %>
-          <%= tag.div class: %w( img-responsive badge-icon whatch-badge-icon-empty ) %>
-          <% end %>
+              <% unless current_suggestion.first.class.to_s == 'Suggestion' %>
+                <% if current_suggestion.first.user_rating == 1 %>
+                  <%= tag.div class: %w( img-responsive badge-icon whatch-badge-icon-like ) %>
+                <% elsif current_suggestion.first.user_rating == 0 %>
+                  <%= tag.div class: %w( img-responsive badge-icon whatch-badge-icon-dislike ) %>
+                <% else %>
+                  <%= tag.div class: %w( img-responsive badge-icon whatch-badge-icon-empty ) %>
+                <% end %>
+              <% end %>
         </div>
           <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}" %>
           <% unless current_suggestion.first.movie.trailer_url.nil? %>
