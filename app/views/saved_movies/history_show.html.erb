@@ -1,30 +1,68 @@
 <!-- render partial with the result show -->
 <!-- define locals used in partial -->
-<%= render layout:"layouts/result_show", locals: {
-  queried_actors: [],
-  queried_directors: [],
-  queried_genres: [],
+<% if @current_rating == nil %>
+  <%= render layout:"layouts/result_show", locals: {
+    queried_actors: [],
+    queried_directors: [],
+    queried_genres: [],
 
-  current_suggestion: @current_movie,
-  movie_director: @current_movie[0].movie.director,
-  starring_actors: @current_movie[0].movie.starring_actors,
+    current_suggestion: @current_movie,
+    movie_director: @current_movie[0].movie.director,
+    starring_actors: @current_movie[0].movie.starring_actors,
 
-  # NOTE: if the number_of_buttons you specify is 2 or 3, you can delete the lines for buttons you don't need
-  # e.g., if you need only two buttons, you can delete all lines that start with "third_button" and "fourth_button"
-  number_of_buttons: 2,
-  multiple_cards: false,
+    # NOTE: if the number_of_buttons you specify is 2 or 3, you can delete the lines for buttons you don't need
+    # e.g., if you need only two buttons, you can delete all lines that start with "third_button" and "fourth_button"
+    number_of_buttons: 3,
+    multiple_cards: false,
 
-  first_button_path: history_destroy_path(id: @current_movie.first.id), remote:true,
-  first_button_image: "icons/pass_action.svg",
-  first_button_class: "history-remove-action",
-  first_button_label: "remove",
-  first_button_method: :delete,
+    first_button_path: history_destroy_path(id: @current_movie.first.id), remote:true,
+    first_button_image: "icons/pass_action.svg",
+    first_button_class: "history-remove-action",
+    first_button_label: "remove",
+    first_button_method: :delete,
 
-  second_button_path: history_update_path(id: @current_movie.first.id),
-  second_button_image: @rating, #"icons/disliked.svg",
-  second_button_class: "history-change-rating-action",
-  second_button_label: "rate",
-  second_button_method: :patch
+    second_button_path: history_update_path(id: @current_movie.first.id),
+    second_button_image: "icons/disliked_neutral.svg",
+    second_button_class: "history-change-rating-action",
+    second_button_label: "dislike",
+    second_button_method: :patch,
 
-  } do %>
+    third_button_path: history_update_path(id: @current_movie.first.id),
+    third_button_image: "icons/liked_neutral.svg",
+    third_button_class: "history-change-rating-action",
+    third_button_label: "like",
+    third_button_method: :patch
+
+    } do %>
+  <% end %>
+<% else %>
+  <%= render layout:"layouts/result_show", locals: {
+    queried_actors: [],
+    queried_directors: [],
+    queried_genres: [],
+
+    current_suggestion: @current_movie,
+    movie_director: @current_movie[0].movie.director,
+    starring_actors: @current_movie[0].movie.starring_actors,
+
+    # NOTE: if the number_of_buttons you specify is 2 or 3, you can delete the lines for buttons you don't need
+    # e.g., if you need only two buttons, you can delete all lines that start with "third_button" and "fourth_button"
+    number_of_buttons: 2,
+    multiple_cards: false,
+
+    first_button_path: history_destroy_path(id: @current_movie.first.id), remote:true,
+    first_button_image: "icons/pass_action.svg",
+    first_button_class: "history-remove-action",
+    first_button_label: "remove",
+    first_button_method: :delete,
+
+    second_button_path: history_update_path(id: @current_movie.first.id),
+    second_button_image: @rating, #"icons/disliked.svg",
+    second_button_class: "history-change-rating-action",
+    second_button_label: "rate",
+    second_button_method: :patch
+
+    } do %>
+  <% end %>
 <% end %>
+

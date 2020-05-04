@@ -74,7 +74,6 @@ class SavedMoviesController < ApplicationController
     else
       return "icons/liked_hover.svg"
     end
-
   end
 
   # def rating_icon_dislike
