@@ -2,7 +2,7 @@
 
 class AchievementsController < ApplicationController
   before_action :set_variables
-  before_action :achievement_loop_visualisation, :achievement_loop_number_queries, :achievement_loop_hours, :achievement_loop_documentary, :achievement_loop_western, :achievement_loop_directors, :achievement_loop_actors, only: [:index]
+  before_action :achievement_loop_visualisation, :achievement_loop_number_queries, :achievement_loop_hours, :achievement_loop_documentary, :achievement_loop_western, :achievement_loop_directors, :achievement_loop_actors, :achievement_loop_low_rating, :achievement_loop_skip, only: [:index]
 
   def index
     @achievements = Achievement.all
@@ -129,14 +129,14 @@ class AchievementsController < ApplicationController
 
   #Many queries but nothing watched
 
-  def achievement_loop_nothing_watched
-    @achievements = Achievement.where(category: "nothing_watched")
-    @achievement.each do |achievement|
-      if current_user.tmdb_suggestions.count > 15 && @seen_movies.count == 0 && @joint_achievements.find_by(achievement_id: achievement.id).nil?
-        JointAchievement.create(user_id: current_user.id, achievement_id: achievement.id, earned: true)
-      end
-    end
-  end
+  # def achievement_loop_nothing_watched
+  #   @achievements = Achievement.where(category: "nothing_watched")
+  #   @achievement.each do |achievement|
+  #     if current_user.tmdb_suggestions.count > 15 && @seen_movies.count == 0 && @joint_achievements.find_by(achievement_id: achievement.id).nil?
+  #       JointAchievement.create(user_id: current_user.id, achievement_id: achievement.id, earned: true)
+  #     end
+  #   end
+  # end
 
   #Watched many movies with low rating
   def achievement_loop_low_rating
@@ -146,7 +146,7 @@ class AchievementsController < ApplicationController
         @low_rating_movies << seen_movie
       end
     end
-    @achievements = Achievements.where(category: "low-rating")
+    @achievements = Achievement.where(category: "low-rating")
     @achievements.each do |achievement|
       if @low_rating_movies.count >= 10 && @joint_achievements.find_by(achievement_id: achievement.id).nil?
         JointAchievement.create(user_id: current_user.id, achievement_id: achievement.id, earned: true)
@@ -168,20 +168,20 @@ class AchievementsController < ApplicationController
 
   #ADULT
 
-  def achievement_loop_adult
-    @adult_movies = 0
-    @seen_movies.each do |seen_movie|
-      if seen_movie.movie.adult == true
-        @adult_movies += 1
-      end
-    end
-    @achievements = Achievement.where(category: "adult")
-    @achievements.each do |achievement|
-      if @adult_movies >= achievement.number && @joint_achievements.find_by(achievement_id: achievement.id).nil?
-        JointAchievement.create(user_id: current_user.id, achievement_id: achievement.id, earned: true)
-      end
-    end
-  end
+  # def achievement_loop_adult
+  #   @adult_movies = 0
+  #   @seen_movies.each do |seen_movie|
+  #     if seen_movie.movie.adult == true
+  #       @adult_movies += 1
+  #     end
+  #   end
+  #   @achievements = Achievement.where(category: "adult")
+  #   @achievements.each do |achievement|
+  #     if @adult_movies >= achievement.number && @joint_achievements.find_by(achievement_id: achievement.id).nil?
+  #       JointAchievement.create(user_id: current_user.id, achievement_id: achievement.id, earned: true)
+  #     end
+  #   end
+  # end
 
 
   def set_variables
