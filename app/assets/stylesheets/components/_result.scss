@@ -165,6 +165,13 @@
 .film-details {
   display: flex;
   padding: 16px 0 16px 0;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  max-width: 640px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .film-details-item {
