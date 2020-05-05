@@ -48,7 +48,11 @@
                 <% end %>
               <% end %>
             </div>
-            <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}" %>
+            <% if !current_suggestion.first.movie.photo_url.nil? %>
+              <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}" %>
+            <% else %>
+              <%= image_tag "poster_placeholder.png" %>
+            <% end %>
             <% unless current_suggestion.first.movie.trailer_url.nil? %>
               <span style="cursor: pointer;" id="trailer-button" class="play-button"><i class="far fa-play-circle"></i></span>
             <% end %>
@@ -57,7 +61,11 @@
       <!-- logic for handling one card WITHOUT buttons -->
       <% else %>
         <div class="single-result poster-large normal-result">
-          <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}" %>
+          <% if !current_suggestion.first.movie.photo_url.nil? %>
+            <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}" %>
+          <% else %>
+            <%= image_tag "poster_placeholder.png" %>
+          <% end %>
           <% unless current_suggestion.first.movie.trailer_url.nil? %>
             <span style="cursor: pointer;" id="trailer-button" class="play-button"><i class="far fa-play-circle"></i></span>
           <% end %>
