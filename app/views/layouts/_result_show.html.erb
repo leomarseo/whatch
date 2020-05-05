@@ -15,7 +15,7 @@
     <div class="result-cards">
       <!-- logic for handling multiple cards -->
       <% if multiple_cards == true %>
-        <div class="first-result">
+        <div class="first-result normal-result">
           <% if current_suggestion.first.movie.photo_url.nil? %>
             <%= image_tag "poster_placeholder.png" %>
           <% else %>
@@ -35,7 +35,7 @@
         </div>
       <!-- logic for handling one card WITH buttons -->
       <% elsif multiple_cards == false && number_of_buttons > 0 %>
-        <div class="single-result">
+        <div class="single-result normal-result">
           <div class="movie-poster-container">
             <div class="small-rating-badge">
               <% unless current_suggestion.first.class.to_s == 'Suggestion' %>
@@ -56,7 +56,7 @@
         </div>
       <!-- logic for handling one card WITHOUT buttons -->
       <% else %>
-        <div class="single-result poster-large">
+        <div class="single-result poster-large normal-result">
           <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}" %>
           <% unless current_suggestion.first.movie.trailer_url.nil? %>
             <span style="cursor: pointer;" id="trailer-button" class="play-button"><i class="far fa-play-circle"></i></span>

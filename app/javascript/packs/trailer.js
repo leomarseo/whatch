@@ -1,6 +1,6 @@
 const trailer = () => {
 
-  const x = document.querySelector('.first-result > img');
+  const x = document.querySelector('.normal-result > img');
   console.log(x);
 
   const button = document.getElementById('trailer-button');
