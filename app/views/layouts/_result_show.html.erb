@@ -21,7 +21,7 @@
           <% else %>
             <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}" %>
           <% end %>
-          <% unless current_suggestion.first.movie.trailer_url.nil? %>
+            <% unless current_suggestion.first.movie.trailer_url.nil? %>
             <span style="cursor: pointer;" id="trailer-button" class="play-button"><i class="far fa-play-circle"></i></span>
           <% end %>
         </div>
@@ -47,11 +47,11 @@
                   <%= tag.div class: %w( img-responsive badge-icon whatch-badge-icon-empty ) %>
                 <% end %>
               <% end %>
-        </div>
-          <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}" %>
-          <% unless current_suggestion.first.movie.trailer_url.nil? %>
-            <span style="cursor: pointer;" id="trailer-button" class="play-button"><i class="far fa-play-circle"></i></span>
-          <% end %>
+            </div>
+            <%= image_tag "https://image.tmdb.org/t/p/w300/#{current_suggestion.first.movie.photo_url}" %>
+            <% unless current_suggestion.first.movie.trailer_url.nil? %>
+              <span style="cursor: pointer;" id="trailer-button" class="play-button"><i class="far fa-play-circle"></i></span>
+            <% end %>
           </div>
         </div>
       <!-- logic for handling one card WITHOUT buttons -->

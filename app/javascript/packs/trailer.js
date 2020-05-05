@@ -1,6 +1,33 @@
 const trailer = () => {
 
+  const x = document.querySelector('.first-result > img');
+  console.log(x);
+
   const button = document.getElementById('trailer-button');
+
+
+  x.addEventListener('mouseover', (event) => {
+
+    x.style.backgroundColor="rgba(0, 0, 0, 0.3)";
+    button.style.opacity="50%";
+
+    button.addEventListener('mouseover', (event) => {
+      button.style.opacity="100%";
+    });
+
+    button.addEventListener('mouseout', (event) => {
+      button.style.opacity="50%";
+    });
+
+  });
+
+  x.addEventListener('mouseout', (event) => {
+
+    x.style.background="none";
+    button.style.opacity="15%";
+  });
+
+
 
   button.addEventListener('click', (event) => {
     document.getElementById('transparent-background').style.display="block";
