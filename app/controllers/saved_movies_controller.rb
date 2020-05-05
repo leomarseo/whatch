@@ -55,7 +55,7 @@ class SavedMoviesController < ApplicationController
   end
 
   def history_index
-    @seen_movies = current_user.saved_movies.where(seen: true)
+    @seen_movies = current_user.saved_movies.where(seen: true).order(created_at: :desc)
     # @current_movie = [@seen_movies.each do find(:id)]
     # @rating = rating_icon
 
