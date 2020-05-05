@@ -1,6 +1,23 @@
 const trailer = () => {
 
+  const x = document.querySelector('.first-result > img');
+
   const button = document.getElementById('trailer-button');
+
+
+  x.addEventListener('mouseover', (event) => {
+    button.style.opacity="50%"
+    button.style.font="50%"
+    button.style.opacity="50%"
+    document.getElementById('mask').style.display="block";
+  });
+
+  x.addEventListener('mouseout', (event) => {
+    button.style.opacity="15%"
+    document.getElementById('mask').style.display="hidden";
+  });
+
+
 
   button.addEventListener('click', (event) => {
     document.getElementById('transparent-background').style.display="block";

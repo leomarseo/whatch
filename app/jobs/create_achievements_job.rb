@@ -17,10 +17,10 @@ class CreateAchievementsJob < ApplicationJob
     Achievement.create(name: "Adrianaaaa!", description: "You watched the entire Rocky saga", category: "collection", number: 1575, macro_area: "collection", icon: "achievements/adriana.svg")
 
     #CATEGORY - DOCUMENTARY
-    Achievement.create(name: "The professor", description: "You watched 10 documentary", category: "documentary", number: 10, macro_area: "genre", icon: "achievements/the_professor.svg")
+    Achievement.create(name: "The professor", description: "You watched 10 documentaries", category: "documentary", number: 10, macro_area: "genre", icon: "achievements/the_professor.svg")
 
     #CATEGORY - WESTERN
-    Achievement.create(name: "Yeee-ha", description: "You watched 10 western movie", category: "western", number: 10, macro_area: "genre", icon: "achievements/yeee_ha.svg")
+    Achievement.create(name: "Yeee-ha", description: "You watched 10 wild west movies", category: "western", number: 10, macro_area: "genre", icon: "achievements/yeee_ha.svg")
 
     #CATEGORY - COMEDY
     Achievement.create(name: "Ha ha ha", description: "You watched 5 comedies", category: "comedy", number: 5, macro_area: "genre", icon: "achievements/hahaha.svg")
