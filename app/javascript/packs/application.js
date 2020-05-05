@@ -11,6 +11,7 @@ import { autocompleteWrapper } from './autocomplete.js';
 import { achievements } from './achievements.js';
 import "bootstrap";
 import { trailer } from './trailer.js';
+// import { loading } from './loading.js';
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -30,3 +31,7 @@ if (document.getElementById('all-achievements')) {
 if (document.getElementById('trailer-button')) {
   trailer();
 };
+
+// if (document.getElementById('watch-btn')) {
+//   loading();
+// };
