@@ -31,6 +31,6 @@ class AddIconsToServicesJob < ApplicationJob
     Service.find(106).update(icon: "streaming_services/vudu_logo.png")
     Service.find(107).update(icon: "streaming_services/disney_logo.png")
     Service.find(113).update(icon: "streaming_services/directv_logo.png")
-    end
+
   end
 end

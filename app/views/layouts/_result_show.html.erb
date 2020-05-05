@@ -123,7 +123,20 @@
             <p>Sit back, relax, and enjoy <%= @current_suggestion.first.movie.title %>!</p>
             <p>When you're done with the movie, you can go to the History tab to give it a thumbs up or thumbs down.</p>
             <br>
-            <%= link_to "Watch on [streaming service]", after_confirmation_path(movie_id: @current_suggestion.first.movie_id), class:"button-full" %>
+
+              <% if @current_suggestion.first.movie.available_services == [] %>
+                <%= link_to "Watch now", after_confirmation_path(movie_id: @current_suggestion.first.movie_id), class:"button-full" %>
+              <% else %>
+
+                <h2 style="opacity: 1">Watch now on:</h2>
+                <div class="services-container">
+                  <% @current_suggestion.first.movie.available_services.each do |available_service| %>
+                    <%= link_to (image_tag available_service.service.icon), after_confirmation_path(movie_id: @current_suggestion.first.movie_id), class: 'service-card', data: { link: available_service.url} %>
+                  <% end %>
+                </div>
+
+              <% end %>
+
           </div>
         </div>
         <div class="confirmation-admit-one">
