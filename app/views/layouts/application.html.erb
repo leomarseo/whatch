@@ -29,12 +29,16 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
     <%= favicon_link_tag %>
   </head>
-  <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
-    <%= yield %>
+  <% if current_page?("/") %>
+    <body id="landing-body">
+  <% else %>
+    <body>
+  <% end %>
+      <%= render 'shared/navbar' %>
+      <%= render 'shared/flashes' %>
+      <%= yield %>
 
-    <%= render 'shared/footer' %>
-    <%= javascript_pack_tag 'application' %>
-  </body>
+      <%= render 'shared/footer' %>
+      <%= javascript_pack_tag 'application' %>
+    </body>
 </html>
