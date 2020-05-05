@@ -79,7 +79,8 @@
 
   &:hover {
     color: $cyan;
-    transition: 0.3s;
+    font-size: 80px;
+    transition-duration: 0.3s, 0.3s;
   }
 }
 

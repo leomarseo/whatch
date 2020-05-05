@@ -1,20 +1,30 @@
 const trailer = () => {
 
   const x = document.querySelector('.first-result > img');
+  console.log(x);
 
   const button = document.getElementById('trailer-button');
 
 
   x.addEventListener('mouseover', (event) => {
-    button.style.opacity="50%"
-    button.style.font="50%"
-    button.style.opacity="50%"
-    document.getElementById('mask').style.display="block";
+
+    x.style.backgroundColor="rgba(0, 0, 0, 0.3)";
+    button.style.opacity="50%";
+
+    button.addEventListener('mouseover', (event) => {
+      button.style.opacity="100%";
+    });
+
+    button.addEventListener('mouseout', (event) => {
+      button.style.opacity="50%";
+    });
+
   });
 
   x.addEventListener('mouseout', (event) => {
-    button.style.opacity="15%"
-    document.getElementById('mask').style.display="hidden";
+
+    x.style.background="none";
+    button.style.opacity="15%";
   });
 
 
