@@ -76,11 +76,10 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
+  transition: 0.3s;
   &:hover {
     color: $cyan;
     font-size: 80px;
-    transition: 0.3s ease-in-out;
   }
 }
 
