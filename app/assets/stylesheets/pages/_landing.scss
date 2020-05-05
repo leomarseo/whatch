@@ -1,4 +1,4 @@
-.landing-container {
+.landing-intro {
   padding-top: 128px;
   width: 100%;
   height: 100%;
@@ -44,7 +44,9 @@
 
 .landing-overview {
   background-color: rgba(240, 240, 245, 1);
-  height: 90vh;
+}
+
+.landing-header {
   width: 100%;
   h1 {
     font-weight: 800;
@@ -68,14 +70,35 @@
   }
 }
 
+.landing-header-inverted {
+  h1 {
+    font-weight: 800;
+    font-size: 32px;
+    color: white;
+    margin-bottom: 8px;
+  }
+  p {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: white;
+  }
+}
 
-.landing-overview-top {
-  padding: 80px 15vw 0 15vw;
+.landing-container {
+  padding: 96px 15vw 0 15vw;
+  &.inverted {
+    padding: 160px 40vw 0 20vw;
+  }
+  &.inverted-right {
+    text-align:right;
+    padding: 160px 20vw 0 40vw;
+  }
 }
 
 .landing-filter-buttons {
   display: flex;
-  margin: 64px auto 48px auto;
+  margin: 48px auto 48px auto;
 
 }
 
@@ -96,10 +119,11 @@
   }
 }
 
-.landing-overview-discovery {
+.landing-discovery {
   width: 100vw;
   overflow-x: scroll;
   overflow-y: hidden;
+  padding-bottom: 128px;
     &::-webkit-scrollbar {
     display: none;
     }
@@ -158,6 +182,45 @@
   }
 }
 
-.landing-overview-swiping {
+.landing-selecting {
+  background-color: $dark-navy;
+  height: 1400px;
+}
 
+.landing-selecting-cards {
+  margin: 48px 20vw;
+  background: url(image_path('backgrounds/selection_cards.svg'));
+  background-repeat: no-repeat;
+  width: auto;
+  height: 400px;
+}
+
+.landing-badges {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.landing-badge-first {
+  background: url(image_path('achievements/harry_potter.svg'));
+  background-repeat: no-repeat;
+  height: 160px;
+  width: 160px;
+  margin: 24px 0 24px 48px;
+}
+
+.landing-badge-second {
+  background: url(image_path('achievements/may_the_force.svg'));
+  background-repeat: no-repeat;
+  height: 160px;
+  width: 160px;
+  margin: 24px 0 24px 48px;
+}
+
+.landing-badge-third {
+  background: url(image_path('achievements/youre_back.svg'));
+  background-repeat: no-repeat;
+  height: 160px;
+  width: 160px;
+  margin: 24px 0 24px 48px;
 }
