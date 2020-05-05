@@ -59,6 +59,6 @@ class PagesController < ApplicationController
       SavedMovie.create(movie: @movie, user: current_user, seen: true)
     end
 
-    redirect_to root_path # should instead redirect to streaming service
+    redirect_to history_index_path
   end
 end
