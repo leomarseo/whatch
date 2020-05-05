@@ -32,6 +32,11 @@
 
 }
 
+.whatch-badge-icon-empty {
+  border-color: transparent;
+}
+
+
 .whatch-badge-icon-like {
   background: url("/assets/icons/liked_hover.svg");
   background-repeat: no-repeat;
@@ -41,7 +46,3 @@
   background: url("/assets/icons/disliked_hover.svg");
   background-repeat: no-repeat;
 }
-.whatch-badge-icon-empty {
-  border-color: transparent;
-}
-
