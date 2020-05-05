@@ -404,7 +404,20 @@ class TmdbSuggestionsController < ApplicationController
     to_be_removed = user.saved_movies.pluck(:movie_id)
 
 
-    final_suggestions = suggestions.filter { |suggestion| to_be_removed.exclude?(suggestion.id) }
+    partial_suggestions = suggestions.filter { |suggestion| to_be_removed.exclude?(suggestion.id) }
+
+    final_suggesions = filter_by_banned(partial_suggestions)
+
+    return final_suggestions
+  end
+
+  #8
+  def filter_by_banned(suggestions)
+    # this method exists to allow us to manually exclude movies from suggestions at will
+
+    banned = [8443] # put here all movie_ids of movies which have any kind of problem (e.g. this one is a duplicate coming from tmdb directly)
+
+    final_suggestions = suggestions.filter { |suggestion| banned.exclude?(suggestion.id) }
 
     return final_suggestions
   end
