@@ -406,7 +406,7 @@ class TmdbSuggestionsController < ApplicationController
 
     partial_suggestions = suggestions.filter { |suggestion| to_be_removed.exclude?(suggestion.id) }
 
-    final_suggesions = filter_by_banned(partial_suggestions)
+    final_suggestions = filter_by_banned(partial_suggestions)
 
     return final_suggestions
   end
