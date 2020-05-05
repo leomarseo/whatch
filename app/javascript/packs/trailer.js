@@ -1,37 +1,37 @@
 const trailer = () => {
 
-  const x = document.querySelector('.normal-result > img');
-  console.log(x);
+  const movie_poster = document.querySelector('.normal-result > img');
+  console.log(movie_poster);
 
-  const button = document.getElementById('trailer-button');
+  const play_button = document.getElementById('trailer-button');
 
 
-  x.addEventListener('mouseover', (event) => {
+  movie_poster.addEventListener('mouseover', (event) => {
 
-    x.style.backgroundColor="rgba(0, 0, 0, 0.3)";
-    button.style.opacity="50%";
+    movie_poster.style.backgroundColor="rgba(0, 0, 0, 0.3)";
+    play_button.style.opacity="50%";
 
-    button.addEventListener('mouseover', (event) => {
-      x.style.backgroundColor="rgba(0, 0, 0, 0.3)";
-      button.style.opacity="100%";
+    play_button.addEventListener('mouseover', (event) => {
+      movie_poster.style.backgroundColor="rgba(0, 0, 0, 0.3)";
+      play_button.style.opacity="100%";
     });
 
-    button.addEventListener('mouseout', (event) => {
-      button.style.opacity="50%";
+    play_button.addEventListener('mouseout', (event) => {
+      play_button.style.opacity="50%";
 
     });
 
   });
 
-  x.addEventListener('mouseout', (event) => {
+  movie_poster.addEventListener('mouseout', (event) => {
 
-    x.style.background="none";
-    button.style.opacity="15%";
+    movie_poster.style.background="none";
+    play_button.style.opacity="15%";
   });
 
 
 
-  button.addEventListener('click', (event) => {
+  play_button.addEventListener('click', (event) => {
     document.getElementById('transparent-background').style.display="block";
   })
 
