@@ -12,11 +12,13 @@ const trailer = () => {
     button.style.opacity="50%";
 
     button.addEventListener('mouseover', (event) => {
+      x.style.backgroundColor="rgba(0, 0, 0, 0.3)";
       button.style.opacity="100%";
     });
 
     button.addEventListener('mouseout', (event) => {
       button.style.opacity="50%";
+
     });
 
   });
