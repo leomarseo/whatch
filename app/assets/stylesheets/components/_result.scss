@@ -16,9 +16,6 @@
 }
 
 .first-result {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   img {
     width: 240px;
     height: 360px;
@@ -29,11 +26,6 @@
     border-style: solid;
     border-color: white;
     border-width: 2px;
-
-    &:hover {
-      background: rgba(0, 0, 0, 0.5);
-      transition: 0.3s;
-    }
   }
 }
 
@@ -165,9 +157,9 @@
 .film-header {
   overflow-x: hidden;
   overflow-y: scroll;
-    &::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
-    }
+  }
 }
 
 .film-details {
@@ -185,9 +177,9 @@
   overflow-x: scroll;
   overflow-y: hidden;
   max-width: 640px;
-    &::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
-    }
+  }
   .cast-member {
     width: 160px;
     p {
