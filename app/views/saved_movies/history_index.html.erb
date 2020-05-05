@@ -1,20 +1,25 @@
 <div class="row history-container">
   <% @seen_movies.each do |saved_movie| %>
     <div class="col-3 movie-card-opacity-animation">
-        <div class="thumbs-up-badge">
+    <div class="thumbs-up-badge">
           <% if saved_movie.user_rating == 1 %>
-          <%= tag.div class: %w( img-responsive badge-icon whatch-badge-icon-like ) %>
+          <div class="img-responsive badge-icon whatch-badge-icon-like action-button">
+          <%= link_to (image_tag "icons/liked_hover.svg"), history_update_index_path(id: saved_movie.id), method: :patch %>
+          </div>
           <% elsif saved_movie.user_rating == 0 %>
-          <%= tag.div class: %w( img-responsive badge-icon whatch-badge-icon-dislike ) %>
+          <div class="img-responsive badge-icon whatch-badge-icon-like action-button">
+          <%= link_to (image_tag "icons/disliked_hover.svg"), history_update_index_path(id: saved_movie.id), method: :patch %>
+          </div>
           <% else %>
           <%= tag.div class: %w( img-responsive badge-icon whatch-badge-icon-empty ) %>
           <% end %>
-        </div>
+        </div>     
+        
       <div class="movie-poster-small">
         <% if saved_movie.movie.photo_url == nil%>
         <%= link_to history_show_path(saved_movie.id) do %>
         <div class="movie-poster-placeholder">
-        <%= tag.h3 "#{saved_movie.movie.title}"  %>
+        <%= tag.h3 "#{saved_movie.movie.title}" %>
         <% end %>
         </div>
         <% else %>
