@@ -35,8 +35,8 @@
         </div>
       <!-- logic for handling one card WITH buttons -->
       <% elsif multiple_cards == false && number_of_buttons > 0 %>
-        <div class="single-result normal-result">
-          <div class="movie-poster-container">
+        <div class="single-result">
+          <div class="movie-poster-container normal-result">
             <div class="small-rating-badge">
               <% unless current_suggestion.first.class.to_s == 'Suggestion' %>
                 <% if current_suggestion.first.user_rating == 1 %>
