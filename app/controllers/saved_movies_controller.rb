@@ -56,10 +56,12 @@ class SavedMoviesController < ApplicationController
 
   def history_index
     @seen_movies = current_user.saved_movies.where(seen: true)
+    # @current_movie = [@seen_movies.each do find(:id)]
+    # @rating = rating_icon
+
   end
 
   def history_show
-    # needs to set a route too
     @current_movie = [SavedMovie.find(params[:id])] #needs to be an array
     # @current_movie = Movie.find(params[:id]) #not an object
     @current_rating = @current_movie.first.user_rating
@@ -76,21 +78,16 @@ class SavedMoviesController < ApplicationController
     end
   end
 
-  # def rating_icon_dislike
-  #   if @current_rating == 0
-  #     return "icons/disliked_hover.svg"
-  #   else
-  #     return "icons/disliked.svg"
-  #   end
-
-  # end
-
   def history_update
     @saved_movie = SavedMovie.find(params[:id])
-
-    # legacy: makes a button behave like a switch to change the rating of a given movie
     @saved_movie.user_rating == 1 ? @saved_movie.update(user_rating: 0) : @saved_movie.update(user_rating: 1)
     redirect_to history_show_path(@saved_movie)
+  end
+
+  def history_update_index
+    @saved_movie = SavedMovie.find(params[:id])
+    @saved_movie.user_rating == 1 ? @saved_movie.update(user_rating: 0) : @saved_movie.update(user_rating: 1)
+    redirect_to history_index_path
   end
 
   def history_destroy
