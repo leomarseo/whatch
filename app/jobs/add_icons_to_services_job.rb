@@ -26,6 +26,7 @@ class AddIconsToServicesJob < ApplicationJob
     Service.find(71).update(icon: "streaming_services/fubotv_logo.jpg")
     Service.find(80).update(icon: "streaming_services/historyvault_logo.jpg")
     Service.find(91).update(icon: "streaming_services/cinemax_logo.jpg")
+    Service.find(98).update(icon: "streaming_services/sling_logo.jpg")
     Service.find(99).update(icon: "streaming_services/plutotv_logo.jpg")
     Service.find(102).update(icon: "streaming_services/usanetwork_logo.jpg")
     Service.find(106).update(icon: "streaming_services/vudu_logo.jpg")
