@@ -2,10 +2,8 @@ class HarryPotterJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    # Do something later
-    #AvailableService.create(service_id: 'reference the relevant service', movie_id: 'reference correct movie with OUR id, not tmdb', url: 'link to the movie')
 
-    # PAY ATTENTION by now in the movie_id is stored the TMBD_ID
+    # PAY ATTENTION: by now in the movie_id is stored the TMBD_ID
 
     # 1) Harry Potter and the Philosopher's Stone  --> no streaming service
 
@@ -27,4 +25,3 @@ class HarryPotterJob < ApplicationJob
   end
 end
 
-#AvailableService.create(service_id: , movie_id: , url:)
