@@ -67,20 +67,22 @@
 }
 
 .play-button{
-  font-size: 32px;
-  color: $light-gray;
+  font-size: 60px;
+  color: black;
+  opacity: 15%;
   z-index: 999;
   display: block;
-  padding: 8px;
+  // padding: 8px;
 
-  position: absolute;
-  top: 11%;
-  left: 87%;
+  // position: absolute;
+  // top: 11%;
+  // left: 87%;
   transform: translate(-50%, -50%);
 
   &:hover {
     color: $cyan;
-    transition: 0
+    transition: 0.3s;
+    opacity: 50%;
   }
 }
 
