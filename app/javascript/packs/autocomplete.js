@@ -31,7 +31,7 @@ const autocompleteWrapper = function() {
       if (item.photo === 'placeholder') {
         image = '<img src="../avatar.svg" style="width: 40px;">';
       } else {
-        image = `<img src="https://image.tmdb.org/t/p/w200${item.photo}" style="width: 40px; height: 60px;">`;
+        image = `<img src="https://image.tmdb.org/t/p/w200${item.photo}" style="width: 40px; height: 40px; border-radius: 100%; object-fit: cover;">`;
       };
 
       if (SELECTEDBUTTON == "genre") { image = "" };
