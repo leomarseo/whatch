@@ -21,13 +21,13 @@
     first_button_label: "remove",
     first_button_method: :delete,
 
-    second_button_path: history_update_path(id: @current_movie.first.id),
+    second_button_path: history_update_dislike_path(id: @current_movie.first.id),
     second_button_image: "icons/disliked_neutral.svg",
     second_button_class: "history-change-rating-action",
     second_button_label: "dislike",
     second_button_method: :patch,
 
-    third_button_path: history_update_path(id: @current_movie.first.id),
+    third_button_path: history_update_like_path(id: @current_movie.first.id),
     third_button_image: "icons/liked_neutral.svg",
     third_button_class: "history-change-rating-action",
     third_button_label: "like",
