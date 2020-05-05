@@ -129,7 +129,7 @@
               <% else %>
 
                 <h2 style="opacity: 1">Watch now on:</h2>
-                <div class="services-container">
+                <div id="services-container">
                   <% @current_suggestion.first.movie.available_services.each do |available_service| %>
                     <%= link_to (image_tag available_service.service.icon), after_confirmation_path(movie_id: @current_suggestion.first.movie_id), class: 'service-card', data: { link: available_service.url} %>
                   <% end %>
