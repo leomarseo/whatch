@@ -172,6 +172,7 @@ const searchFilters = () => {
   const watchButton = document.getElementById("watch-btn");
   watchButton.addEventListener("click", event => {
     document.location.href = `/tmdb_suggestions/${JSON.stringify(refineSelection())}`;
+    document.getElementById('transparent-background').style.display="block";
   });
 
   const refineSelection = () => {

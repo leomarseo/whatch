@@ -246,7 +246,7 @@
 
 
 <div id="transparent-background"> <!-- CSS in /container.scss -->
-  <div class="iframe-container">
+  <div class="modal-container">
     <div class="video-x"> <!-- in order to position the x -->
       <% unless current_suggestion.first.movie.trailer_url.nil? %>
         <iframe enablejsapi="1" src=<%= current_suggestion.first.movie.trailer_url.gsub("watch?v=", "embed/") %>></iframe>

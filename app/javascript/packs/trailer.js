@@ -4,7 +4,7 @@ const trailer = () => {
 
   button.addEventListener('click', (event) => {
     document.getElementById('transparent-background').style.display="block";
-  });
+  })
 
 
   const transparent_back = document.getElementById('transparent-background');
