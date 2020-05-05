@@ -49,9 +49,9 @@ class CreateAchievementsJob < ApplicationJob
     Achievement.create(name: "Whatcher pro", description: "You watched 100 hours of movies", category: "hours", number: 30000, macro_area: "hours and queries", icon: "achievements/whatcher_pro.svg")
 
     #ACTORS
-    Achievement.create(name: "Brad forever", description: "You watched all the movies starring Brad Pitt", category: "actors", number: 9, macro_area: "other")
+    Achievement.create(name: "Brad forever", description: "You watched all the movies starring Brad Pitt", category: "actors", number: 9, macro_area: "other", icon: "achievements/brad_forever.svg")
 
     #DIRECTORS
-    Achievement.create(name: "Nosferatu", description: "You watched all the movies directed by Werner Herzog", category: "directors", number: 9, macro_area: "other")
+    Achievement.create(name: "Nosferatu", description: "You watched all the movies directed by Werner Herzog", category: "directors", number: 9, macro_area: "other", icon: "achievements/nosferatu.svg")
   end
 end
