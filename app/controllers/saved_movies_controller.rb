@@ -84,6 +84,18 @@ class SavedMoviesController < ApplicationController
     redirect_to history_show_path(@saved_movie)
   end
 
+  def history_update_like
+    @saved_movie = SavedMovie.find(params[:id])
+    @saved_movie.update(user_rating: 1)
+    redirect_to history_show_path(@saved_movie)
+  end
+
+  def history_update_dislike
+    @saved_movie = SavedMovie.find(params[:id])
+    @saved_movie.update(user_rating: 0)
+    redirect_to history_show_path(@saved_movie)
+  end
+
   def history_update_index
     @saved_movie = SavedMovie.find(params[:id])
     @saved_movie.user_rating == 1 ? @saved_movie.update(user_rating: 0) : @saved_movie.update(user_rating: 1)

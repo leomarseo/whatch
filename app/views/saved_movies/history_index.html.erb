@@ -3,15 +3,15 @@
     <div class="col-3 movie-card-opacity-animation">
     <div class="thumbs-up-badge">
           <% if saved_movie.user_rating == 1 %>
-          <div class="img-responsive badge-icon whatch-badge-icon-like action-button">
+          <div class="img-responsive badge-icon-index action-button">
           <%= link_to (image_tag "icons/liked_hover.svg"), history_update_index_path(id: saved_movie.id), method: :patch %>
           </div>
           <% elsif saved_movie.user_rating == 0 %>
-          <div class="img-responsive badge-icon whatch-badge-icon-like action-button">
+          <div class="img-responsive badge-icon-index action-button">
           <%= link_to (image_tag "icons/disliked_hover.svg"), history_update_index_path(id: saved_movie.id), method: :patch %>
           </div>
           <% else %>
-          <%= tag.div class: %w( img-responsive badge-icon whatch-badge-icon-empty ) %>
+          <%= tag.div class: %w( img-responsive badge-icon-index whatch-badge-icon-empty ) %>
           <% end %>
         </div>     
         
