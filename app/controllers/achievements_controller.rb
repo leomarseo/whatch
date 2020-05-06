@@ -173,10 +173,11 @@ class AchievementsController < ApplicationController
     seen = true
 
     Achievement.where(category: 'collection').each do |achievement|
-      Collection.find_by(tmdb_id: achievement.number).movies.each do |movie|
-        seen = false if seen_ids.exclude?(movie.id)
-      end
-      if seen && @joint_achievements.find_by(achievement_id: achievement.id).nil?
+      collection = Collection.find_by(tmdb_id: achievement.number)
+      seen = @seen_movies.where(collection_id: collection.id)
+      seen_all = (seen.count == collection.movies.count)
+
+      if seen_all && @joint_achievements.find_by(achievement_id: achievement.id).nil?
         JointAchievement.create(user_id: current_user.id, achievement_id: achievement.id, earned: true)
       end
     end

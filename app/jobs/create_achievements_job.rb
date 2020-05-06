@@ -32,7 +32,7 @@ class CreateAchievementsJob < ApplicationJob
     # Achievement.create(name: "It's cheaper than dating", description: "You watched 10 adult movies", category: "adult", number: 10, macro_area: "special")
 
     #STRANGE
-    Achievement.create(name: "Fetishist", description: "You watched 10 unpopular movies", category: "low-rating", number: 10, macro_area: "special")
+    Achievement.create(name: "Fetishist", description: "You watched 10 unpopular movies", category: "low-rating", number: 10, macro_area: "special", icon: "achievements/fetishist.svg")
     # Achievement.create(name: "What's the matter with you", description: "You didn't watch anything", category: "nothing-watched", number: 15, macro_area: "special") #The user made the query but he actually didn't watch anything
     Achievement.create(name: "Calm down", description: "You skipped 100 movies", category: "skip", number: 100, macro_area: "special", icon: "achievements/calm_down.svg")
     Achievement.create(name: "It's not Tinder", description: "You skipped 500 movies", category: "skip", number: 500, macro_area: "special", icon: "achievements/its_not_tinder.svg")
