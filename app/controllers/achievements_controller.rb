@@ -2,7 +2,7 @@
 
 class AchievementsController < ApplicationController
   before_action :set_variables
-  before_action :visualization, :query_number, :hours, :documentary, :western, :directors, :actors, :low_rating, :skip, :collections, only: [:index]
+  before_action :visualization, :query_number, :hours, :documentary, :western, :directors, :actors, :low_rating, :skip, only: [:index]
 
   def index
     @achievements = Achievement.all
@@ -168,20 +168,20 @@ class AchievementsController < ApplicationController
 
   # COLLECTIONS
 
-  def collections
-    seen_ids = @seen_movies.pluck(:movie_id)
-    seen = true
+  # def collections
+  #   seen_ids = @seen_movies.pluck(:movie_id)
+  #   seen = true
 
-    Achievement.where(category: 'collection').each do |achievement|
-      collection = Collection.find_by(tmdb_id: achievement.number)
-      seen = @seen_movies.where(collection_id: collection.id)
-      seen_all = (seen.count == collection.movies.count)
+  #   Achievement.where(category: 'collection').each do |achievement|
+  #     collection = Collection.find_by(tmdb_id: achievement.number)
+  #     seen = @seen_movies.where(collection_id: collection.id)
+  #     seen_all = (seen.count == collection.movies.count)
 
-      if seen_all && @joint_achievements.find_by(achievement_id: achievement.id).nil?
-        JointAchievement.create(user_id: current_user.id, achievement_id: achievement.id, earned: true)
-      end
-    end
-  end
+  #     if seen_all && @joint_achievements.find_by(achievement_id: achievement.id).nil?
+  #       JointAchievement.create(user_id: current_user.id, achievement_id: achievement.id, earned: true)
+  #     end
+  #   end
+  # end
 
   #ADULT
 
