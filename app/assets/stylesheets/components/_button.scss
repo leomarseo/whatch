@@ -102,3 +102,19 @@
   }
 }
 
+.loader{
+  margin: 0 0 2em;
+  height: 100px;
+  width: 20%;
+  text-align: center;
+  padding: 1em;
+  margin: 0 auto 1em;
+  display: inline-block;
+  vertical-align: top;
+  color: $cyan;
+}
+svg path,
+svg rect{
+  fill: $cyan;
+}
+
