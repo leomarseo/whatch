@@ -2,7 +2,7 @@
 
 class AchievementsController < ApplicationController
   before_action :set_variables
-  before_action :visualization, :query_number, :hours, :documentary, :western, :directors, :actors, :low_rating, :skip, only: [:index]
+  # before_action :visualization, :query_number, :hours, :documentary, :western, :directors, :actors, :low_rating, :skip, only: [:index]
 
   def index
     @achievements = Achievement.all
