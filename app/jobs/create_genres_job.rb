@@ -1,7 +1,7 @@
 require "json"
 require 'open-uri'
 
-class CreateCollectionsJob < ApplicationJob
+class CreateGenresJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
